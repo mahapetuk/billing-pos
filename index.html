@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>স্মার্ট বিলিং কাউন্টার | Smart POS</title>
+  <meta name="theme-color" content="#f59e0b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --bg: #121212;
+      --card-bg: #1e1e24;
+      --surface: #282830;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --success: #10b981;
+      --danger: #ef4444;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Hind Siliguri', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 110px; }
+
+    .top-bar { display: flex; justify-content: space-between; align-items: center; background: #000; padding: 12px 16px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #333; }
+    .brand-title { font-size: 16px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .top-actions { display: flex; gap: 6px; align-items: center; }
+    .btn-action { background: var(--surface); color: #fff; border: 1px solid #444; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+    .btn-lang { background: #3b82f6; color: #fff; border: none; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; }
+
+    /* Shop Dynamic Banner Section */
+    .hero-summary { background: linear-gradient(180deg, #1c1917 0%, #121212 100%); padding: 16px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .banner-preview-img { max-width: 100%; height: 90px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; border: 1px solid #333; display: none; }
+    .shop-name { font-size: 22px; font-weight: 800; color: #fff; }
+    .shop-loc { font-size: 13px; color: var(--primary); margin-bottom: 8px; }
+    .daily-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--success); color: #6ee7b7; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+
+    .filter-section { max-width: 900px; margin: 12px auto; padding: 0 14px; }
+    .search-input { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 15px; outline: none; margin-bottom: 10px; }
+    .search-input:focus { border-color: var(--primary); }
+    .cats-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+    .cat-btn { padding: 6px 14px; background: var(--surface); border: 1px solid #444; border-radius: 20px; color: var(--muted); font-size: 13px; font-weight: bold; white-space: nowrap; cursor: pointer; }
+    .cat-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; max-width: 900px; margin: 0 auto; padding: 0 14px; }
+    .food-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .food-thumb { width: 100%; height: 130px; object-fit: cover; background: #262626; }
+    .card-details { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .item-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .item-sub { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    
+    .size-toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+    .size-btn { flex: 1; padding: 6px 4px; background: var(--surface); border: 1px solid #444; color: #fff; font-size: 12px; font-weight: bold; border-radius: 6px; cursor: pointer; text-align: center; }
+    .size-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
+
+    .btn-add-cart { background: var(--blue); color: #fff; border: none; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #1c1c1e; border-top: 2px solid var(--primary); padding: 12px 18px; display: none; justify-content: space-between; align-items: center; z-index: 999; }
+    .cart-summary { font-size: 13px; color: var(--muted); }
+    .cart-total-price { font-size: 19px; font-weight: 800; color: var(--primary); }
+    .btn-open-bill { background: var(--success); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    .modal-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 14px; }
+    .modal-box { background: #fff; color: #111; width: 100%; max-width: 440px; border-radius: 12px; padding: 16px; max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #444; padding-bottom: 10px; margin-bottom: 12px; }
+    .btn-modal-close { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
+
+    .memo-row { display: flex; justify-content: space-between; align-items: center; background: #f4f4f5; padding: 8px 10px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
+    .qty-btn { width: 28px; height: 28px; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+    .qr-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; margin: 10px 0; }
+    #qrcode { margin-bottom: 6px; }
+
+    .grid-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .btn-pay-c { background: #059669; color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; }
+    .btn-pay-o { background: var(--blue); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; }
+    .btn-print { grid-column: span 2; background: #18181b; color: #fff; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; color: #444; margin-bottom: 4px; }
+    .form-control { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; }
+
+    @media print {
+      body * { visibility: hidden; }
+      #printableThermalBill, #printableThermalBill * { visibility: visible; }
+      #printableThermalBill { position: absolute; left: 0; top: 0; width: 58mm; padding: 2mm; font-family: monospace; color: #000; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="brand-title"><i class="fa-solid fa-cash-register"></i> <span id="txtTopBrand">স্মার্ট বিলিং</span></div>
+    <div class="top-actions">
+      <button class="btn-lang" onclick="toggleLanguage()"><i class="fa-solid fa-globe"></i> <span id="btnLangText">English</span></button>
+      <button class="btn-action" onclick="openShopSettings()"><i class="fa-solid fa-store"></i> <span id="txtShopBtn">দোকান</span></button>
+      <button class="btn-action" onclick="openLedger()"><i class="fa-solid fa-book"></i> <span id="txtLedger">খাতা</span></button>
+      <button class="btn-action" style="color:var(--primary);" onclick="openFoodManager()"><i class="fa-solid fa-plus"></i> <span id="txtMenuBtn">মেনু</span></button>
+    </div>
+  </div>
+
+  <!-- Dynamic Banner & Shop Name -->
+  <div class="hero-summary">
+    <img id="shopBannerImg" class="banner-preview-img">
+    <div class="shop-name" id="displayShopName">দোকানের নাম</div>
+    <div class="shop-loc" id="displayShopLoc">দোকানের ঠিকানা বা স্লোগান</div>
+    <div class="daily-badge">
+      <i class="fa-solid fa-chart-line"></i> <span id="badgeSalesText">আজকের বিক্রি: হিসাব হচ্ছে...</span>
+    </div>
+  </div>
+
+  <!-- Search & Category -->
+  <div class="filter-section">
+    <input type="text" id="searchInput" class="search-input" placeholder="খাবারের নাম দিয়ে সার্চ করুন..." oninput="renderApp()">
+    <div class="cats-scroll" id="categoryScroll"></div>
+  </div>
+
+  <!-- Menu Grid -->
+  <div class="menu-grid" id="menuGrid"></div>
+
+  <!-- Floating Cart -->
+  <div class="floating-bar" id="floatingCart">
+    <div>
+      <div class="cart-summary" id="cartItemCount">০ টি আইটেম</div>
+      <div class="cart-total-price" id="cartTotalPrice">₹০</div>
+    </div>
+    <button class="btn-open-bill" onclick="openBillModal()"><i class="fa-solid fa-receipt"></i> <span id="txtOpenBill">মেমো ও পেমেন্ট</span></button>
+  </div>
+
+  <!-- Memo & QR Modal -->
+  <div class="modal-wrap" id="billModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-weight:800;" id="txtMemoHeader">বিল মেমো</h3>
+        <button class="btn-modal-close" onclick="closeModal('billModal')">✕</button>
+      </div>
+
+      <div id="memoItemsList" style="max-height: 180px; overflow-y: auto; margin-bottom: 10px;"></div>
+
+      <div style="display:flex; justify-content:space-between; font-size: 18px; font-weight:800; border-top:2px dashed #999; padding-top:8px;">
+        <span id="txtTotalDue">সর্বমোট বিল:</span>
+        <span id="memoGrandTotal" style="color:var(--danger);">₹০</span>
+      </div>
+
+      <!-- UPI QR Code Section -->
+      <div class="qr-container">
+        <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#475569;" id="txtScanPay">UPI QR কোড স্ক্যান করে পেমেন্ট করুন</div>
+        <div id="qrcode"></div>
+        <div style="font-size:11px; color:#64748b;" id="upiIdNote">UPI: yourname@upi</div>
+      </div>
+
+      <div class="grid-btns">
+        <button class="btn-pay-c" onclick="settleSale('Cash')">💵 <span id="txtCashBtn">ক্যাশ বিল</span></button>
+        <button class="btn-pay-o" onclick="settleSale('Online')">📱 <span id="txtOnlineBtn">অনলাইন বিল</span></button>
+        <button class="btn-print" onclick="printThermal()"><i class="fa-solid fa-print"></i> <span id="txtPrintBtn">থার্মাল রসিদ প্রিন্ট করুন</span></button>
+      </div>
+      <button onclick="clearCurrentCart()" style="width:100%; margin-top:8px; padding:6px; background:#f4f4f5; border:1px solid #ddd; border-radius:6px; font-weight:bold;" id="txtClearCart">কার্ট খালি করুন</button>
+    </div>
+  </div>
+
+  <!-- Shop Settings Modal -->
+  <div class="modal-wrap" id="shopSettingsModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-weight:800;"><i class="fa-solid fa-store"></i> <span id="txtShopSettingsTitle">দোকানের তথ্য ও ব্যানার এডিট</span></h3>
+        <button class="btn-modal-close" onclick="closeModal('shopSettingsModal')">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label>দোকানের নাম (বাংলা):</label>
+        <input type="text" id="setShopNameBn" class="form-control" placeholder="যেমন: মহা পেটুক">
+      </div>
+      <div class="form-group">
+        <label>Shop Name (English):</label>
+        <input type="text" id="setShopNameEn" class="form-control" placeholder="e.g. Maha Petuk">
+      </div>
+      <div class="form-group">
+        <label>ঠিকানা / স্লোগান (Address / Tagline):</label>
+        <input type="text" id="setShopLoc" class="form-control" placeholder="যেমন: আমতা সাহাপাড়া বাজার">
+      </div>
+      <div class="form-group">
+        <label>UPI ID (পেমেন্ট QR কোডের জন্য):</label>
+        <input type="text" id="setShopUpi" class="form-control" placeholder="e.g. 9876543210@paytm বা yourname@upi">
+      </div>
+      <div class="form-group">
+        <label>দোকানের ব্যানার বা লোগো ছবি আপলোড করুন:</label>
+        <input type="file" id="setShopBannerFile" accept="image/*" onchange="processBannerImage(event)">
+        <input type="hidden" id="setShopBannerBase64">
+      </div>
+
+      <button onclick="saveShopSettings()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; margin-top:10px;">সংরক্ষণ করুন / Save</button>
+    </div>
+  </div>
+
+  <!-- Sales Ledger Modal -->
+  <div class="modal-wrap" id="ledgerModal">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 style="font-weight:800;" id="txtLedgerTitle"><i class="fa-solid fa-book"></i> দৈনিক সেলস খাতা</h3>
+        <button class="btn-modal-close" onclick="closeModal('ledgerModal')">✕</button>
+      </div>
+
+      <div style="display:flex; gap:6px; margin-bottom:10px;">
+        <input type="date" id="ledgerDate" style="flex:1; padding:6px; border:1px solid #ccc; border-radius:6px;" onchange="renderLedger()">
+        <button onclick="document.getElementById('ledgerDate').value=''; renderLedger();" style="padding:6px 10px; background:#333; color:#fff; border:none; border-radius:6px; font-size:12px;" id="txtAllFilter">সব</button>
+        <button onclick="exportData()" style="padding:6px 10px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px;"><i class="fa-solid fa-download"></i></button>
+      </div>
+
+      <div id="ledgerStats" style="background:#f1f5f9; padding:8px; border-radius:8px; font-size:13px; font-weight:bold; margin-bottom:10px;"></div>
+      <div id="ledgerRecords" style="max-height: 320px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- Food Management Modal -->
+  <div class="modal-wrap" id="foodModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-weight:800;" id="txtManageHeader">খাবার যোগ / এডিট</h3>
+        <button class="btn-modal-close" onclick="closeModal('foodModal')">✕</button>
+      </div>
+      <input type="text" id="inpNameBn" placeholder="খাবারের নাম (বাংলা)" style="width:100%; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
+      <input type="text" id="inpNameEn" placeholder="Food Name (English)" style="width:100%; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
+      <input type="text" id="inpCat" placeholder="Category (e.g. Roll, Chow, Snacks)" style="width:100%; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
+      <div style="display:flex; gap:6px;">
+        <input type="number" id="inpHalf" placeholder="Half Price (₹)" style="flex:1; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
+        <input type="number" id="inpFull" placeholder="Full Price (₹)" style="flex:1; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
+      </div>
+      <input type="file" id="inpImg" accept="image/*" onchange="processFoodImage(event)" style="margin-bottom:8px;">
+      <input type="hidden" id="inpImgBase64">
+      <button onclick="saveFoodItem()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800;" id="txtSaveMenu">মেনুতে সেভ করুন</button>
+
+      <div id="foodListManage" style="max-height: 180px; overflow-y: auto; margin-top: 14px; border-top:1px solid #ddd; padding-top:10px;"></div>
+    </div>
+  </div>
+
+  <!-- Thermal Print Hidden Area -->
+  <div id="printableThermalBill" style="display:none;"></div>
+
+  <script>
+    const STORE_KEY = "Universal_Smart_POS_v5";
+    let lang = localStorage.getItem("usp_lang") || "bn";
+
+    const DEFAULT_CONFIG = {
+      shop: {
+        nameBn: "আপনার দোকানের নাম",
+        nameEn: "Your Shop Name",
+        loc: "ঠিকানা বা স্লোগান লিখুন",
+        upi: "paytmqr281001000@paytm",
+        banner: ""
+      },
+      menu: [
+        { id: 1, nameBn: "স্পেশাল রোল", nameEn: "Special Roll", cat: "Roll", half: 0, full: 60, img: "" },
+        { id: 2, nameBn: "ফ্রাইড রাইস", nameEn: "Fried Rice", cat: "Rice", half: 70, full: 120, img: "" }
+      ],
+      sales: []
+    };
+
+    let appData = JSON.parse(localStorage.getItem(STORE_KEY)) || DEFAULT_CONFIG;
+    let cart = [];
+    let selectedSize = {};
+    let currentCategory = 'ALL';
+
+    function saveData() {
+      localStorage.setItem(STORE_KEY, JSON.stringify(appData));
+    }
+
+    function toggleLanguage() {
+      lang = lang === "bn" ? "en" : "bn";
+      localStorage.setItem("usp_lang", lang);
+      applyLanguage();
+    }
+
+    function applyLanguage() {
+      const isBn = lang === "bn";
+      document.getElementById("btnLangText").textContent = isBn ? "English" : "বাংলা";
+      document.getElementById("txtTopBrand").textContent = isBn ? "স্মার্ট বিলিং কাউন্টার" : "Smart POS Counter";
+      document.getElementById("txtShopBtn").textContent = isBn ? "দোকান" : "Shop";
+      document.getElementById("txtLedger").textContent = isBn ? "খাতা" : "Ledger";
+      document.getElementById("txtMenuBtn").textContent = isBn ? "মেনু" : "Menu";
+      document.getElementById("searchInput").placeholder = isBn ? "খাবারের নাম দিয়ে সার্চ করুন..." : "Search menu items...";
+      document.getElementById("txtOpenBill").textContent = isBn ? "মেমো ও পেমেন্ট" : "Memo & Pay";
+      document.getElementById("txtMemoHeader").textContent = isBn ? "বিল মেমো" : "Billing Memo";
+      document.getElementById("txtTotalDue").textContent = isBn ? "সর্বমোট বিল:" : "Total Bill:";
+      document.getElementById("txtScanPay").textContent = isBn ? "UPI QR কোড স্ক্যান করে পেমেন্ট করুন" : "Scan UPI QR to Pay";
+      document.getElementById("txtCashBtn").textContent = isBn ? "ক্যাশ বিল" : "Cash Bill";
+      document.getElementById("txtOnlineBtn").textContent = isBn ? "অনলাইন বিল" : "Online Bill";
+      document.getElementById("txtPrintBtn").textContent = isBn ? "থার্মাল রসিদ প্রিন্ট করুন" : "Print Thermal Receipt";
+      document.getElementById("txtClearCart").textContent = isBn ? "কার্ট খালি করুন" : "Clear Cart";
+      document.getElementById("txtShopSettingsTitle").textContent = isBn ? "দোকানের তথ্য ও ব্যানার এডিট" : "Edit Shop Profile & Banner";
+      document.getElementById("txtLedgerTitle").innerHTML = isBn ? '<i class="fa-solid fa-book"></i> দৈনিক সেলস খাতা' : '<i class="fa-solid fa-book"></i> Daily Sales Ledger';
+      document.getElementById("txtAllFilter").textContent = isBn ? "সব" : "All";
+      document.getElementById("txtManageHeader").textContent = isBn ? "খাবার যোগ / এডিট" : "Manage Menu Items";
+      document.getElementById("txtSaveMenu").textContent = isBn ? "মেনুতে সেভ করুন" : "Save to Menu";
+
+      updateShopHeader();
+      renderCategories();
+      renderApp();
+      updateTodayBadge();
+    }
+
+    function updateShopHeader() {
+      const s = appData.shop;
+      document.getElementById("displayShopName").textContent = lang === 'bn' ? (s.nameBn || s.nameEn) : (s.nameEn || s.nameBn);
+      document.getElementById("displayShopLoc").textContent = s.loc || '';
+      
+      const bannerEl = document.getElementById("shopBannerImg");
+      if (s.banner) {
+        bannerEl.src = s.banner;
+        bannerEl.style.display = "inline-block";
+      } else {
+        bannerEl.style.display = "none";
+   
