@@ -8,8 +8,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -32,7 +31,6 @@
     .btn-action { background: var(--surface); color: #fff; border: 1px solid #444; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
     .btn-lang { background: #3b82f6; color: #fff; border: none; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; }
 
-    /* Shop Dynamic Banner Section */
     .hero-summary { background: linear-gradient(180deg, #1c1917 0%, #121212 100%); padding: 16px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .banner-preview-img { max-width: 100%; height: 90px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; border: 1px solid #333; display: none; }
     .shop-name { font-size: 22px; font-weight: 800; color: #fff; }
@@ -43,6 +41,7 @@
     .search-input { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 15px; outline: none; margin-bottom: 10px; }
     .search-input:focus { border-color: var(--primary); }
     .cats-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+    .cats-scroll::-webkit-scrollbar { display: none; }
     .cat-btn { padding: 6px 14px; background: var(--surface); border: 1px solid #444; border-radius: 20px; color: var(--muted); font-size: 13px; font-weight: bold; white-space: nowrap; cursor: pointer; }
     .cat-btn.active { background: var(--primary); color: #000; border-color: var(--primary); }
 
@@ -73,7 +72,7 @@
     .qty-btn { width: 28px; height: 28px; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
     .qr-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; margin: 10px 0; }
-    #qrcode { margin-bottom: 6px; }
+    #qrcodeImg { width: 140px; height: 140px; object-fit: contain; margin-bottom: 6px; display: none; }
 
     .grid-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
     .btn-pay-c { background: #059669; color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; }
@@ -97,10 +96,10 @@
   <div class="top-bar">
     <div class="brand-title"><i class="fa-solid fa-cash-register"></i> <span id="txtTopBrand">স্মার্ট বিলিং</span></div>
     <div class="top-actions">
-      <button class="btn-lang" onclick="toggleLanguage()"><i class="fa-solid fa-globe"></i> <span id="btnLangText">English</span></button>
-      <button class="btn-action" onclick="openShopSettings()"><i class="fa-solid fa-store"></i> <span id="txtShopBtn">দোকান</span></button>
-      <button class="btn-action" onclick="openLedger()"><i class="fa-solid fa-book"></i> <span id="txtLedger">খাতা</span></button>
-      <button class="btn-action" style="color:var(--primary);" onclick="openFoodManager()"><i class="fa-solid fa-plus"></i> <span id="txtMenuBtn">মেনু</span></button>
+      <button type="button" class="btn-lang" onclick="toggleLanguage()"><i class="fa-solid fa-globe"></i> <span id="btnLangText">English</span></button>
+      <button type="button" class="btn-action" onclick="openShopSettings()"><i class="fa-solid fa-store"></i> <span id="txtShopBtn">দোকান</span></button>
+      <button type="button" class="btn-action" onclick="openLedger()"><i class="fa-solid fa-book"></i> <span id="txtLedger">খাতা</span></button>
+      <button type="button" class="btn-action" style="color:var(--primary);" onclick="openFoodManager()"><i class="fa-solid fa-plus"></i> <span id="txtMenuBtn">মেনু</span></button>
     </div>
   </div>
 
@@ -129,7 +128,7 @@
       <div class="cart-summary" id="cartItemCount">০ টি আইটেম</div>
       <div class="cart-total-price" id="cartTotalPrice">₹০</div>
     </div>
-    <button class="btn-open-bill" onclick="openBillModal()"><i class="fa-solid fa-receipt"></i> <span id="txtOpenBill">মেমো ও পেমেন্ট</span></button>
+    <button type="button" class="btn-open-bill" onclick="openBillModal()"><i class="fa-solid fa-receipt"></i> <span id="txtOpenBill">মেমো ও পেমেন্ট</span></button>
   </div>
 
   <!-- Memo & QR Modal -->
@@ -137,7 +136,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3 style="font-weight:800;" id="txtMemoHeader">বিল মেমো</h3>
-        <button class="btn-modal-close" onclick="closeModal('billModal')">✕</button>
+        <button type="button" class="btn-modal-close" onclick="closeModal('billModal')">✕</button>
       </div>
 
       <div id="memoItemsList" style="max-height: 180px; overflow-y: auto; margin-bottom: 10px;"></div>
@@ -150,16 +149,16 @@
       <!-- UPI QR Code Section -->
       <div class="qr-container">
         <div style="font-size:12px; font-weight:bold; margin-bottom:6px; color:#475569;" id="txtScanPay">UPI QR কোড স্ক্যান করে পেমেন্ট করুন</div>
-        <div id="qrcode"></div>
-        <div style="font-size:11px; color:#64748b;" id="upiIdNote">UPI: yourname@upi</div>
+        <img id="qrcodeImg" alt="Payment QR Code">
+        <div style="font-size:11px; color:#64748b;" id="upiIdNote">UPI: not set</div>
       </div>
 
       <div class="grid-btns">
-        <button class="btn-pay-c" onclick="settleSale('Cash')">💵 <span id="txtCashBtn">ক্যাশ বিল</span></button>
-        <button class="btn-pay-o" onclick="settleSale('Online')">📱 <span id="txtOnlineBtn">অনলাইন বিল</span></button>
-        <button class="btn-print" onclick="printThermal()"><i class="fa-solid fa-print"></i> <span id="txtPrintBtn">থার্মাল রসিদ প্রিন্ট করুন</span></button>
+        <button type="button" class="btn-pay-c" onclick="settleSale('Cash')">💵 <span id="txtCashBtn">ক্যাশ বিল</span></button>
+        <button type="button" class="btn-pay-o" onclick="settleSale('Online')">📱 <span id="txtOnlineBtn">অনলাইন বিল</span></button>
+        <button type="button" class="btn-print" onclick="printThermal()"><i class="fa-solid fa-print"></i> <span id="txtPrintBtn">থার্মাল রসিদ প্রিন্ট করুন</span></button>
       </div>
-      <button onclick="clearCurrentCart()" style="width:100%; margin-top:8px; padding:6px; background:#f4f4f5; border:1px solid #ddd; border-radius:6px; font-weight:bold;" id="txtClearCart">কার্ট খালি করুন</button>
+      <button type="button" onclick="clearCurrentCart()" style="width:100%; margin-top:8px; padding:6px; background:#f4f4f5; border:1px solid #ddd; border-radius:6px; font-weight:bold;" id="txtClearCart">কার্ট খালি করুন</button>
     </div>
   </div>
 
@@ -168,7 +167,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3 style="font-weight:800;"><i class="fa-solid fa-store"></i> <span id="txtShopSettingsTitle">দোকানের তথ্য ও ব্যানার এডিট</span></h3>
-        <button class="btn-modal-close" onclick="closeModal('shopSettingsModal')">✕</button>
+        <button type="button" class="btn-modal-close" onclick="closeModal('shopSettingsModal')">✕</button>
       </div>
 
       <div class="form-group">
@@ -193,7 +192,7 @@
         <input type="hidden" id="setShopBannerBase64">
       </div>
 
-      <button onclick="saveShopSettings()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; margin-top:10px;">সংরক্ষণ করুন / Save</button>
+      <button type="button" onclick="saveShopSettings()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; margin-top:10px; cursor:pointer;">সংরক্ষণ করুন / Save</button>
     </div>
   </div>
 
@@ -202,13 +201,13 @@
     <div class="modal-box" style="max-width: 480px;">
       <div class="modal-header">
         <h3 style="font-weight:800;" id="txtLedgerTitle"><i class="fa-solid fa-book"></i> দৈনিক সেলস খাতা</h3>
-        <button class="btn-modal-close" onclick="closeModal('ledgerModal')">✕</button>
+        <button type="button" class="btn-modal-close" onclick="closeModal('ledgerModal')">✕</button>
       </div>
 
       <div style="display:flex; gap:6px; margin-bottom:10px;">
         <input type="date" id="ledgerDate" style="flex:1; padding:6px; border:1px solid #ccc; border-radius:6px;" onchange="renderLedger()">
-        <button onclick="document.getElementById('ledgerDate').value=''; renderLedger();" style="padding:6px 10px; background:#333; color:#fff; border:none; border-radius:6px; font-size:12px;" id="txtAllFilter">সব</button>
-        <button onclick="exportData()" style="padding:6px 10px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px;"><i class="fa-solid fa-download"></i></button>
+        <button type="button" onclick="document.getElementById('ledgerDate').value=''; renderLedger();" style="padding:6px 10px; background:#333; color:#fff; border:none; border-radius:6px; font-size:12px; cursor:pointer;" id="txtAllFilter">সব</button>
+        <button type="button" onclick="exportData()" style="padding:6px 10px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px; cursor:pointer;"><i class="fa-solid fa-download"></i></button>
       </div>
 
       <div id="ledgerStats" style="background:#f1f5f9; padding:8px; border-radius:8px; font-size:13px; font-weight:bold; margin-bottom:10px;"></div>
@@ -221,7 +220,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3 style="font-weight:800;" id="txtManageHeader">খাবার যোগ / এডিট</h3>
-        <button class="btn-modal-close" onclick="closeModal('foodModal')">✕</button>
+        <button type="button" class="btn-modal-close" onclick="closeModal('foodModal')">✕</button>
       </div>
       <input type="text" id="inpNameBn" placeholder="খাবারের নাম (বাংলা)" style="width:100%; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
       <input type="text" id="inpNameEn" placeholder="Food Name (English)" style="width:100%; padding:8px; margin-bottom:6px; border:1px solid #ccc; border-radius:6px;">
@@ -232,7 +231,7 @@
       </div>
       <input type="file" id="inpImg" accept="image/*" onchange="processFoodImage(event)" style="margin-bottom:8px;">
       <input type="hidden" id="inpImgBase64">
-      <button onclick="saveFoodItem()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800;" id="txtSaveMenu">মেনুতে সেভ করুন</button>
+      <button type="button" onclick="saveFoodItem()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer;" id="txtSaveMenu">মেনুতে সেভ করুন</button>
 
       <div id="foodListManage" style="max-height: 180px; overflow-y: auto; margin-top: 14px; border-top:1px solid #ddd; padding-top:10px;"></div>
     </div>
@@ -242,7 +241,7 @@
   <div id="printableThermalBill" style="display:none;"></div>
 
   <script>
-    const STORE_KEY = "Universal_Smart_POS_v5";
+    const STORE_KEY = "Universal_Smart_POS_v6";
     let lang = localStorage.getItem("usp_lang") || "bn";
 
     const DEFAULT_CONFIG = {
@@ -260,13 +259,26 @@
       sales: []
     };
 
-    let appData = JSON.parse(localStorage.getItem(STORE_KEY)) || DEFAULT_CONFIG;
+    let appData;
+    try {
+      appData = JSON.parse(localStorage.getItem(STORE_KEY)) || DEFAULT_CONFIG;
+      if (!appData.shop) appData.shop = DEFAULT_CONFIG.shop;
+      if (!appData.menu) appData.menu = DEFAULT_CONFIG.menu;
+      if (!appData.sales) appData.sales = [];
+    } catch(e) {
+      appData = DEFAULT_CONFIG;
+    }
+
     let cart = [];
     let selectedSize = {};
     let currentCategory = 'ALL';
 
     function saveData() {
-      localStorage.setItem(STORE_KEY, JSON.stringify(appData));
+      try {
+        localStorage.setItem(STORE_KEY, JSON.stringify(appData));
+      } catch (err) {
+        alert("স্টোরেজ পূর্ণ হয়েছে! ছবির সাইজ একটু ছোট করে দিন।");
+      }
     }
 
     function toggleLanguage() {
@@ -309,9 +321,353 @@
       document.getElementById("displayShopLoc").textContent = s.loc || '';
       
       const bannerEl = document.getElementById("shopBannerImg");
-      if (s.banner) {
+      if (s.banner && s.banner.length > 50) {
         bannerEl.src = s.banner;
         bannerEl.style.display = "inline-block";
       } else {
         bannerEl.style.display = "none";
-   
+      }
+      document.getElementById("upiIdNote").textContent = `UPI: ${s.upi || 'Not set'}`;
+    }
+
+    function openShopSettings() {
+      const s = appData.shop;
+      document.getElementById("setShopNameBn").value = s.nameBn || "";
+      document.getElementById("setShopNameEn").value = s.nameEn || "";
+      document.getElementById("setShopLoc").value = s.loc || "";
+      document.getElementById("setShopUpi").value = s.upi || "";
+      document.getElementById("setShopBannerBase64").value = s.banner || "";
+      document.getElementById("shopSettingsModal").style.display = "flex";
+    }
+
+    function saveShopSettings() {
+      appData.shop.nameBn = document.getElementById("setShopNameBn").value.trim() || "দোকানের নাম";
+      appData.shop.nameEn = document.getElementById("setShopNameEn").value.trim() || "Shop Name";
+      appData.shop.loc = document.getElementById("setShopLoc").value.trim();
+      appData.shop.upi = document.getElementById("setShopUpi").value.trim();
+      appData.shop.banner = document.getElementById("setShopBannerBase64").value;
+
+      saveData();
+      updateShopHeader();
+      closeModal("shopSettingsModal");
+      alert(lang === 'bn' ? "✅ তথ্য সেভ হয়েছে!" : "✅ Shop info saved!");
+    }
+
+    function processBannerImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      compressImageHelper(file, 600, 0.7, function(base64) {
+        document.getElementById("setShopBannerBase64").value = base64;
+      });
+    }
+
+    function processFoodImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      compressImageHelper(file, 400, 0.7, function(base64) {
+        document.getElementById("inpImgBase64").value = base64;
+      });
+    }
+
+    function compressImageHelper(file, maxW, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          const cvs = document.createElement("canvas");
+          let w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
+          cvs.width = w; cvs.height = h;
+          const ctx = cvs.getContext("2d");
+          ctx.drawImage(img, 0, 0, w, h);
+          callback(cvs.toDataURL("image/jpeg", quality));
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function renderCategories() {
+      const cats = ['ALL', ...new Set(appData.menu.map(m => m.cat || 'General'))];
+      document.getElementById('categoryScroll').innerHTML = cats.map(c => `
+        <button type="button" class="cat-btn ${c === currentCategory ? 'active' : ''}" onclick="setCat('${c}')">
+          ${c === 'ALL' ? (lang === 'bn' ? 'সব খাবার' : 'All Items') : c}
+        </button>
+      `).join('');
+    }
+
+    function setCat(cat) {
+      currentCategory = cat;
+      renderCategories();
+      renderApp();
+    }
+
+    function renderApp() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const grid = document.getElementById('menuGrid');
+
+      const items = appData.menu.filter(i => {
+        const matchesCat = currentCategory === 'ALL' || i.cat === currentCategory;
+        const nameBn = (i.nameBn || "").toLowerCase();
+        const nameEn = (i.nameEn || "").toLowerCase();
+        return matchesCat && (nameBn.includes(q) || nameEn.includes(q));
+      });
+
+      if (!items.length) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:#777;">${lang === 'bn' ? 'কোনো খাবার পাওয়া যায়নি' : 'No items found'}</div>`;
+        return;
+      }
+
+      grid.innerHTML = items.map(item => {
+        const size = selectedSize[item.id] || (item.half > 0 ? 'half' : 'full');
+        const price = size === 'half' ? item.half : item.full;
+        const displayName = lang === 'bn' ? (item.nameBn || item.nameEn) : (item.nameEn || item.nameBn);
+        const subName = lang === 'bn' ? item.nameEn : item.nameBn;
+
+        return `
+          <div class="food-card">
+            <img src="${item.img || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23222%22 width=%22100%22 height=%22100%22/><text fill=%22%23666%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2222%22>🍽️</text></svg>'}" class="food-thumb">
+            <div class="card-details">
+              <div>
+                <div class="item-name">${displayName}</div>
+                <div class="item-sub">${subName || ''} • <b style="color:var(--primary);">₹${price}</b></div>
+              </div>
+
+              ${item.half > 0 ? `
+                <div class="size-toggle">
+                  <button type="button" class="size-btn ${size === 'half' ? 'active' : ''}" onclick="selectItemSize(${item.id}, 'half')">${lang === 'bn' ? 'হাফ' : 'Half'} (₹${item.half})</button>
+                  <button type="button" class="size-btn ${size === 'full' ? 'active' : ''}" onclick="selectItemSize(${item.id}, 'full')">${lang === 'bn' ? 'ফুল' : 'Full'} (₹${item.full})</button>
+                </div>
+              ` : ''}
+
+              <button type="button" class="btn-add-cart" onclick="addItemToCart(${item.id})">
+                <i class="fa-solid fa-plus"></i> ${lang === 'bn' ? 'অর্ডারে যোগ' : 'Add to Order'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectItemSize(id, s) { selectedSize[id] = s; renderApp(); }
+
+    function addItemToCart(id) {
+      const item = appData.menu.find(m => m.id === id);
+      const size = selectedSize[id] || (item.half > 0 ? 'half' : 'full');
+      const price = size === 'half' ? item.half : item.full;
+      const name = lang === 'bn' ? (item.nameBn || item.nameEn) : (item.nameEn || item.nameBn);
+
+      const found = cart.find(c => c.id === id && c.size === size);
+      if (found) found.qty++;
+      else cart.push({ id, name, size, price, qty: 1 });
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const totalCount = cart.reduce((s, i) => s + i.qty, 0);
+      const totalAmt = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const bar = document.getElementById('floatingCart');
+      if (totalCount > 0) {
+        bar.style.display = 'flex';
+        document.getElementById('cartItemCount').textContent = lang === 'bn' ? `${totalCount} টি আইটেম` : `${totalCount} Items`;
+        document.getElementById('cartTotalPrice').textContent = `₹${totalAmt}`;
+      } else {
+        bar.style.display = 'none';
+      }
+    }
+
+    function openBillModal() {
+      const list = document.getElementById('memoItemsList');
+      const totalAmt = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+
+      list.innerHTML = cart.map((item, index) => `
+        <div class="memo-row">
+          <div>
+            <b>${item.name}</b> (${item.size === 'half' ? 'H' : 'F'})<br>
+            <span style="color:#666;">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button type="button" class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+            <b>${item.qty}</b>
+            <button type="button" class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('memoGrandTotal').textContent = `₹${totalAmt}`;
+      
+      // Dynamic Reliable QR Generation
+      const qrImg = document.getElementById('qrcodeImg');
+      if (totalAmt > 0 && appData.shop.upi) {
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(appData.shop.upi)}&pn=${encodeURIComponent(appData.shop.nameEn || 'Shop')}&am=${totalAmt}&cu=INR`;
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUrl)}`;
+        qrImg.style.display = "block";
+      } else {
+        qrImg.style.display = "none";
+      }
+
+      document.getElementById('billModal').style.display = 'flex';
+    }
+
+    function changeQty(idx, delta) {
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      if (!cart.length) closeModal('billModal');
+      else openBillModal();
+      updateCartDisplay();
+    }
+
+    function clearCurrentCart() {
+      cart = []; updateCartDisplay(); closeModal('billModal');
+    }
+
+    function settleSale(mode) {
+      if (!cart.length) return;
+      const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const billNo = "BILL-" + String(appData.sales.length + 1).padStart(5, '0');
+
+      appData.sales.unshift({
+        id: Date.now(),
+        billNo,
+        items: [...cart],
+        total,
+        mode,
+        date: new Date().toISOString()
+      });
+
+      saveData();
+      alert(lang === 'bn' ? `✅ বিল সফল!\nবিল নং: ${billNo}\nমোট: ₹${total} (${mode})` : `✅ Bill Recorded!\nBill No: ${billNo}\nTotal: ₹${total} (${mode})`);
+      clearCurrentCart();
+      updateTodayBadge();
+    }
+
+    function printThermal() {
+      if (!cart.length) return;
+      const totalAmt = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+      const s = appData.shop;
+      const billBox = document.getElementById('printableThermalBill');
+      
+      billBox.innerHTML = `
+        <div style="text-align:center; border-bottom:1px dashed #000; padding-bottom:4px;">
+          <h2 style="margin:0; font-size:16px;">${s.nameEn || s.nameBn}</h2>
+          <div style="font-size:10px;">${s.loc || ''}</div>
+          <div style="font-size:10px;">${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</div>
+        </div>
+        <div style="margin:6px 0; border-bottom:1px dashed #000; padding-bottom:4px;">
+          ${cart.map(c => `
+            <div style="display:flex; justify-content:space-between; font-size:11px;">
+              <span>${c.name} (${c.size === 'half' ? 'H' : 'F'}) x${c.qty}</span>
+              <span>Rs.${c.price * c.qty}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:13px;">
+          <span>TOTAL:</span>
+          <span>Rs.${totalAmt}</span>
+        </div>
+        <div style="text-align:center; margin-top:8px; font-size:10px;">*** Thank You, Visit Again ***</div>
+      `;
+
+      billBox.style.display = 'block';
+      window.print();
+      billBox.style.display = 'none';
+    }
+
+    function updateTodayBadge() {
+      const today = new Date().toISOString().slice(0, 10);
+      const todaySales = appData.sales.filter(s => s.date.slice(0, 10) === today);
+      const sum = todaySales.reduce((a, b) => a + b.total, 0);
+      document.getElementById('badgeSalesText').textContent = lang === 'bn' 
+        ? `আজকের বিক্রি: ${todaySales.length} টি বিল • মোট: ₹${sum}` 
+        : `Today's Sales: ${todaySales.length} Bills • Total: ₹${sum}`;
+    }
+
+    function openLedger() {
+      document.getElementById('ledgerDate').value = new Date().toISOString().slice(0, 10);
+      renderLedger();
+      document.getElementById('ledgerModal').style.display = 'flex';
+    }
+
+    function renderLedger() {
+      const filterDate = document.getElementById('ledgerDate').value;
+      const filtered = appData.sales.filter(s => !filterDate || s.date.slice(0, 10) === filterDate);
+      const total = filtered.reduce((s, a) => s + a.total, 0);
+      const cash = filtered.filter(f => f.mode === 'Cash').reduce((s, a) => s + a.total, 0);
+      const online = filtered.filter(f => f.mode === 'Online').reduce((s, a) => s + a.total, 0);
+
+      document.getElementById('ledgerStats').innerHTML = lang === 'bn'
+        ? `মোট বিল: ${filtered.length} টি | মোট বিক্রি: ₹${total}<br>💵 ক্যাশ: ₹${cash} | 📱 অনলাইন: ₹${online}`
+        : `Total Bills: ${filtered.length} | Total: ₹${total}<br>💵 Cash: ₹${cash} | 📱 Online: ₹${online}`;
+
+      document.getElementById('ledgerRecords').innerHTML = filtered.map(r => `
+        <div style="border-bottom:1px solid #e2e8f0; padding:8px 0; font-size:12px;">
+          <div style="display:flex; justify-content:space-between; font-weight:bold;">
+            <span>${r.billNo} • ${new Date(r.date).toLocaleTimeString()}</span>
+            <span style="color:#059669;">₹${r.total} (${r.mode})</span>
+          </div>
+          <div style="color:#64748b;">${r.items.map(i => `${i.name}×${i.qty}`).join(', ')}</div>
+        </div>
+      `).join('') || `<div style="text-align:center; padding:15px; color:#999;">${lang === 'bn' ? 'কোনো বিক্রির রেকর্ড নেই' : 'No records'}</div>`;
+    }
+
+    function openFoodManager() {
+      renderManageList();
+      document.getElementById('foodModal').style.display = 'flex';
+    }
+
+    function renderManageList() {
+      document.getElementById('foodListManage').innerHTML = appData.menu.map(m => `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:13px;">
+          <span><b>${m.nameBn || m.nameEn}</b> (₹${m.full})</span>
+          <button type="button" onclick="deleteFood(${m.id})" style="color:red; background:none; border:none; cursor:pointer;">${lang === 'bn' ? 'মুছুন' : 'Delete'}</button>
+        </div>
+      `).join('');
+    }
+
+    function saveFoodItem() {
+      const nameBn = document.getElementById('inpNameBn').value.trim();
+      const nameEn = document.getElementById('inpNameEn').value.trim();
+      const cat = document.getElementById('inpCat').value.trim() || 'General';
+      const half = Number(document.getElementById('inpHalf').value) || 0;
+      const full = Number(document.getElementById('inpFull').value) || 0;
+      const img = document.getElementById('inpImgBase64').value;
+
+      if ((!nameBn && !nameEn) || full <= 0) {
+        alert(lang === 'bn' ? 'সঠিক নাম ও দাম দিন' : 'Valid name and price required');
+        return;
+      }
+
+      appData.menu.push({ id: Date.now(), nameBn, nameEn, cat, half, full, img });
+      saveData();
+      renderCategories();
+      renderApp();
+      closeModal('foodModal');
+    }
+
+    function deleteFood(id) {
+      if (!confirm(lang === 'bn' ? 'মুছে ফেলতে চান?' : 'Delete item?')) return;
+      appData.menu = appData.menu.filter(m => m.id !== id);
+      saveData();
+      renderCategories();
+      renderApp();
+      renderManageList();
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `pos-backup-${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+    }
+
+    function closeModal(id) { 
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none'; 
+    }
+
+    // Initial Load
+    applyLanguage();
+  </script>
+</body>
+</html>
