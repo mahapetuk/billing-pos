@@ -47,7 +47,7 @@
     .search-input-field { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 14px; outline: none; margin-bottom: 14px; }
     .search-input-field:focus { border-color: var(--primary); }
 
-    /* Dual Tier Circular Avatars (Requirement) */
+    /* Dual Tier Circular Avatars */
     .avatar-section-title { font-size: 12px; font-weight: 800; color: #d1d5db; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
     .avatar-scroll-track { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 12px; }
     .avatar-scroll-track::-webkit-scrollbar { display: none; }
@@ -413,13 +413,16 @@
     </div>
   </div>
 
-  <!-- Food Menu Manager -->
+  <!-- Food Menu Manager (Now with Edit, Delete & Cancel) -->
   <div class="modal-backdrop" id="foodMenuModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
         <h3 style="font-weight:800;"><i class="fa-solid fa-utensils"></i> Menu Catalog Manager</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('foodMenuModal')">✕</button>
       </div>
+
+      <!-- Hidden ID for tracking item edit -->
+      <input type="hidden" id="editItemTargetId" value="" />
 
       <div class="input-group">
         <label>Item Name</label>
@@ -448,12 +451,16 @@
       </div>
       <div class="input-group">
         <label>Item Photo (IndexedDB Powered - High Capacity)</label>
-        <input type="file" accept="image/*" onchange="uploadFoodPhoto(event)" />
+        <input type="file" id="inpItemPhotoFile" accept="image/*" onchange="uploadFoodPhoto(event)" />
         <input type="hidden" id="inpItemPhotoData" />
       </div>
 
-      <button type="button" onclick="saveNewCatalogItem()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer;">Save Item to Menu</button>
-      <div id="catalogListItems" style="max-height: 160px; overflow-y: auto; margin-top: 12px; border-top:1px solid #cbd5e1; padding-top:8px;"></div>
+      <div style="display:flex; gap:8px;">
+        <button type="button" id="btnSaveMenuAction" onclick="saveNewCatalogItem()" style="flex:1; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer;">Save Item to Menu</button>
+        <button type="button" id="btnCancelEditMode" onclick="resetFoodInputForm()" style="display:none; padding:10px 14px; background:#475569; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Cancel</button>
+      </div>
+
+      <div id="catalogListItems" style="max-height: 180px; overflow-y: auto; margin-top: 12px; border-top:1px solid #cbd5e1; padding-top:8px;"></div>
     </div>
   </div>
 
@@ -534,10 +541,7 @@
   </div>
 
   <script>
-    /* =======================================================
-       1. IndexedDB High-Capacity Storage System
-       Allows 60+ images (100KB-500KB each) without quota limits
-       ======================================================= */
+    /* 1. IndexedDB Engine */
     const DB_NAME = "SmartPOS_IndexedDB";
     const DB_VERSION = 1;
     let db;
@@ -581,9 +585,7 @@
       });
     }
 
-    /* =======================================================
-       2. Application State & Business Logic
-       ======================================================= */
+    /* 2. Application State */
     const POS_STORAGE_KEY = "SmartPOS_DualTier_v4";
 
     const INITIAL_DATA = {
@@ -638,7 +640,6 @@
     async function initApplication() {
       await openDatabase();
       
-      // Load stored image assets from IndexedDB into memory
       for (const item of appState.menu) {
         const storedImg = await getImageFromDB(`item_${item.id}`);
         if (storedImg) item.img = storedImg;
@@ -673,9 +674,7 @@
       document.getElementById("btnTypeParcel").classList.toggle("active", type === "PARCEL");
     }
 
-    /* =======================================================
-       3. Requirement 1: Top Tier (Today's Top to Lowest Selling)
-       ======================================================= */
+    /* Top Tier: Today's Most to Lowest Selling */
     function renderTodayTopSellingBar() {
       const track = document.getElementById("topSellingAvatarsTrack");
       const todayISO = new Date().toISOString().slice(0, 10);
@@ -688,9 +687,7 @@
         });
       });
 
-      // Sort all items sold today from highest to lowest
-      const sortedLeaderboard = Object.entries(salesCountMap)
-        .sort((a, b) => b[1] - a[1]);
+      const sortedLeaderboard = Object.entries(salesCountMap).sort((a, b) => b[1] - a[1]);
 
       if (!sortedLeaderboard.length) {
         track.innerHTML = `<div style="font-size:12px; color:#6b7280; padding:8px;">No orders billed today yet. Top sellers will appear here automatically!</div>`;
@@ -722,9 +719,7 @@
       renderMenuCatalog();
     }
 
-    /* =======================================================
-       4. Requirement 2: Bottom Tier (Menu Category Circular Avatars)
-       ======================================================= */
+    /* Bottom Tier: Menu Categories */
     function renderCategoryAvatars() {
       const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
       const icons = appState.shop.categoryIcons || {};
@@ -1023,7 +1018,7 @@
       alert(`✅ Bill #${billNumber} [${selectedOrderType}] Confirmed!\nMode: ${paymentType}\nTotal: ₹${grandTotal}`);
       clearCartBasket();
       updateSalesMetricsBadge();
-      renderTodayTopSellingBar(); // Update Top Selling bar instantly
+      renderTodayTopSellingBar();
     }
 
     function buildReceiptDocket(sale) {
@@ -1307,56 +1302,125 @@
       alert("✅ Store Profile & Receipt Settings Updated!");
     }
 
+    /* 3. Food Menu Manager with Complete EDIT & UPDATE */
     function openFoodManager() {
+      resetFoodInputForm();
       renderCatalogEditor();
       openModal('foodMenuModal');
     }
 
     function renderCatalogEditor() {
       document.getElementById("catalogListItems").innerHTML = appState.menu.map(m => `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:12px;">
-          <span><b>${m.name}</b> (₹${m.full}) [${m.cat}]</span>
-          <button type="button" onclick="deleteMenuProduct(${m.id})" style="color:red; background:none; border:none; cursor:pointer; font-weight:700;">Delete</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; background:#f8fafc; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div>
+            <b>${m.name}</b> (₹${m.full}) [${m.cat || 'General'}]
+            <div style="font-size:11px; color:#64748b;">${m.diet || 'Non-Veg'} • Half: ₹${m.half || 0}</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button type="button" onclick="startEditCatalogItem(${m.id})" style="background:#2563eb; color:#fff; border:none; padding:5px 9px; border-radius:5px; font-weight:700; cursor:pointer;">✏️ Edit</button>
+            <button type="button" onclick="deleteMenuProduct(${m.id})" style="background:#fee2e2; color:#dc2626; border:1px solid #f87171; padding:5px 9px; border-radius:5px; font-weight:700; cursor:pointer;">✕ Delete</button>
+          </div>
         </div>
-      `).join('');
+      `).join('') || `<div style="text-align:center; padding:15px; color:#9ca3af;">No menu items available</div>`;
+    }
+
+    function startEditCatalogItem(id) {
+      const item = appState.menu.find(m => m.id === id);
+      if (!item) return;
+
+      document.getElementById("editItemTargetId").value = item.id;
+      document.getElementById("inpItemNameTitle").value = item.name || "";
+      document.getElementById("inpItemSubtitle").value = item.subtitle || "";
+      document.getElementById("inpItemDiet").value = item.diet || "Non-Veg";
+      document.getElementById("inpItemCategory").value = item.cat || "";
+      document.getElementById("inpItemHalfPrice").value = item.half || 0;
+      document.getElementById("inpItemFullPrice").value = item.full || 0;
+      document.getElementById("inpItemPhotoData").value = item.img || "";
+
+      document.getElementById("btnSaveMenuAction").textContent = "Update Menu Item";
+      document.getElementById("btnSaveMenuAction").style.background = "#2563eb";
+      document.getElementById("btnSaveMenuAction").style.color = "#ffffff";
+      document.getElementById("btnCancelEditMode").style.display = "inline-block";
+
+      document.querySelector("#foodMenuModal .modal-sheet").scrollTop = 0;
+    }
+
+    function resetFoodInputForm() {
+      document.getElementById("editItemTargetId").value = "";
+      document.getElementById("inpItemNameTitle").value = "";
+      document.getElementById("inpItemSubtitle").value = "";
+      document.getElementById("inpItemDiet").value = "Non-Veg";
+      document.getElementById("inpItemCategory").value = "";
+      document.getElementById("inpItemHalfPrice").value = "";
+      document.getElementById("inpItemFullPrice").value = "";
+      document.getElementById("inpItemPhotoData").value = "";
+      const fileInput = document.getElementById("inpItemPhotoFile");
+      if (fileInput) fileInput.value = "";
+
+      document.getElementById("btnSaveMenuAction").textContent = "Save Item to Menu";
+      document.getElementById("btnSaveMenuAction").style.background = "var(--primary)";
+      document.getElementById("btnSaveMenuAction").style.color = "#000000";
+      document.getElementById("btnCancelEditMode").style.display = "none";
     }
 
     function uploadFoodPhoto(e) {
       const file = e.target.files[0];
       if (!file) return;
-      // High-capacity compression for IndexedDB
       compressImageWorker(file, 500, 0.8, b64 => {
         document.getElementById("inpItemPhotoData").value = b64;
       });
     }
 
     async function saveNewCatalogItem() {
+      const editIdStr = document.getElementById("editItemTargetId").value;
       const name = document.getElementById("inpItemNameTitle").value.trim();
       const subtitle = document.getElementById("inpItemSubtitle").value.trim();
       const diet = document.getElementById("inpItemDiet").value;
       const cat = document.getElementById("inpItemCategory").value.trim() || "General";
       const half = Number(document.getElementById("inpItemHalfPrice").value) || 0;
       const full = Number(document.getElementById("inpItemFullPrice").value) || 0;
-      const imgData = document.getElementById("inpItemPhotoData").value;
+      let imgData = document.getElementById("inpItemPhotoData").value;
 
       if (!name || full <= 0) {
         alert("Please enter item name and valid full price");
         return;
       }
 
-      const newItemId = Date.now();
-      
-      // Store heavy photo in IndexedDB
-      if (imgData) {
-        await storeImageToDB(`item_${newItemId}`, imgData);
+      if (editIdStr) {
+        /* Update Existing Food */
+        const editId = Number(editIdStr);
+        const index = appState.menu.findIndex(m => m.id === editId);
+        if (index !== -1) {
+          if (!imgData) imgData = appState.menu[index].img || "";
+          if (imgData) await storeImageToDB(`item_${editId}`, imgData);
+
+          appState.menu[index] = {
+            id: editId,
+            name,
+            subtitle,
+            cat,
+            diet,
+            half,
+            full,
+            img: imgData
+          };
+          alert("✅ Menu item updated successfully!");
+        }
+      } else {
+        /* Add New Food */
+        const newItemId = Date.now();
+        if (imgData) {
+          await storeImageToDB(`item_${newItemId}`, imgData);
+        }
+        appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full, img: imgData });
+        alert("✅ New item added to menu!");
       }
 
-      appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full, img: imgData });
       saveAppState();
       renderCategoryAvatars();
       renderMenuCatalog();
-      closeModal('foodMenuModal');
-      document.getElementById("inpItemPhotoData").value = "";
+      renderCatalogEditor();
+      resetFoodInputForm();
     }
 
     function deleteMenuProduct(id) {
@@ -1393,7 +1457,6 @@
       document.getElementById(id).style.display = "none";
     }
 
-    // App Startup
     initApplication();
   </script>
 </body>
