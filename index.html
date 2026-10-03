@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>SmartPOS Enterprise - Thermal & Digital Terminal</title>
+  <title>SmartPOS Pro - Advanced Terminal</title>
   <meta name="theme-color" content="#121214" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,14 +34,15 @@
     .header-actions { display: flex; gap: 8px; }
     .btn-header { background: var(--surface); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.12); padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
-    /* Dynamic Hero Store Banner */
+    /* Store Hero */
     .hero-store-bar { background: linear-gradient(180deg, #1f1b18 0%, #121214 100%); padding: 16px; text-align: center; border-bottom: 1px solid var(--border); }
     .store-banner-img { max-width: 100%; max-height: 85px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); display: none; }
     .store-heading { font-size: 22px; font-weight: 800; color: #fff; }
-    .store-subheading { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+    .store-subheading { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+    .store-phone-tag { font-size: 12px; color: #d1d5db; font-weight: 600; margin-bottom: 8px; }
     .badge-today-sales { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; }
 
-    /* Circular Category Avatars (Requirement 1) */
+    /* Circular Categories */
     .controls-container { max-width: 850px; margin: 12px auto; padding: 0 14px; }
     .search-input-field { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 14px; outline: none; margin-bottom: 14px; }
     .search-input-field:focus { border-color: var(--primary); }
@@ -55,7 +56,7 @@
     .cat-avatar-pill.active .cat-avatar-circle { border-color: var(--primary); box-shadow: 0 0 12px rgba(245, 158, 11, 0.5); }
     .cat-avatar-pill.active .cat-avatar-title { color: var(--primary); }
 
-    /* Menu Cards Layout */
+    /* Menu Cards */
     .menu-cards-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 850px; margin: 0 auto; padding: 0 14px; }
     .menu-item-box { background: var(--card-bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
     .item-media-top { position: relative; width: 100%; height: 180px; background: #202024; }
@@ -93,49 +94,70 @@
 
     /* Modals */
     .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; backdrop-filter: blur(4px); }
-    .modal-sheet { background: #fff; color: #111; width: 100%; max-width: 440px; border-radius: 14px; padding: 18px; max-height: 90vh; overflow-y: auto; }
+    .modal-sheet { background: #fff; color: #111; width: 100%; max-width: 450px; border-radius: 14px; padding: 18px; max-height: 90vh; overflow-y: auto; }
     .modal-title-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #e2e8f0; padding-bottom: 10px; margin-bottom: 12px; }
     .btn-modal-exit { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer; }
 
     .line-cart-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 10px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
     .counter-btn { width: 26px; height: 26px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 700; cursor: pointer; background: #fff; }
 
+    /* Order Type Selector */
+    .order-type-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .order-type-btn { padding: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; text-align: center; }
+    .order-type-btn.active { border-color: var(--primary); background: #fef3c7; color: #b45309; }
+
+    /* Cash Return Change Calculator */
+    .change-calc-box { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .change-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: center; }
+    .change-calc-grid input { padding: 8px; border: 1px solid #6ee7b7; border-radius: 6px; font-size: 14px; font-weight: 700; width: 100%; outline: none; }
+    .change-display-val { font-size: 14px; font-weight: 800; color: #047857; text-align: right; }
+
     /* Split Allocation */
-    .split-control-card { background: #f1f5f9; border-radius: 10px; padding: 12px; margin: 12px 0; border: 1px solid #cbd5e1; }
+    .split-control-card { background: #f1f5f9; border-radius: 10px; padding: 12px; margin: 10px 0; border: 1px solid #cbd5e1; }
     .split-title-bar { font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between; }
     .split-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .split-input-box label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 3px; }
     .split-input-box input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-weight: 700; outline: none; }
 
-    /* Dynamic QR Code */
-    .upi-qr-display { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 10px; padding: 12px; margin: 10px 0; text-align: center; }
-    #dynamicUpiQrImg { width: 135px; height: 135px; object-fit: contain; margin-bottom: 4px; display: none; }
+    /* Dynamic QR */
+    .upi-qr-display { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 10px; padding: 10px; margin: 8px 0; text-align: center; }
+    #dynamicUpiQrImg { width: 130px; height: 130px; object-fit: contain; margin-bottom: 4px; display: none; }
 
     .modal-grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
     .btn-pay-cash { background: #059669; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
     .btn-pay-online { background: #2563eb; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
     .btn-pay-split { grid-column: span 2; background: #d97706; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
     .btn-action-print { grid-column: span 2; background: #0f172a; color: #fff; border: none; padding: 11px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-action-kot { grid-column: span 2; background: #475569; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
     .input-group { margin-bottom: 10px; }
     .input-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; }
     .input-field { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
 
-    /* EXACT THERMAL RECEIPT CANVAS STYLING (Requirement 2 & 4 based on photo) */
-    #thermalBillArea {
+    /* Switch Component */
+    .switch-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 13px; font-weight: 700; color: #334155; }
+    .switch-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .switch-toggle input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 24px; }
+    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(20px); }
+
+    /* EXACT THERMAL BILL & KOT CANVAS */
+    #thermalBillArea, #kotBillArea {
       display: none;
       background: #fff;
       color: #000;
       width: 58mm;
       padding: 3mm 2mm;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       line-height: 1.25;
     }
     .th-center { text-align: center; }
     .th-store { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
-    .th-bill-title { font-size: 18px; font-weight: 800; text-transform: uppercase; margin: 4px 0; }
-    .th-dash { border-top: 1px dashed #000; margin: 5px 0; }
+    .th-bill-title { font-size: 16px; font-weight: 800; text-transform: uppercase; margin: 3px 0; }
+    .th-dash { border-top: 1px dashed #000; margin: 4px 0; }
     .th-row { display: flex; justify-content: space-between; }
     .th-col-name { width: 48%; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .th-col-qty { width: 22%; text-align: right; }
@@ -143,15 +165,17 @@
     .th-grand { font-size: 16px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; margin: 4px 0; }
 
     @media print {
+      @page { size: 58mm auto; margin: 0mm; }
+      html, body { width: 58mm !important; margin: 0 !important; padding: 0 !important; background: #fff !important; }
       body * { visibility: hidden !important; }
-      #thermalBillArea, #thermalBillArea * { visibility: visible !important; }
-      #thermalBillArea { position: absolute; left: 0; top: 0; width: 58mm; display: block !important; padding: 2mm; }
+      .printable-active, .printable-active * { visibility: visible !important; }
+      .printable-active { position: absolute; left: 0; top: 0; width: 58mm !important; display: block !important; padding: 2mm 3mm !important; margin: 0 !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Navbar -->
   <div class="top-navbar">
     <div class="brand-group">
       <div class="brand-icon-box"><i class="fa-solid fa-receipt"></i></div>
@@ -169,18 +193,19 @@
     <img id="storeBannerImg" class="store-banner-img" alt="Store Banner" />
     <div class="store-heading" id="lblStoreTitle">Store Name</div>
     <div class="store-subheading" id="lblStoreSubtitle">Location & Tagline</div>
+    <div class="store-phone-tag" id="lblStorePhone">Ph: Not configured</div>
     <div class="badge-today-sales">
       <i class="fa-solid fa-chart-line"></i> <span id="lblDailyMetrics">Today's Sales: Calculating...</span>
     </div>
   </div>
 
-  <!-- Category Avatars & Search Filter (Requirement 1) -->
+  <!-- Category Avatars & Search -->
   <div class="controls-container">
     <input type="text" id="txtMenuSearch" class="search-input-field" placeholder="Search menu items..." oninput="renderMenuCatalog()" />
     <div class="category-scroll-bar" id="categoryScrollList"></div>
   </div>
 
-  <!-- Food Catalog -->
+  <!-- Menu Cards -->
   <div class="menu-cards-wrap" id="menuCardsContainer"></div>
 
   <!-- Floating Checkout Bar -->
@@ -204,7 +229,7 @@
     </button>
   </div>
 
-  <!-- Checkout Modal (Requirement 2 & 4: PDF & Print) -->
+  <!-- Checkout Modal with Dine-in, Change Calculator, Split & QR -->
   <div class="modal-backdrop" id="checkoutModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
@@ -212,14 +237,38 @@
         <button type="button" class="btn-modal-exit" onclick="closeModal('checkoutModal')">✕</button>
       </div>
 
-      <div id="checkoutItemsList" style="max-height: 160px; overflow-y: auto; margin-bottom: 8px;"></div>
-
-      <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:800; border-top:2px dashed #cbd5e1; padding-top:8px;">
-        <span>Total Payable:</span>
-        <span id="lblCheckoutTotal" style="color:var(--danger);">₹0</span>
+      <!-- Dine-in / Parcel Selection -->
+      <div class="order-type-tabs">
+        <div class="order-type-btn active" id="btnTypeDineIn" onclick="setOrderType('DINE-IN')"><i class="fa-solid fa-utensils"></i> DINE-IN</div>
+        <div class="order-type-btn" id="btnTypeParcel" onclick="setOrderType('PARCEL')"><i class="fa-solid fa-box-open"></i> PARCEL</div>
       </div>
 
-      <!-- Split Payment Configuration -->
+      <div id="checkoutItemsList" style="max-height: 140px; overflow-y: auto; margin-bottom: 8px;"></div>
+
+      <!-- Bill Computation Breakdown -->
+      <div style="background:#f8fafc; border-radius:8px; padding:8px 10px; margin-bottom:8px; font-size:12px;">
+        <div class="th-row" style="margin-bottom:3px;"><span>Subtotal:</span><b id="lblCheckoutSubtotal">₹0</b></div>
+        <div class="th-row" id="rowCheckoutDiscount" style="display:none; color:#dc2626; margin-bottom:3px;">
+          <span>Discount (<span id="lblDiscountPercentTxt">0</span>%):</span><b id="lblCheckoutDiscountVal">-₹0</b>
+        </div>
+        <div class="th-row" id="rowCheckoutTax" style="display:none; color:#475569; margin-bottom:3px;">
+          <span>Tax / GST (<span id="lblTaxPercentTxt">0</span>%):</span><b id="lblCheckoutTaxVal">+₹0</b>
+        </div>
+        <div class="th-row" style="font-size:16px; font-weight:800; border-top:1px dashed #cbd5e1; padding-top:4px; margin-top:4px;">
+          <span>Grand Total:</span><span id="lblCheckoutTotal" style="color:var(--danger);">₹0</span>
+        </div>
+      </div>
+
+      <!-- Cash Return Change Calculator -->
+      <div class="change-calc-box">
+        <div style="font-size:11px; font-weight:700; color:#065f46; margin-bottom:4px;"><i class="fa-solid fa-calculator"></i> Cash Tendered & Change Return</div>
+        <div class="change-calc-grid">
+          <input type="number" id="inpCashTendered" placeholder="Cash Given (₹)" oninput="calculateChangeReturn()" />
+          <div class="change-display-val" id="lblChangeReturnDisplay">Change: ₹0.00</div>
+        </div>
+      </div>
+
+      <!-- Split Payment Allocation -->
       <div class="split-control-card">
         <div class="split-title-bar">
           <span><i class="fa-solid fa-sliders"></i> Split Payment Allocation</span>
@@ -244,11 +293,13 @@
         <div style="font-size:11px; color:#64748b;" id="lblUpiIdentifier">UPI: Not configured</div>
       </div>
 
+      <!-- Actions -->
       <div class="modal-grid-actions">
         <button type="button" class="btn-pay-cash" onclick="commitSaleRecord('CASH')">💵 100% Cash</button>
         <button type="button" class="btn-pay-online" onclick="commitSaleRecord('ONLINE')">📱 100% Online</button>
         <button type="button" class="btn-pay-split" onclick="commitSaleRecord('SPLIT')">⚡ Confirm Split (Cash + Online)</button>
         <button type="button" class="btn-action-print" onclick="printReceiptDocket()"><i class="fa-solid fa-print"></i> Print / Save as PDF</button>
+        <button type="button" class="btn-action-kot" onclick="printKotDocket()"><i class="fa-solid fa-kitchen-set"></i> Print KOT Kitchen Slip</button>
       </div>
     </div>
   </div>
@@ -257,12 +308,12 @@
   <div class="modal-backdrop" id="storeSettingsModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-store"></i> Store & Category Settings</h3>
+        <h3 style="font-weight:800;"><i class="fa-solid fa-store"></i> Store & Receipt Settings</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('storeSettingsModal')">✕</button>
       </div>
 
       <div class="input-group">
-        <label>Store Name (Appears at Top of Receipt)</label>
+        <label>Store Name (Top of Receipt)</label>
         <input type="text" id="cfgStoreTitle" class="input-field" placeholder="e.g. GOGIA SWEETS" />
       </div>
       <div class="input-group">
@@ -270,26 +321,61 @@
         <input type="text" id="cfgStoreSubtitle" class="input-field" placeholder="e.g. Main Market, City" />
       </div>
       <div class="input-group">
-        <label>Merchant UPI ID</label>
+        <label>Official Store Contact Phone Number</label>
+        <input type="text" id="cfgStorePhone" class="input-field" placeholder="e.g. +91 98765 43210" />
+      </div>
+      <div class="input-group">
+        <label>Merchant UPI ID (For QR Code)</label>
         <input type="text" id="cfgStoreUpi" class="input-field" placeholder="e.g. merchant@upi or 9876543210@paytm" />
       </div>
       <div class="input-group">
-        <label>Upload Store Header Banner</label>
+        <label>Receipt Footer Note</label>
+        <input type="text" id="cfgStoreFooterNote" class="input-field" placeholder="e.g. *** THANK YOU, VISIT AGAIN ***" />
+      </div>
+      <div class="input-group">
+        <label>Store Header Banner Image</label>
         <input type="file" accept="image/*" onchange="uploadStoreBanner(event)" />
         <input type="hidden" id="cfgStoreBannerData" />
       </div>
 
-      <!-- Manage Category Circular Avatars (Requirement 1) -->
+      <!-- Dynamic Tax & Discount Switch Settings -->
+      <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
+        <div style="font-size:12px; font-weight:800; color:#1e293b; margin-bottom:8px;">Receipt Computation Controls</div>
+        
+        <div class="switch-row">
+          <span>Enable Tax / GST Percentage:</span>
+          <label class="switch-toggle">
+            <input type="checkbox" id="cfgEnableTax" onchange="toggleTaxSettingsUI()" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="cfgTaxValGroup" class="input-group" style="display:none;">
+          <input type="number" id="cfgTaxPercentage" class="input-field" placeholder="Tax % (e.g. 5)" />
+        </div>
+
+        <div class="switch-row">
+          <span>Enable Discount Percentage:</span>
+          <label class="switch-toggle">
+            <input type="checkbox" id="cfgEnableDiscount" onchange="toggleDiscountSettingsUI()" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="cfgDiscountValGroup" class="input-group" style="display:none;">
+          <input type="number" id="cfgDiscountPercentage" class="input-field" placeholder="Discount % (e.g. 10)" />
+        </div>
+      </div>
+
+      <!-- Category Avatars -->
       <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
         <label style="font-size:12px; font-weight:800; color:#334155; display:block; margin-bottom:6px;">Upload Category Avatar Images</label>
-        <div id="categoryAvatarSettingsList" style="max-height: 160px; overflow-y: auto;"></div>
+        <div id="categoryAvatarSettingsList" style="max-height: 140px; overflow-y: auto;"></div>
       </div>
 
       <button type="button" onclick="saveStoreConfiguration()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer; margin-top:12px;">Save Configurations</button>
     </div>
   </div>
 
-  <!-- Sales Ledger Modal (Requirement 3: Delete / Remove Entry) -->
+  <!-- Sales Ledger Modal -->
   <div class="modal-backdrop" id="salesLedgerModal">
     <div class="modal-sheet" style="max-width: 480px;">
       <div class="modal-title-row">
@@ -300,11 +386,18 @@
       <div style="display:flex; gap:6px; margin-bottom:10px;">
         <input type="date" id="dtLedgerFilter" style="flex:1; padding:6px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" onchange="renderLedgerTransactions()" />
         <button type="button" onclick="document.getElementById('dtLedgerFilter').value=''; renderLedgerTransactions();" style="padding:6px 12px; background:#0f172a; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;">All</button>
-        <button type="button" onclick="downloadLedgerBackup()" style="padding:6px 12px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-download"></i> Backup</button>
+        <button type="button" onclick="exportLedgerCSV()" style="padding:6px 12px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;" title="Export to Excel / CSV"><i class="fa-solid fa-file-excel"></i> Excel</button>
       </div>
 
       <div id="cardLedgerMetrics" style="background:#f1f5f9; padding:10px; border-radius:8px; font-size:12px; font-weight:700; margin-bottom:10px;"></div>
-      <div id="ledgerEntriesContainer" style="max-height: 320px; overflow-y: auto;"></div>
+      
+      <!-- Top Selling Analytics -->
+      <div id="topSellingItemsCard" style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:8px 10px; font-size:11px; margin-bottom:10px; display:none;">
+        <b style="color:#065f46;"><i class="fa-solid fa-ranking-star"></i> Top Selling Foods:</b>
+        <div id="topSellingList" style="margin-top:4px; color:#047857;"></div>
+      </div>
+
+      <div id="ledgerEntriesContainer" style="max-height: 280px; overflow-y: auto;"></div>
     </div>
   </div>
 
@@ -317,12 +410,12 @@
       </div>
 
       <div class="input-group">
-        <label>Item Name (English / Bengali)</label>
-        <input type="text" id="inpItemNameTitle" class="input-field" placeholder="e.g. RASMALAI or চিকেন পকোড়া" />
+        <label>Item Name</label>
+        <input type="text" id="inpItemNameTitle" class="input-field" placeholder="e.g. RASMALAI or Chicken Chowmein" />
       </div>
       <div class="input-group">
-        <label>Subtitle / Details</label>
-        <input type="text" id="inpItemSubtitle" class="input-field" placeholder="e.g. Fresh Sweet 2 pcs" />
+        <label>Subtitle / Description</label>
+        <input type="text" id="inpItemSubtitle" class="input-field" placeholder="e.g. 2 pcs fresh / Spicy Hakka" />
       </div>
       <div class="input-group">
         <label>Dietary & Category</label>
@@ -331,7 +424,7 @@
             <option value="Non-Veg">Non-Veg</option>
             <option value="Veg">Veg</option>
           </select>
-          <input type="text" id="inpItemCategory" class="input-field" style="flex:1;" placeholder="Category (e.g. Chow, Snacks, Sweets)" />
+          <input type="text" id="inpItemCategory" class="input-field" style="flex:1;" placeholder="Category (e.g. Chow, Snacks)" />
         </div>
       </div>
       <div class="input-group">
@@ -342,7 +435,7 @@
         </div>
       </div>
       <div class="input-group">
-        <label>Item Photo (Auto-optimized)</label>
+        <label>Item Photo (Auto-compressed)</label>
         <input type="file" accept="image/*" onchange="uploadFoodPhoto(event)" />
         <input type="hidden" id="inpItemPhotoData" />
       </div>
@@ -352,9 +445,12 @@
     </div>
   </div>
 
-  <!-- EXACT THERMAL RECEIPT CANVAS (Matches Provided Image Structure) -->
+  <!-- EXACT THERMAL BILL CANVAS -->
   <div id="thermalBillArea">
     <div class="th-center th-store" id="prnStoreName">GOGIA SWEETS</div>
+    <div class="th-center" style="font-size:10px;" id="prnStorePhone">Ph: +91 98765 43210</div>
+    <div class="th-center" style="font-size:10px;" id="prnStoreSubtitle">Main Market</div>
+    <div class="th-center" style="font-size:12px; font-weight:800; margin:3px 0;" id="prnOrderTypeBadge">[ DINE-IN ]</div>
     <div class="th-center th-bill-title" id="prnBillTitle">CASH BILL</div>
     <div class="th-dash"></div>
     <div class="th-row">
@@ -371,24 +467,27 @@
     <div id="prnItemListContainer"></div>
     <div class="th-dash"></div>
     <div class="th-row">
-      <span>Total Disc :</span>
-      <span>0.00</span>
+      <span id="prnItemStats">NItems: 0 NQuantity: 0.000</span>
     </div>
-    <div class="th-row">
-      <span id="prnItemStats">NItems: 3 NQuantity:3.000</span>
-    </div>
-    <div class="th-dash"></div>
     <div class="th-row">
       <span>SUBTOTAL</span>
-      <span id="prnSubtotal">435.00</span>
+      <span id="prnSubtotal">0.00</span>
+    </div>
+    <div class="th-row" id="prnRowDiscount" style="display:none;">
+      <span>Total Disc :</span>
+      <span id="prnDiscount">0.00</span>
+    </div>
+    <div class="th-row" id="prnRowTax" style="display:none;">
+      <span>GST / Tax :</span>
+      <span id="prnTax">0.00</span>
     </div>
     <div class="th-dash"></div>
     <div class="th-grand">
       <span>TOTAL</span>
-      <span id="prnGrandTotal">₹435.00</span>
+      <span id="prnGrandTotal">₹0.00</span>
     </div>
     <div class="th-dash"></div>
-    <div class="th-row" style="font-weight:700;" id="prnPaymentModeRow">
+    <div class="th-row" style="font-weight:700;">
       <span>PAYMENT MODE :</span>
       <span id="prnPaymentModeVal">CASH</span>
     </div>
@@ -396,24 +495,48 @@
       <div class="th-row"><span>CASH PAID:</span><span id="prnCashPart">₹0.00</span></div>
       <div class="th-row"><span>ONLINE PAID:</span><span id="prnOnlinePart">₹0.00</span></div>
     </div>
+    <div class="th-dash"></div>
+    <div class="th-center" style="margin-top: 5px;">
+      <div style="font-weight: 700; font-size: 11px;" id="prnThankYouNote">*** THANK YOU, VISIT AGAIN ***</div>
+    </div>
+  </div>
+
+  <!-- KITCHEN ORDER TOKEN (KOT) CANVAS -->
+  <div id="kotBillArea">
+    <div class="th-center" style="font-size:16px; font-weight:800;">*** KITCHEN ORDER TOKEN ***</div>
+    <div class="th-center" style="font-size:13px; font-weight:800; margin:3px 0;" id="kotOrderTypeBadge">[ DINE-IN ]</div>
+    <div class="th-dash"></div>
+    <div class="th-row">
+      <span id="kotTokenNum">TOKEN #: 13</span>
+      <span id="kotTime">16:50</span>
+    </div>
+    <div class="th-dash"></div>
+    <div class="th-row" style="font-weight:800;">
+      <span>ITEM NAME</span>
+      <span>QTY</span>
+    </div>
+    <div class="th-dash"></div>
+    <div id="kotItemsContainer"></div>
+    <div class="th-dash"></div>
+    <div class="th-center" style="font-size:10px;">Chef's Instruction: Prepare Fresh</div>
   </div>
 
   <script>
-    const POS_STORAGE_KEY = "SmartPOS_ReceiptEnterprise_v2";
+    const POS_STORAGE_KEY = "SmartPOS_Enterprise_Ultimate_v3";
 
     const INITIAL_DATA = {
       shop: {
         name: "GOGIA SWEETS",
         subtitle: "Fast Food & Sweets Counter",
+        phone: "+91 98765 43210",
         upi: "merchant@upi",
+        footerNote: "*** THANK YOU, VISIT AGAIN ***",
         banner: "",
-        categoryIcons: {
-          "ALL": "",
-          "Chow": "",
-          "Snacks": "",
-          "Roll": "",
-          "Sweets": ""
-        }
+        enableTax: false,
+        taxPercent: 5,
+        enableDiscount: false,
+        discountPercent: 10,
+        categoryIcons: { "ALL": "", "Chow": "", "Snacks": "", "Roll": "", "Sweets": "" }
       },
       menu: [
         { id: 1, name: "RASMALAI", subtitle: "Special Sweet (2 pcs)", cat: "Sweets", diet: "Veg", half: 0, full: 35, img: "" },
@@ -439,13 +562,14 @@
     let cartBasket = [];
     let portionChoices = {};
     let activeFilterCategory = "ALL";
+    let selectedOrderType = "DINE-IN";
     let lastGeneratedSale = null;
 
     function saveAppState() {
       try {
         localStorage.setItem(POS_STORAGE_KEY, JSON.stringify(appState));
       } catch (err) {
-        alert("Storage quota reached. Use smaller image files.");
+        alert("Storage quota exceeded. Please upload smaller photo files.");
       }
     }
 
@@ -460,6 +584,7 @@
       const s = appState.shop;
       document.getElementById("lblStoreTitle").textContent = s.name || "Store Name";
       document.getElementById("lblStoreSubtitle").textContent = s.subtitle || "";
+      document.getElementById("lblStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
       
       const bannerEl = document.getElementById("storeBannerImg");
       if (s.banner && s.banner.length > 50) {
@@ -471,7 +596,12 @@
       document.getElementById("lblUpiIdentifier").textContent = `UPI: ${s.upi || 'Not configured'}`;
     }
 
-    /* Requirement 1: Circular Category Avatars */
+    function setOrderType(type) {
+      selectedOrderType = type;
+      document.getElementById("btnTypeDineIn").classList.toggle("active", type === "DINE-IN");
+      document.getElementById("btnTypeParcel").classList.toggle("active", type === "PARCEL");
+    }
+
     function renderCategoryAvatars() {
       const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
       const icons = appState.shop.categoryIcons || {};
@@ -574,14 +704,14 @@
 
     function refreshCartFooter() {
       const totalUnits = cartBasket.reduce((sum, i) => sum + i.qty, 0);
-      const totalAmt = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const subtotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
       const bar = document.getElementById("floatingCartContainer");
 
       if (totalUnits > 0) {
         bar.style.display = "flex";
         document.getElementById("lblCartBadgeQty").textContent = totalUnits;
         document.getElementById("lblCartCountText").textContent = `${totalUnits} Items Added`;
-        document.getElementById("lblCartSumTotal").textContent = `Total: ₹${totalAmt}`;
+        document.getElementById("lblCartSumTotal").textContent = `Total: ₹${subtotal}`;
       } else {
         bar.style.display = "none";
       }
@@ -593,9 +723,29 @@
       closeModal('checkoutModal');
     }
 
+    function computeBillCalculations() {
+      const subtotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const s = appState.shop;
+
+      let discount = 0;
+      if (s.enableDiscount && s.discountPercent > 0) {
+        discount = Math.round((subtotal * s.discountPercent) / 100);
+      }
+
+      const taxableBase = Math.max(0, subtotal - discount);
+      let tax = 0;
+      if (s.enableTax && s.taxPercent > 0) {
+        tax = Math.round((taxableBase * s.taxPercent) / 100);
+      }
+
+      const grandTotal = taxableBase + tax;
+      return { subtotal, discount, tax, grandTotal };
+    }
+
     function openCheckoutModal() {
       const listContainer = document.getElementById("checkoutItemsList");
-      const grandTotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
+      const s = appState.shop;
 
       listContainer.innerHTML = cartBasket.map((item, idx) => `
         <div class="line-cart-item">
@@ -611,12 +761,36 @@
         </div>
       `).join('');
 
+      document.getElementById("lblCheckoutSubtotal").textContent = `₹${subtotal}`;
+
+      // Discount Display
+      if (s.enableDiscount && s.discountPercent > 0) {
+        document.getElementById("rowCheckoutDiscount").style.display = "flex";
+        document.getElementById("lblDiscountPercentTxt").textContent = s.discountPercent;
+        document.getElementById("lblCheckoutDiscountVal").textContent = `-₹${discount}`;
+      } else {
+        document.getElementById("rowCheckoutDiscount").style.display = "none";
+      }
+
+      // Tax Display
+      if (s.enableTax && s.taxPercent > 0) {
+        document.getElementById("rowCheckoutTax").style.display = "flex";
+        document.getElementById("lblTaxPercentTxt").textContent = s.taxPercent;
+        document.getElementById("lblCheckoutTaxVal").textContent = `+₹${tax}`;
+      } else {
+        document.getElementById("rowCheckoutTax").style.display = "none";
+      }
+
       document.getElementById("lblCheckoutTotal").textContent = `₹${grandTotal}`;
 
+      // Split 50/50 Initial setup
       const half = Math.round(grandTotal / 2);
       document.getElementById("inpSplitCash").value = half;
       document.getElementById("inpSplitOnline").value = grandTotal - half;
       onSplitAmountChanged();
+
+      document.getElementById("inpCashTendered").value = "";
+      calculateChangeReturn();
 
       openModal('checkoutModal');
     }
@@ -629,8 +803,26 @@
       refreshCartFooter();
     }
 
+    function calculateChangeReturn() {
+      const { grandTotal } = computeBillCalculations();
+      const tendered = Number(document.getElementById("inpCashTendered").value) || 0;
+      const change = tendered - grandTotal;
+      const displayEl = document.getElementById("lblChangeReturnDisplay");
+
+      if (tendered === 0) {
+        displayEl.textContent = "Change: ₹0.00";
+        displayEl.style.color = "#047857";
+      } else if (change >= 0) {
+        displayEl.textContent = `Return Change: ₹${change.toFixed(2)}`;
+        displayEl.style.color = "#059669";
+      } else {
+        displayEl.textContent = `Shortage: ₹${Math.abs(change).toFixed(2)}`;
+        displayEl.style.color = "#dc2626";
+      }
+    }
+
     function onSplitAmountChanged() {
-      const grandTotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const { grandTotal } = computeBillCalculations();
       const cashPart = Number(document.getElementById("inpSplitCash").value) || 0;
       const onlinePart = Number(document.getElementById("inpSplitOnline").value) || 0;
       const balance = grandTotal - (cashPart + onlinePart);
@@ -662,10 +854,9 @@
       }
     }
 
-    /* Requirement 2: Commit Sale with Cash / Online / Split Breakdown */
     function commitSaleRecord(paymentType) {
       if (!cartBasket.length) return;
-      const grandTotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
       let cashAmt = 0, onlineAmt = 0;
 
       if (paymentType === 'CASH') {
@@ -687,7 +878,11 @@
       const saleEntry = {
         id: Date.now(),
         billNo: billNumber,
+        orderType: selectedOrderType,
         items: JSON.parse(JSON.stringify(cartBasket)),
+        subtotal,
+        discount,
+        tax,
         total: grandTotal,
         cash: cashAmt,
         online: onlineAmt,
@@ -699,17 +894,21 @@
       lastGeneratedSale = saleEntry;
       saveAppState();
 
-      // Setup and trigger receipt
       buildReceiptDocket(saleEntry);
-      alert(`✅ Bill #${billNumber} Recorded!\nMode: ${paymentType}\nTotal: ₹${grandTotal}`);
+      buildKotDocket(saleEntry);
+
+      alert(`✅ Bill #${billNumber} [${selectedOrderType}] Confirmed!\nMode: ${paymentType}\nTotal: ₹${grandTotal}`);
       clearCartBasket();
       updateSalesMetricsBadge();
     }
 
-    /* Requirement 2 & 4: Exact Thermal Receipt Matching Uploaded Image */
+    /* Build Receipt */
     function buildReceiptDocket(sale) {
       const s = appState.shop;
       document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
+      document.getElementById("prnStoreSubtitle").textContent = s.subtitle || "";
+      document.getElementById("prnStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
+      document.getElementById("prnOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} ]`;
 
       let headerTitle = "CASH BILL";
       if (sale.mode === "ONLINE") headerTitle = "ONLINE BILL";
@@ -721,7 +920,6 @@
       document.getElementById("prnDateTime").textContent = formattedDate;
       document.getElementById("prnBillNumber").textContent = `Bill #: ${sale.billNo}`;
 
-      // Item rows
       const itemsContainer = document.getElementById("prnItemListContainer");
       itemsContainer.innerHTML = sale.items.map(item => `
         <div class="th-row" style="margin-bottom:2px;">
@@ -733,9 +931,27 @@
 
       const totalQty = sale.items.reduce((sum, i) => sum + i.qty, 0);
       document.getElementById("prnItemStats").textContent = `NItems:   ${sale.items.length} NQuantity:${Number(totalQty).toFixed(3)}`;
-      document.getElementById("prnSubtotal").textContent = Number(sale.total).toFixed(2);
-      document.getElementById("prnGrandTotal").textContent = `₹${Number(sale.total).toFixed(2)}`;
+      document.getElementById("prnSubtotal").textContent = Number(sale.subtotal || sale.total).toFixed(2);
 
+      // Dynamic Discount on Receipt
+      const discRow = document.getElementById("prnRowDiscount");
+      if (sale.discount && sale.discount > 0) {
+        discRow.style.display = "flex";
+        document.getElementById("prnDiscount").textContent = Number(sale.discount).toFixed(2);
+      } else {
+        discRow.style.display = "none";
+      }
+
+      // Dynamic Tax on Receipt
+      const taxRow = document.getElementById("prnRowTax");
+      if (sale.tax && sale.tax > 0) {
+        taxRow.style.display = "flex";
+        document.getElementById("prnTax").textContent = Number(sale.tax).toFixed(2);
+      } else {
+        taxRow.style.display = "none";
+      }
+
+      document.getElementById("prnGrandTotal").textContent = `₹${Number(sale.total).toFixed(2)}`;
       document.getElementById("prnPaymentModeVal").textContent = sale.mode;
 
       const splitBox = document.getElementById("prnSplitBreakupRow");
@@ -746,27 +962,71 @@
       } else {
         splitBox.style.display = "none";
       }
+
+      document.getElementById("prnThankYouNote").textContent = s.footerNote || "*** THANK YOU, VISIT AGAIN ***";
+    }
+
+    /* Build KOT (Kitchen Order Token) */
+    function buildKotDocket(sale) {
+      document.getElementById("kotOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} ]`;
+      document.getElementById("kotTokenNum").textContent = `TOKEN #: ${sale.billNo}`;
+      const d = new Date(sale.timestamp);
+      document.getElementById("kotTime").textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+
+      document.getElementById("kotItemsContainer").innerHTML = sale.items.map(item => `
+        <div class="th-row" style="font-size:13px; font-weight:700; margin:3px 0;">
+          <span>${item.name} (${item.portion === 'half' ? 'HALF' : 'FULL'})</span>
+          <span>x ${item.qty}</span>
+        </div>
+      `).join('');
     }
 
     function printReceiptDocket() {
       if (!lastGeneratedSale && !cartBasket.length) {
-        alert("No active sale or cart to print");
+        alert("No active bill found to print");
         return;
       }
       if (!lastGeneratedSale && cartBasket.length) {
-        // Preview mode from current cart
+        const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
         const tempSale = {
           id: Date.now(),
           billNo: appState.sales.length + 1,
+          orderType: selectedOrderType,
           items: cartBasket,
-          total: cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0),
-          cash: cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0),
+          subtotal,
+          discount,
+          tax,
+          total: grandTotal,
+          cash: grandTotal,
           online: 0,
           mode: "PREVIEW",
           timestamp: new Date().toISOString()
         };
         buildReceiptDocket(tempSale);
       }
+      
+      document.getElementById("kotBillArea").classList.remove("printable-active");
+      document.getElementById("thermalBillArea").classList.add("printable-active");
+      window.print();
+    }
+
+    function printKotDocket() {
+      if (!lastGeneratedSale && !cartBasket.length) {
+        alert("No active order found for KOT");
+        return;
+      }
+      if (!lastGeneratedSale && cartBasket.length) {
+        const tempSale = {
+          billNo: appState.sales.length + 1,
+          orderType: selectedOrderType,
+          items: cartBasket,
+          timestamp: new Date().toISOString()
+        };
+        buildKotDocket(tempSale);
+      }
+
+      document.getElementById("thermalBillArea").classList.remove("printable-active");
+      document.getElementById("kotBillArea").classList.add("printable-active");
       window.print();
     }
 
@@ -777,7 +1037,7 @@
       document.getElementById("lblDailyMetrics").textContent = `Today: ${todays.length} Bills • Gross: ₹${sum}`;
     }
 
-    /* Requirement 3: Sales Ledger with Remove / Delete Option */
+    /* Sales Ledger & Analytics */
     function openLedgerReport() {
       document.getElementById("dtLedgerFilter").value = new Date().toISOString().slice(0, 10);
       renderLedgerTransactions();
@@ -797,10 +1057,13 @@
         <span style="color:#059669;">💵 Cash: ₹${totalCash}</span> | <span style="color:#2563eb;">📱 Online: ₹${totalOnline}</span>
       `;
 
+      // Top Selling Calculation
+      renderTopSellingItems(records);
+
       document.getElementById("ledgerEntriesContainer").innerHTML = records.map(r => `
         <div style="border-bottom:1px solid #e2e8f0; padding:8px 0; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <div style="font-weight:700;">Bill #${r.billNo} • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+            <div style="font-weight:700;">Bill #${r.billNo} [${r.orderType || 'DINE-IN'}] • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
             <div style="color:#059669; font-weight:800;">₹${r.total} [${r.mode}] (Cash: ₹${r.cash || 0} | Online: ₹${r.online || 0})</div>
             <div style="color:#64748b; font-size:11px;">${r.items.map(i => `${i.name}×${i.qty}`).join(', ')}</div>
           </div>
@@ -810,6 +1073,31 @@
           </div>
         </div>
       `).join('') || `<div style="text-align:center; padding:16px; color:#9ca3af;">No transaction records found</div>`;
+    }
+
+    function renderTopSellingItems(records) {
+      const card = document.getElementById("topSellingItemsCard");
+      const listEl = document.getElementById("topSellingList");
+
+      if (!records.length) {
+        card.style.display = "none";
+        return;
+      }
+
+      const itemCounts = {};
+      records.forEach(r => {
+        r.items.forEach(i => {
+          itemCounts[i.name] = (itemCounts[i.name] || 0) + i.qty;
+        });
+      });
+
+      const sorted = Object.entries(itemCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
+      if (sorted.length) {
+        card.style.display = "block";
+        listEl.innerHTML = sorted.map((s, idx) => `<b>#${idx+1} ${s[0]}</b> (${s[1]} plates)`).join(" • ");
+      } else {
+        card.style.display = "none";
+      }
     }
 
     function removeLedgerSale(id) {
@@ -824,18 +1112,50 @@
       const sale = appState.sales.find(s => s.id === id);
       if (!sale) return;
       buildReceiptDocket(sale);
+      document.getElementById("kotBillArea").classList.remove("printable-active");
+      document.getElementById("thermalBillArea").classList.add("printable-active");
       window.print();
     }
 
-    /* Store & Category Avatar Management */
+    function exportLedgerCSV() {
+      if (!appState.sales.length) {
+        alert("No sales data available to export");
+        return;
+      }
+      let csv = "Bill_No,Order_Type,Date,Time,Total,Cash,Online,Payment_Mode,Items\n";
+      appState.sales.forEach(s => {
+        const d = new Date(s.timestamp);
+        const dt = d.toLocaleDateString();
+        const tm = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        const itms = s.items.map(i => `${i.name} (${i.portion}) x${i.qty}`).join(" | ");
+        csv += `"${s.billNo}","${s.orderType || 'DINE-IN'}","${dt}","${tm}","${s.total}","${s.cash}","${s.online}","${s.mode}","${itms}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `SmartPOS_Sales_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+    }
+
+    /* Store Settings Controls */
     function openStoreSettings() {
       const s = appState.shop;
       document.getElementById("cfgStoreTitle").value = s.name || "";
       document.getElementById("cfgStoreSubtitle").value = s.subtitle || "";
+      document.getElementById("cfgStorePhone").value = s.phone || "";
       document.getElementById("cfgStoreUpi").value = s.upi || "";
+      document.getElementById("cfgStoreFooterNote").value = s.footerNote || "";
       document.getElementById("cfgStoreBannerData").value = s.banner || "";
 
-      // List all unique categories to assign avatars
+      document.getElementById("cfgEnableTax").checked = !!s.enableTax;
+      document.getElementById("cfgTaxPercentage").value = s.taxPercent || 5;
+      toggleTaxSettingsUI();
+
+      document.getElementById("cfgEnableDiscount").checked = !!s.enableDiscount;
+      document.getElementById("cfgDiscountPercentage").value = s.discountPercent || 10;
+      toggleDiscountSettingsUI();
+
       const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
       document.getElementById("categoryAvatarSettingsList").innerHTML = categories.map(cat => `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
@@ -845,6 +1165,16 @@
       `).join('');
 
       openModal('storeSettingsModal');
+    }
+
+    function toggleTaxSettingsUI() {
+      const enabled = document.getElementById("cfgEnableTax").checked;
+      document.getElementById("cfgTaxValGroup").style.display = enabled ? "block" : "none";
+    }
+
+    function toggleDiscountSettingsUI() {
+      const enabled = document.getElementById("cfgEnableDiscount").checked;
+      document.getElementById("cfgDiscountValGroup").style.display = enabled ? "block" : "none";
     }
 
     function uploadCategoryIcon(e, category) {
@@ -865,19 +1195,28 @@
     }
 
     function saveStoreConfiguration() {
-      appState.shop.name = document.getElementById("cfgStoreTitle").value.trim() || "Store Name";
-      appState.shop.subtitle = document.getElementById("cfgStoreSubtitle").value.trim();
-      appState.shop.upi = document.getElementById("cfgStoreUpi").value.trim();
-      appState.shop.banner = document.getElementById("cfgStoreBannerData").value;
+      const s = appState.shop;
+      s.name = document.getElementById("cfgStoreTitle").value.trim() || "GOGIA SWEETS";
+      s.subtitle = document.getElementById("cfgStoreSubtitle").value.trim();
+      s.phone = document.getElementById("cfgStorePhone").value.trim();
+      s.upi = document.getElementById("cfgStoreUpi").value.trim();
+      s.footerNote = document.getElementById("cfgStoreFooterNote").value.trim() || "*** THANK YOU, VISIT AGAIN ***";
+      s.banner = document.getElementById("cfgStoreBannerData").value;
+
+      s.enableTax = document.getElementById("cfgEnableTax").checked;
+      s.taxPercent = Number(document.getElementById("cfgTaxPercentage").value) || 0;
+
+      s.enableDiscount = document.getElementById("cfgEnableDiscount").checked;
+      s.discountPercent = Number(document.getElementById("cfgDiscountPercentage").value) || 0;
 
       saveAppState();
       renderStoreHeader();
       renderCategoryAvatars();
       closeModal('storeSettingsModal');
-      alert("✅ Store Settings updated successfully!");
+      alert("✅ Store Profile & Receipt Settings Updated!");
     }
 
-    /* Food Management */
+    /* Food Menu Manager */
     function openFoodManager() {
       renderCatalogEditor();
       openModal('foodMenuModal');
@@ -928,14 +1267,6 @@
       renderCategoryAvatars();
       renderMenuCatalog();
       renderCatalogEditor();
-    }
-
-    function downloadLedgerBackup() {
-      const blob = new Blob([JSON.stringify(appState, null, 2)], { type: "application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = `smartpos-backup-${new Date().toISOString().slice(0,10)}.json`;
-      a.click();
     }
 
     function compressImageWorker(file, maxDimension, quality, callback) {
