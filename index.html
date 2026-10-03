@@ -34,7 +34,7 @@
     .header-actions { display: flex; gap: 8px; }
     .btn-header { background: var(--surface); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.12); padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
-    /* Store Hero */
+    /* Store Header */
     .hero-store-bar { background: linear-gradient(180deg, #1f1b18 0%, #121214 100%); padding: 16px; text-align: center; border-bottom: 1px solid var(--border); }
     .store-banner-img { max-width: 100%; max-height: 85px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); display: none; }
     .store-heading { font-size: 22px; font-weight: 800; color: #fff; }
@@ -42,19 +42,25 @@
     .store-phone-tag { font-size: 12px; color: #d1d5db; font-weight: 600; margin-bottom: 8px; }
     .badge-today-sales { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; }
 
-    /* Circular Categories */
+    /* Controls Container */
     .controls-container { max-width: 850px; margin: 12px auto; padding: 0 14px; }
     .search-input-field { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 14px; outline: none; margin-bottom: 14px; }
     .search-input-field:focus { border-color: var(--primary); }
 
-    .category-scroll-bar { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-    .category-scroll-bar::-webkit-scrollbar { display: none; }
-    .cat-avatar-pill { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0; }
-    .cat-avatar-circle { width: 62px; height: 62px; border-radius: 50%; border: 2px solid #333; overflow: hidden; background: #26262e; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    /* Dual Tier Circular Avatars (Requirement) */
+    .avatar-section-title { font-size: 12px; font-weight: 800; color: #d1d5db; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .avatar-scroll-track { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 12px; }
+    .avatar-scroll-track::-webkit-scrollbar { display: none; }
+    
+    .cat-avatar-pill { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
+    .cat-avatar-circle { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #333; overflow: hidden; background: #26262e; display: flex; align-items: center; justify-content: center; transition: 0.2s; position: relative; }
     .cat-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
-    .cat-avatar-title { font-size: 12px; font-weight: 700; color: var(--muted); }
-    .cat-avatar-pill.active .cat-avatar-circle { border-color: var(--primary); box-shadow: 0 0 12px rgba(245, 158, 11, 0.5); }
+    .cat-avatar-title { font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; max-width: 65px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cat-avatar-pill.active .cat-avatar-circle { border-color: var(--primary); box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     .cat-avatar-pill.active .cat-avatar-title { color: var(--primary); }
+
+    .top-rank-badge { position: absolute; top: 0; right: 0; background: #ef4444; color: #fff; font-size: 9px; font-weight: 800; padding: 1px 4px; border-radius: 8px; border: 1px solid #000; }
+    .top-qty-tag { font-size: 10px; font-weight: 700; color: #10b981; }
 
     /* Menu Cards */
     .menu-cards-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 850px; margin: 0 auto; padding: 0 14px; }
@@ -143,7 +149,7 @@
     input:checked + .slider { background-color: var(--primary); }
     input:checked + .slider:before { transform: translateX(20px); }
 
-    /* EXACT THERMAL BILL & KOT CANVAS */
+    /* THERMAL BILL & KOT CANVAS */
     #thermalBillArea, #kotBillArea {
       display: none;
       background: #fff;
@@ -188,7 +194,7 @@
     </div>
   </div>
 
-  <!-- Store Header Panel -->
+  <!-- Store Header -->
   <div class="hero-store-bar">
     <img id="storeBannerImg" class="store-banner-img" alt="Store Banner" />
     <div class="store-heading" id="lblStoreTitle">Store Name</div>
@@ -199,10 +205,23 @@
     </div>
   </div>
 
-  <!-- Category Avatars & Search -->
+  <!-- Controls Container with Two Tiers of Circular Popups -->
   <div class="controls-container">
     <input type="text" id="txtMenuSearch" class="search-input-field" placeholder="Search menu items..." oninput="renderMenuCatalog()" />
-    <div class="category-scroll-bar" id="categoryScrollList"></div>
+
+    <!-- Tier 1: Today's Most to Lowest Selling Foods -->
+    <div class="avatar-section-title">
+      <i class="fa-solid fa-fire" style="color:#ef4444;"></i> Today's Sales Leaderboard (Top to Lowest)
+    </div>
+    <div class="avatar-scroll-track" id="topSellingAvatarsTrack">
+      <div style="font-size:11px; color:#6b7280; padding:10px;">No items sold today yet</div>
+    </div>
+
+    <!-- Tier 2: Menu Categories -->
+    <div class="avatar-section-title" style="margin-top:6px;">
+      <i class="fa-solid fa-layer-group" style="color:var(--primary);"></i> Menu Categories
+    </div>
+    <div class="avatar-scroll-track" id="categoryScrollList"></div>
   </div>
 
   <!-- Menu Cards -->
@@ -229,7 +248,7 @@
     </button>
   </div>
 
-  <!-- Checkout Modal with Dine-in, Change Calculator, Split & QR -->
+  <!-- Checkout Modal -->
   <div class="modal-backdrop" id="checkoutModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
@@ -245,7 +264,7 @@
 
       <div id="checkoutItemsList" style="max-height: 140px; overflow-y: auto; margin-bottom: 8px;"></div>
 
-      <!-- Bill Computation Breakdown -->
+      <!-- Computation Breakdown -->
       <div style="background:#f8fafc; border-radius:8px; padding:8px 10px; margin-bottom:8px; font-size:12px;">
         <div class="th-row" style="margin-bottom:3px;"><span>Subtotal:</span><b id="lblCheckoutSubtotal">₹0</b></div>
         <div class="th-row" id="rowCheckoutDiscount" style="display:none; color:#dc2626; margin-bottom:3px;">
@@ -390,13 +409,6 @@
       </div>
 
       <div id="cardLedgerMetrics" style="background:#f1f5f9; padding:10px; border-radius:8px; font-size:12px; font-weight:700; margin-bottom:10px;"></div>
-      
-      <!-- Top Selling Analytics -->
-      <div id="topSellingItemsCard" style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:8px 10px; font-size:11px; margin-bottom:10px; display:none;">
-        <b style="color:#065f46;"><i class="fa-solid fa-ranking-star"></i> Top Selling Foods:</b>
-        <div id="topSellingList" style="margin-top:4px; color:#047857;"></div>
-      </div>
-
       <div id="ledgerEntriesContainer" style="max-height: 280px; overflow-y: auto;"></div>
     </div>
   </div>
@@ -435,7 +447,7 @@
         </div>
       </div>
       <div class="input-group">
-        <label>Item Photo (Auto-compressed)</label>
+        <label>Item Photo (IndexedDB Powered - High Capacity)</label>
         <input type="file" accept="image/*" onchange="uploadFoodPhoto(event)" />
         <input type="hidden" id="inpItemPhotoData" />
       </div>
@@ -445,7 +457,7 @@
     </div>
   </div>
 
-  <!-- EXACT THERMAL BILL CANVAS -->
+  <!-- THERMAL BILL CANVAS -->
   <div id="thermalBillArea">
     <div class="th-center th-store" id="prnStoreName">GOGIA SWEETS</div>
     <div class="th-center" style="font-size:10px;" id="prnStorePhone">Ph: +91 98765 43210</div>
@@ -501,7 +513,7 @@
     </div>
   </div>
 
-  <!-- KITCHEN ORDER TOKEN (KOT) CANVAS -->
+  <!-- KITCHEN ORDER TOKEN CANVAS -->
   <div id="kotBillArea">
     <div class="th-center" style="font-size:16px; font-weight:800;">*** KITCHEN ORDER TOKEN ***</div>
     <div class="th-center" style="font-size:13px; font-weight:800; margin:3px 0;" id="kotOrderTypeBadge">[ DINE-IN ]</div>
@@ -522,7 +534,57 @@
   </div>
 
   <script>
-    const POS_STORAGE_KEY = "SmartPOS_Enterprise_Ultimate_v3";
+    /* =======================================================
+       1. IndexedDB High-Capacity Storage System
+       Allows 60+ images (100KB-500KB each) without quota limits
+       ======================================================= */
+    const DB_NAME = "SmartPOS_IndexedDB";
+    const DB_VERSION = 1;
+    let db;
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const database = e.target.result;
+          if (!database.objectStoreNames.contains("images")) {
+            database.createObjectStore("images", { keyPath: "id" });
+          }
+        };
+        req.onsuccess = (e) => {
+          db = e.target.result;
+          resolve(db);
+        };
+        req.onerror = (e) => reject(e);
+      });
+    }
+
+    function storeImageToDB(id, base64) {
+      return new Promise((resolve, reject) => {
+        if (!db) return resolve();
+        const tx = db.transaction("images", "readwrite");
+        const store = tx.objectStore("images");
+        store.put({ id, base64 });
+        tx.oncomplete = () => resolve();
+        tx.onerror = (err) => reject(err);
+      });
+    }
+
+    function getImageFromDB(id) {
+      return new Promise((resolve) => {
+        if (!db) return resolve(null);
+        const tx = db.transaction("images", "readonly");
+        const store = tx.objectStore("images");
+        const req = store.get(id);
+        req.onsuccess = () => resolve(req.result ? req.result.base64 : null);
+        req.onerror = () => resolve(null);
+      });
+    }
+
+    /* =======================================================
+       2. Application State & Business Logic
+       ======================================================= */
+    const POS_STORAGE_KEY = "SmartPOS_DualTier_v4";
 
     const INITIAL_DATA = {
       shop: {
@@ -569,12 +631,21 @@
       try {
         localStorage.setItem(POS_STORAGE_KEY, JSON.stringify(appState));
       } catch (err) {
-        alert("Storage quota exceeded. Please upload smaller photo files.");
+        console.error("State save error", err);
       }
     }
 
-    function initApplication() {
+    async function initApplication() {
+      await openDatabase();
+      
+      // Load stored image assets from IndexedDB into memory
+      for (const item of appState.menu) {
+        const storedImg = await getImageFromDB(`item_${item.id}`);
+        if (storedImg) item.img = storedImg;
+      }
+
       renderStoreHeader();
+      renderTodayTopSellingBar();
       renderCategoryAvatars();
       renderMenuCatalog();
       updateSalesMetricsBadge();
@@ -602,13 +673,67 @@
       document.getElementById("btnTypeParcel").classList.toggle("active", type === "PARCEL");
     }
 
+    /* =======================================================
+       3. Requirement 1: Top Tier (Today's Top to Lowest Selling)
+       ======================================================= */
+    function renderTodayTopSellingBar() {
+      const track = document.getElementById("topSellingAvatarsTrack");
+      const todayISO = new Date().toISOString().slice(0, 10);
+      const todaysSales = appState.sales.filter(s => s.timestamp.slice(0, 10) === todayISO);
+
+      const salesCountMap = {};
+      todaysSales.forEach(order => {
+        order.items.forEach(it => {
+          salesCountMap[it.name] = (salesCountMap[it.name] || 0) + it.qty;
+        });
+      });
+
+      // Sort all items sold today from highest to lowest
+      const sortedLeaderboard = Object.entries(salesCountMap)
+        .sort((a, b) => b[1] - a[1]);
+
+      if (!sortedLeaderboard.length) {
+        track.innerHTML = `<div style="font-size:12px; color:#6b7280; padding:8px;">No orders billed today yet. Top sellers will appear here automatically!</div>`;
+        return;
+      }
+
+      track.innerHTML = sortedLeaderboard.map((entry, index) => {
+        const itemName = entry[0];
+        const soldQty = entry[1];
+        const menuItem = appState.menu.find(m => m.name.toLowerCase() === itemName.toLowerCase()) || { img: "" };
+
+        return `
+          <div class="cat-avatar-pill" onclick="filterBySingleItem('${itemName}')">
+            <div class="cat-avatar-circle">
+              <span class="top-rank-badge">#${index + 1}</span>
+              ${menuItem.img 
+                ? `<img src="${menuItem.img}" alt="${itemName}" />` 
+                : `<i class="fa-solid fa-fire" style="font-size:18px; color:#f59e0b;"></i>`}
+            </div>
+            <div class="cat-avatar-title">${itemName}</div>
+            <div class="top-qty-tag">${soldQty} sold</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterBySingleItem(name) {
+      document.getElementById("txtMenuSearch").value = name;
+      renderMenuCatalog();
+    }
+
+    /* =======================================================
+       4. Requirement 2: Bottom Tier (Menu Category Circular Avatars)
+       ======================================================= */
     function renderCategoryAvatars() {
       const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
       const icons = appState.shop.categoryIcons || {};
 
       document.getElementById("categoryScrollList").innerHTML = categories.map(cat => {
         const iconSrc = icons[cat] || "";
-        const fallbackIcon = cat === "ALL" ? '<i class="fa-solid fa-border-all" style="font-size:20px; color:#f59e0b;"></i>' : '<i class="fa-solid fa-bowl-food" style="font-size:20px; color:#aaa;"></i>';
+        const fallbackIcon = cat === "ALL" 
+          ? '<i class="fa-solid fa-border-all" style="font-size:19px; color:#f59e0b;"></i>' 
+          : '<i class="fa-solid fa-bowl-food" style="font-size:19px; color:#aaa;"></i>';
 
         return `
           <div class="cat-avatar-pill ${cat === activeFilterCategory ? 'active' : ''}" onclick="selectCategory('${cat}')">
@@ -623,6 +748,7 @@
 
     function selectCategory(cat) {
       activeFilterCategory = cat;
+      document.getElementById("txtMenuSearch").value = "";
       renderCategoryAvatars();
       renderMenuCatalog();
     }
@@ -763,7 +889,6 @@
 
       document.getElementById("lblCheckoutSubtotal").textContent = `₹${subtotal}`;
 
-      // Discount Display
       if (s.enableDiscount && s.discountPercent > 0) {
         document.getElementById("rowCheckoutDiscount").style.display = "flex";
         document.getElementById("lblDiscountPercentTxt").textContent = s.discountPercent;
@@ -772,7 +897,6 @@
         document.getElementById("rowCheckoutDiscount").style.display = "none";
       }
 
-      // Tax Display
       if (s.enableTax && s.taxPercent > 0) {
         document.getElementById("rowCheckoutTax").style.display = "flex";
         document.getElementById("lblTaxPercentTxt").textContent = s.taxPercent;
@@ -783,7 +907,6 @@
 
       document.getElementById("lblCheckoutTotal").textContent = `₹${grandTotal}`;
 
-      // Split 50/50 Initial setup
       const half = Math.round(grandTotal / 2);
       document.getElementById("inpSplitCash").value = half;
       document.getElementById("inpSplitOnline").value = grandTotal - half;
@@ -900,9 +1023,9 @@
       alert(`✅ Bill #${billNumber} [${selectedOrderType}] Confirmed!\nMode: ${paymentType}\nTotal: ₹${grandTotal}`);
       clearCartBasket();
       updateSalesMetricsBadge();
+      renderTodayTopSellingBar(); // Update Top Selling bar instantly
     }
 
-    /* Build Receipt */
     function buildReceiptDocket(sale) {
       const s = appState.shop;
       document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
@@ -933,7 +1056,6 @@
       document.getElementById("prnItemStats").textContent = `NItems:   ${sale.items.length} NQuantity:${Number(totalQty).toFixed(3)}`;
       document.getElementById("prnSubtotal").textContent = Number(sale.subtotal || sale.total).toFixed(2);
 
-      // Dynamic Discount on Receipt
       const discRow = document.getElementById("prnRowDiscount");
       if (sale.discount && sale.discount > 0) {
         discRow.style.display = "flex";
@@ -942,7 +1064,6 @@
         discRow.style.display = "none";
       }
 
-      // Dynamic Tax on Receipt
       const taxRow = document.getElementById("prnRowTax");
       if (sale.tax && sale.tax > 0) {
         taxRow.style.display = "flex";
@@ -966,7 +1087,6 @@
       document.getElementById("prnThankYouNote").textContent = s.footerNote || "*** THANK YOU, VISIT AGAIN ***";
     }
 
-    /* Build KOT (Kitchen Order Token) */
     function buildKotDocket(sale) {
       document.getElementById("kotOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} ]`;
       document.getElementById("kotTokenNum").textContent = `TOKEN #: ${sale.billNo}`;
@@ -1037,7 +1157,6 @@
       document.getElementById("lblDailyMetrics").textContent = `Today: ${todays.length} Bills • Gross: ₹${sum}`;
     }
 
-    /* Sales Ledger & Analytics */
     function openLedgerReport() {
       document.getElementById("dtLedgerFilter").value = new Date().toISOString().slice(0, 10);
       renderLedgerTransactions();
@@ -1057,9 +1176,6 @@
         <span style="color:#059669;">💵 Cash: ₹${totalCash}</span> | <span style="color:#2563eb;">📱 Online: ₹${totalOnline}</span>
       `;
 
-      // Top Selling Calculation
-      renderTopSellingItems(records);
-
       document.getElementById("ledgerEntriesContainer").innerHTML = records.map(r => `
         <div style="border-bottom:1px solid #e2e8f0; padding:8px 0; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
@@ -1075,37 +1191,13 @@
       `).join('') || `<div style="text-align:center; padding:16px; color:#9ca3af;">No transaction records found</div>`;
     }
 
-    function renderTopSellingItems(records) {
-      const card = document.getElementById("topSellingItemsCard");
-      const listEl = document.getElementById("topSellingList");
-
-      if (!records.length) {
-        card.style.display = "none";
-        return;
-      }
-
-      const itemCounts = {};
-      records.forEach(r => {
-        r.items.forEach(i => {
-          itemCounts[i.name] = (itemCounts[i.name] || 0) + i.qty;
-        });
-      });
-
-      const sorted = Object.entries(itemCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
-      if (sorted.length) {
-        card.style.display = "block";
-        listEl.innerHTML = sorted.map((s, idx) => `<b>#${idx+1} ${s[0]}</b> (${s[1]} plates)`).join(" • ");
-      } else {
-        card.style.display = "none";
-      }
-    }
-
     function removeLedgerSale(id) {
       if (!confirm("Are you sure you want to remove this sale from history? Today's total will be updated.")) return;
       appState.sales = appState.sales.filter(s => s.id !== id);
       saveAppState();
       renderLedgerTransactions();
       updateSalesMetricsBadge();
+      renderTodayTopSellingBar();
     }
 
     function reprintFromLedger(id) {
@@ -1138,7 +1230,6 @@
       a.click();
     }
 
-    /* Store Settings Controls */
     function openStoreSettings() {
       const s = appState.shop;
       document.getElementById("cfgStoreTitle").value = s.name || "";
@@ -1216,7 +1307,6 @@
       alert("✅ Store Profile & Receipt Settings Updated!");
     }
 
-    /* Food Menu Manager */
     function openFoodManager() {
       renderCatalogEditor();
       openModal('foodMenuModal');
@@ -1234,30 +1324,39 @@
     function uploadFoodPhoto(e) {
       const file = e.target.files[0];
       if (!file) return;
-      compressImageWorker(file, 450, 0.75, b64 => {
+      // High-capacity compression for IndexedDB
+      compressImageWorker(file, 500, 0.8, b64 => {
         document.getElementById("inpItemPhotoData").value = b64;
       });
     }
 
-    function saveNewCatalogItem() {
+    async function saveNewCatalogItem() {
       const name = document.getElementById("inpItemNameTitle").value.trim();
       const subtitle = document.getElementById("inpItemSubtitle").value.trim();
       const diet = document.getElementById("inpItemDiet").value;
       const cat = document.getElementById("inpItemCategory").value.trim() || "General";
       const half = Number(document.getElementById("inpItemHalfPrice").value) || 0;
       const full = Number(document.getElementById("inpItemFullPrice").value) || 0;
-      const img = document.getElementById("inpItemPhotoData").value;
+      const imgData = document.getElementById("inpItemPhotoData").value;
 
       if (!name || full <= 0) {
         alert("Please enter item name and valid full price");
         return;
       }
 
-      appState.menu.push({ id: Date.now(), name, subtitle, cat, diet, half, full, img });
+      const newItemId = Date.now();
+      
+      // Store heavy photo in IndexedDB
+      if (imgData) {
+        await storeImageToDB(`item_${newItemId}`, imgData);
+      }
+
+      appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full, img: imgData });
       saveAppState();
       renderCategoryAvatars();
       renderMenuCatalog();
       closeModal('foodMenuModal');
+      document.getElementById("inpItemPhotoData").value = "";
     }
 
     function deleteMenuProduct(id) {
@@ -1294,6 +1393,7 @@
       document.getElementById(id).style.display = "none";
     }
 
+    // App Startup
     initApplication();
   </script>
 </body>
