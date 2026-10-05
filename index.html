@@ -27,131 +27,145 @@
     body { background: var(--bg); color: var(--text); padding-bottom: 120px; overflow-x: hidden; }
 
     /* Top Navigation */
-    .top-navbar { display: flex; justify-content: space-between; align-items: center; background: #000; padding: 12px 18px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
-    .brand-group { display: flex; align-items: center; gap: 10px; }
-    .brand-icon-box { width: 34px; height: 34px; background: var(--primary); color: #000; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; }
-    .brand-title-txt { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
-    .header-actions { display: flex; gap: 8px; }
-    .btn-header { background: var(--surface); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.12); padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .top-navbar { display: flex; justify-content: space-between; align-items: center; background: #000; padding: 10px 14px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); }
+    .brand-group { display: flex; align-items: center; gap: 8px; }
+    .brand-icon-box { width: 32px; height: 32px; background: var(--primary); color: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+    .brand-title-txt { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .header-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn-header { background: var(--surface); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.12); padding: 6px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+    .btn-header.kot-counter { background: #b45309; border-color: #f59e0b; color: #fff; position: relative; }
+    .kot-badge-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; border: 1.5px solid #000; }
 
     /* Store Header */
-    .hero-store-bar { background: linear-gradient(180deg, #1f1b18 0%, #121214 100%); padding: 16px; text-align: center; border-bottom: 1px solid var(--border); }
-    .store-banner-img { max-width: 100%; max-height: 85px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; border: 1px solid var(--border); display: none; }
-    .store-heading { font-size: 22px; font-weight: 800; color: #fff; }
-    .store-subheading { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
-    .store-phone-tag { font-size: 12px; color: #d1d5db; font-weight: 600; margin-bottom: 8px; }
-    .badge-today-sales { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+    .hero-store-bar { background: linear-gradient(180deg, #1f1b18 0%, #121214 100%); padding: 14px; text-align: center; border-bottom: 1px solid var(--border); }
+    .store-banner-img { max-width: 100%; max-height: 80px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; border: 1px solid var(--border); display: none; }
+    .store-heading { font-size: 20px; font-weight: 800; color: #fff; }
+    .store-subheading { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 3px; }
+    .store-phone-tag { font-size: 11px; color: #d1d5db; font-weight: 600; margin-bottom: 6px; }
+    .badge-today-sales { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
 
     /* Controls Container */
-    .controls-container { max-width: 850px; margin: 12px auto; padding: 0 14px; }
-    .search-input-field { width: 100%; padding: 12px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 14px; outline: none; margin-bottom: 14px; }
+    .controls-container { max-width: 850px; margin: 10px auto; padding: 0 14px; }
+    .search-input-field { width: 100%; padding: 11px 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 14px; outline: none; margin-bottom: 12px; }
     .search-input-field:focus { border-color: var(--primary); }
 
     /* Dual Tier Circular Avatars */
-    .avatar-section-title { font-size: 12px; font-weight: 800; color: #d1d5db; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .avatar-scroll-track { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 12px; }
+    .avatar-section-title { font-size: 11px; font-weight: 800; color: #d1d5db; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .avatar-scroll-track { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; margin-bottom: 10px; }
     .avatar-scroll-track::-webkit-scrollbar { display: none; }
     
-    .cat-avatar-pill { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
-    .cat-avatar-circle { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #333; overflow: hidden; background: #26262e; display: flex; align-items: center; justify-content: center; transition: 0.2s; position: relative; }
+    .cat-avatar-pill { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; flex-shrink: 0; }
+    .cat-avatar-circle { width: 54px; height: 54px; border-radius: 50%; border: 2px solid #333; overflow: hidden; background: #26262e; display: flex; align-items: center; justify-content: center; transition: 0.2s; position: relative; }
     .cat-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
-    .cat-avatar-title { font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; max-width: 65px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cat-avatar-title { font-size: 10px; font-weight: 700; color: var(--muted); text-align: center; max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .cat-avatar-pill.active .cat-avatar-circle { border-color: var(--primary); box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     .cat-avatar-pill.active .cat-avatar-title { color: var(--primary); }
 
-    .top-rank-badge { position: absolute; top: 0; right: 0; background: #ef4444; color: #fff; font-size: 9px; font-weight: 800; padding: 1px 4px; border-radius: 8px; border: 1px solid #000; }
-    .top-qty-tag { font-size: 10px; font-weight: 700; color: #10b981; }
+    .top-rank-badge { position: absolute; top: 0; right: 0; background: #ef4444; color: #fff; font-size: 8px; font-weight: 800; padding: 1px 3px; border-radius: 8px; border: 1px solid #000; }
+    .top-qty-tag { font-size: 9px; font-weight: 700; color: #10b981; }
 
     /* Menu Cards */
-    .menu-cards-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 850px; margin: 0 auto; padding: 0 14px; }
+    .menu-cards-wrap { display: flex; flex-direction: column; gap: 14px; max-width: 850px; margin: 0 auto; padding: 0 14px; }
     .menu-item-box { background: var(--card-bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
-    .item-media-top { position: relative; width: 100%; height: 180px; background: #202024; }
+    .item-media-top { position: relative; width: 100%; height: 170px; background: #202024; }
     .item-photo { width: 100%; height: 100%; object-fit: cover; }
-    .floating-badge { position: absolute; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
-    .diet-badge { top: 10px; left: 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+    .floating-badge { position: absolute; padding: 3px 8px; border-radius: 16px; font-size: 10px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+    .diet-badge { top: 8px; left: 8px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
     .diet-badge.non-veg { color: var(--danger); }
     .diet-badge.veg { color: var(--green); }
-    .tag-cat-badge { top: 10px; right: 10px; background: rgba(0,0,0,0.75); color: #e5e7eb; }
-    .cost-overlay { position: absolute; bottom: 10px; left: 10px; font-size: 20px; font-weight: 800; color: var(--primary); text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-    .portion-overlay { position: absolute; bottom: 10px; right: 10px; font-size: 11px; color: #d1d5db; background: rgba(0,0,0,0.65); padding: 3px 8px; border-radius: 6px; }
+    .tag-cat-badge { top: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #e5e7eb; }
+    .cost-overlay { position: absolute; bottom: 8px; left: 8px; font-size: 19px; font-weight: 800; color: var(--primary); text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    .portion-overlay { position: absolute; bottom: 8px; right: 8px; font-size: 10px; color: #d1d5db; background: rgba(0,0,0,0.65); padding: 2px 6px; border-radius: 6px; }
 
-    .item-info-bottom { padding: 14px; }
-    .item-primary-txt { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 2px; }
-    .item-secondary-txt { font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .item-info-bottom { padding: 12px; }
+    .item-primary-txt { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .item-secondary-txt { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
 
-    .size-selector-pills { display: flex; gap: 8px; margin-bottom: 12px; }
-    .btn-size-choice { flex: 1; padding: 10px 4px; background: transparent; border: 1px solid #333; color: #fff; font-size: 13px; font-weight: 700; border-radius: 8px; cursor: pointer; text-align: center; }
+    .size-selector-pills { display: flex; gap: 6px; margin-bottom: 10px; }
+    .btn-size-choice { flex: 1; padding: 8px 4px; background: transparent; border: 1px solid #333; color: #fff; font-size: 12px; font-weight: 700; border-radius: 8px; cursor: pointer; text-align: center; }
     .btn-size-choice.active { background: var(--primary); color: #000; border-color: var(--primary); }
 
-    .btn-cart-push { width: 100%; background: var(--blue); color: #fff; border: none; padding: 12px; border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-cart-push { width: 100%; background: var(--blue); color: #fff; border: none; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-cart-push:active { transform: scale(0.98); }
 
     /* Floating Cart Footer */
-    .cart-checkout-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #16161a; border-top: 1px solid var(--border); padding: 12px 16px; display: none; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 -8px 24px rgba(0,0,0,0.6); }
-    .cart-summary-block { display: flex; align-items: center; gap: 12px; }
-    .cart-icon-sq { width: 44px; height: 44px; background: var(--primary); color: #000; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; position: relative; }
+    .cart-checkout-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #16161a; border-top: 1px solid var(--border); padding: 10px 14px; display: none; align-items: center; justify-content: space-between; z-index: 1000; box-shadow: 0 -8px 24px rgba(0,0,0,0.6); }
+    .cart-summary-block { display: flex; align-items: center; gap: 10px; }
+    .cart-icon-sq { width: 42px; height: 42px; background: var(--primary); color: #000; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; position: relative; }
     .cart-badge-number { position: absolute; top: -5px; right: -5px; background: #000; color: #10b981; border: 1.5px solid #10b981; border-radius: 50%; font-size: 10px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
     .cart-desc-text { display: flex; flex-direction: column; }
-    .cart-units-text { font-size: 12px; color: #d1d5db; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .cart-units-text { font-size: 11px; color: #d1d5db; font-weight: 600; display: flex; align-items: center; gap: 6px; }
     .btn-empty-cart { color: #9ca3af; text-decoration: underline; cursor: pointer; font-size: 11px; }
-    .cart-grand-amount { font-size: 18px; font-weight: 800; color: var(--primary); }
+    .cart-grand-amount { font-size: 17px; font-weight: 800; color: var(--primary); }
 
-    .btn-open-checkout { background: var(--green); color: #fff; border: none; padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+    .btn-open-checkout { background: var(--green); color: #fff; border: none; padding: 10px 16px; border-radius: 9px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
     /* Modals */
-    .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; backdrop-filter: blur(4px); }
-    .modal-sheet { background: #fff; color: #111; width: 100%; max-width: 450px; border-radius: 14px; padding: 18px; max-height: 90vh; overflow-y: auto; }
-    .modal-title-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #e2e8f0; padding-bottom: 10px; margin-bottom: 12px; }
-    .btn-modal-exit { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer; }
+    .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 14px; backdrop-filter: blur(4px); }
+    .modal-sheet { background: #fff; color: #111; width: 100%; max-width: 460px; border-radius: 14px; padding: 16px; max-height: 90vh; overflow-y: auto; }
+    .modal-title-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #e2e8f0; padding-bottom: 8px; margin-bottom: 10px; }
+    .btn-modal-exit { background: #fee2e2; color: var(--danger); border: 2px solid var(--danger); width: 28px; height: 28px; border-radius: 50%; font-weight: 800; cursor: pointer; }
 
-    .line-cart-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 10px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
+    .line-cart-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 6px 10px; border-radius: 6px; margin-bottom: 6px; font-size: 12px; }
     .counter-btn { width: 26px; height: 26px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 700; cursor: pointer; background: #fff; }
 
-    /* Order Type Selector */
-    .order-type-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    /* Order Type & Table Selection */
+    .order-type-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
     .order-type-btn { padding: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; text-align: center; }
     .order-type-btn.active { border-color: var(--primary); background: #fef3c7; color: #b45309; }
 
+    .table-selection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; background: #f1f5f9; padding: 8px; border-radius: 8px; }
+    .table-pill-btn { padding: 6px 2px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; }
+    .table-pill-btn.active { background: #b45309; color: #fff; border-color: #b45309; }
+
+    /* Customer Info Block */
+    .cust-info-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+    .cust-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    /* Discount & Tax Toggle Panel */
+    .computation-adjust-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+    .adjust-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 11px; font-weight: 700; }
+    .adjust-controls { display: flex; align-items: center; gap: 4px; }
+    .adjust-input { width: 55px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 11px; text-align: center; font-weight: 700; }
+    .adjust-mode-btn { padding: 4px 6px; border: 1px solid #cbd5e1; background: #fff; border-radius: 4px; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .adjust-mode-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
     /* Cash Return Change Calculator */
-    .change-calc-box { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .change-calc-box { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
     .change-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: center; }
-    .change-calc-grid input { padding: 8px; border: 1px solid #6ee7b7; border-radius: 6px; font-size: 14px; font-weight: 700; width: 100%; outline: none; }
-    .change-display-val { font-size: 14px; font-weight: 800; color: #047857; text-align: right; }
+    .change-calc-grid input { padding: 7px; border: 1px solid #6ee7b7; border-radius: 6px; font-size: 13px; font-weight: 700; width: 100%; outline: none; }
+    .change-display-val { font-size: 13px; font-weight: 800; color: #047857; text-align: right; }
 
     /* Split Allocation */
-    .split-control-card { background: #f1f5f9; border-radius: 10px; padding: 12px; margin: 10px 0; border: 1px solid #cbd5e1; }
-    .split-title-bar { font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .split-control-card { background: #f1f5f9; border-radius: 8px; padding: 8px 10px; margin: 8px 0; border: 1px solid #cbd5e1; }
+    .split-title-bar { font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 6px; display: flex; justify-content: space-between; }
     .split-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .split-input-box label { display: block; font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 3px; }
-    .split-input-box input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-weight: 700; outline: none; }
+    .split-input-box label { display: block; font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 2px; }
+    .split-input-box input { width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-weight: 700; outline: none; }
 
     /* Dynamic QR */
-    .upi-qr-display { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 10px; padding: 10px; margin: 8px 0; text-align: center; }
-    #dynamicUpiQrImg { width: 130px; height: 130px; object-fit: contain; margin-bottom: 4px; display: none; }
+    .upi-qr-display { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ffffff; border: 1px dashed #94a3b8; border-radius: 8px; padding: 8px; margin: 6px 0; text-align: center; }
+    #dynamicUpiQrImg { width: 120px; height: 120px; object-fit: contain; margin-bottom: 4px; display: none; }
 
-    .modal-grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-    .btn-pay-cash { background: #059669; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
-    .btn-pay-online { background: #2563eb; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
-    .btn-pay-split { grid-column: span 2; background: #d97706; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
-    .btn-action-print { grid-column: span 2; background: #0f172a; color: #fff; border: none; padding: 11px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .btn-action-kot { grid-column: span 2; background: #475569; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .modal-grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .btn-pay-cash { background: #059669; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; }
+    .btn-pay-online { background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; }
+    .btn-pay-split { grid-column: span 2; background: #d97706; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 12px; cursor: pointer; }
+    .btn-action-print { grid-column: span 2; background: #0f172a; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn-action-kot { grid-column: span 2; background: #475569; color: #fff; border: none; padding: 9px; border-radius: 8px; font-weight: 700; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
-    .input-group { margin-bottom: 10px; }
-    .input-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; }
-    .input-field { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+    .input-group { margin-bottom: 8px; }
+    .input-group label { display: block; font-size: 11px; font-weight: 700; color: #334155; margin-bottom: 3px; }
+    .input-field { width: 100%; padding: 7px 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; }
 
-    /* Switch Component */
-    .switch-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 13px; font-weight: 700; color: #334155; }
-    .switch-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
-    .switch-toggle input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 24px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-    input:checked + .slider { background-color: var(--primary); }
-    input:checked + .slider:before { transform: translateX(20px); }
-
-    /* Download Backup Button */
-    .btn-download-backup { width: 100%; padding: 12px; background: #059669; color: #fff; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3); }
+    .btn-download-backup { width: 100%; padding: 10px; background: #059669; color: #fff; border: none; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-download-backup:active { transform: scale(0.98); }
+
+    /* Kitchen KOT Screen Modal Cards */
+    .kot-token-card { background: #fff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    .kot-token-card.status-pending { border-left: 6px solid #ef4444; }
+    .kot-token-card.status-preparing { border-left: 6px solid #f59e0b; background: #fffbeb; }
+    .kot-token-card.status-ready { border-left: 6px solid #10b981; background: #f0fdf4; opacity: 0.85; }
 
     /* THERMAL BILL & KOT CANVAS */
     #thermalBillArea, #kotBillArea {
@@ -166,13 +180,13 @@
     }
     .th-center { text-align: center; }
     .th-store { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
-    .th-bill-title { font-size: 16px; font-weight: 800; text-transform: uppercase; margin: 3px 0; }
+    .th-bill-title { font-size: 15px; font-weight: 800; text-transform: uppercase; margin: 3px 0; }
     .th-dash { border-top: 1px dashed #000; margin: 4px 0; }
     .th-row { display: flex; justify-content: space-between; }
     .th-col-name { width: 48%; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .th-col-qty { width: 22%; text-align: right; }
     .th-col-tot { width: 30%; text-align: right; }
-    .th-grand { font-size: 16px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; margin: 4px 0; }
+    .th-grand { font-size: 15px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; margin: 4px 0; }
 
     @media print {
       @page { size: 58mm auto; margin: 0mm; }
@@ -192,6 +206,11 @@
       <div class="brand-title-txt">SmartPOS Pro</div>
     </div>
     <div class="header-actions">
+      <!-- Live Kitchen KOT Display Trigger -->
+      <button type="button" class="btn-header kot-counter" onclick="openKitchenOrdersModal()">
+        <i class="fa-solid fa-kitchen-set"></i> Kitchen
+        <span class="kot-badge-count" id="badgePendingKot">0</span>
+      </button>
       <button type="button" class="btn-header" onclick="openStoreSettings()"><i class="fa-solid fa-store"></i> Settings</button>
       <button type="button" class="btn-header" onclick="openLedgerReport()"><i class="fa-solid fa-book"></i> Ledger</button>
       <button type="button" class="btn-header" style="color:var(--primary);" onclick="openFoodManager()"><i class="fa-solid fa-plus"></i> Menu</button>
@@ -209,7 +228,7 @@
     </div>
   </div>
 
-  <!-- Controls Container with Two Tiers of Circular Popups -->
+  <!-- Controls Container -->
   <div class="controls-container">
     <input type="text" id="txtMenuSearch" class="search-input-field" placeholder="Search menu items..." oninput="renderMenuCatalog()" />
 
@@ -218,11 +237,11 @@
       <i class="fa-solid fa-fire" style="color:#ef4444;"></i> Today's Sales Leaderboard (Top to Lowest)
     </div>
     <div class="avatar-scroll-track" id="topSellingAvatarsTrack">
-      <div style="font-size:11px; color:#6b7280; padding:10px;">No items sold today yet</div>
+      <div style="font-size:11px; color:#6b7280; padding:8px;">No items sold today yet</div>
     </div>
 
     <!-- Tier 2: Menu Categories -->
-    <div class="avatar-section-title" style="margin-top:6px;">
+    <div class="avatar-section-title" style="margin-top:4px;">
       <i class="fa-solid fa-layer-group" style="color:var(--primary);"></i> Menu Categories
     </div>
     <div class="avatar-scroll-track" id="categoryScrollList"></div>
@@ -256,35 +275,83 @@
   <div class="modal-backdrop" id="checkoutModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-receipt"></i> Billing Checkout</h3>
+        <h3 style="font-weight:800; font-size:16px;"><i class="fa-solid fa-receipt"></i> Billing Checkout</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('checkoutModal')">✕</button>
       </div>
 
-      <!-- Dine-in / Parcel Selection -->
+      <!-- Feature 1: Dine-in / Parcel & Table Selection -->
       <div class="order-type-tabs">
         <div class="order-type-btn active" id="btnTypeDineIn" onclick="setOrderType('DINE-IN')"><i class="fa-solid fa-utensils"></i> DINE-IN</div>
         <div class="order-type-btn" id="btnTypeParcel" onclick="setOrderType('PARCEL')"><i class="fa-solid fa-box-open"></i> PARCEL</div>
       </div>
 
-      <div id="checkoutItemsList" style="max-height: 140px; overflow-y: auto; margin-bottom: 8px;"></div>
+      <!-- Dine-in Table Selector Grid -->
+      <div id="tableSelectorBox">
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;"><i class="fa-solid fa-chair"></i> সিলেক্ট টেবিল নম্বর (Table No):</div>
+        <div class="table-selection-grid">
+          <div class="table-pill-btn active" onclick="pickTableNum('Table 1')">Table 1</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 2')">Table 2</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 3')">Table 3</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 4')">Table 4</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 5')">Table 5</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 6')">Table 6</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 7')">Table 7</div>
+          <div class="table-pill-btn" onclick="pickTableNum('Table 8')">Table 8</div>
+        </div>
+      </div>
+
+      <!-- Feature 4: Customer Details Entry -->
+      <div class="cust-info-card">
+        <div style="font-size:11px; font-weight:800; color:#334155; margin-bottom:4px;"><i class="fa-solid fa-user"></i> কাস্টমার তথ্য (Customer Details):</div>
+        <div class="cust-info-grid">
+          <input type="text" id="inpCustomerName" placeholder="কাস্টমারের নাম (Optional)" class="input-field" style="padding:6px; font-size:11px;" />
+          <input type="tel" id="inpCustomerPhone" placeholder="মোবাইল নম্বর (Phone No)" class="input-field" style="padding:6px; font-size:11px;" />
+        </div>
+      </div>
+
+      <!-- Items List -->
+      <div id="checkoutItemsList" style="max-height: 120px; overflow-y: auto; margin-bottom: 6px;"></div>
+
+      <!-- Feature 3: Dynamic Discount & GST Toggle Controls directly on checkout -->
+      <div class="computation-adjust-card">
+        <!-- Discount Row -->
+        <div class="adjust-row">
+          <span><i class="fa-solid fa-tag" style="color:#ef4444;"></i> ডিসকাউন্ট (Discount):</span>
+          <div class="adjust-controls">
+            <input type="checkbox" id="chkActiveDiscount" onchange="onDiscountOrTaxToggled()" />
+            <input type="number" id="inpActiveDiscountVal" value="10" class="adjust-input" oninput="onDiscountOrTaxToggled()" />
+            <button type="button" id="btnDiscTypePercent" class="adjust-mode-btn active" onclick="setDiscountType('PERCENT')">%</button>
+            <button type="button" id="btnDiscTypeFlat" class="adjust-mode-btn" onclick="setDiscountType('FLAT')">₹</button>
+          </div>
+        </div>
+        <!-- GST/Tax Row -->
+        <div class="adjust-row" style="margin-bottom:0;">
+          <span><i class="fa-solid fa-percent" style="color:#3b82f6;"></i> GST / Tax:</span>
+          <div class="adjust-controls">
+            <input type="checkbox" id="chkActiveTax" onchange="onDiscountOrTaxToggled()" />
+            <input type="number" id="inpActiveTaxVal" value="5" class="adjust-input" oninput="onDiscountOrTaxToggled()" />
+            <span style="font-size:11px; font-weight:800; color:#64748b;">%</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Computation Breakdown -->
-      <div style="background:#f8fafc; border-radius:8px; padding:8px 10px; margin-bottom:8px; font-size:12px;">
-        <div class="th-row" style="margin-bottom:3px;"><span>Subtotal:</span><b id="lblCheckoutSubtotal">₹0</b></div>
-        <div class="th-row" id="rowCheckoutDiscount" style="display:none; color:#dc2626; margin-bottom:3px;">
-          <span>Discount (<span id="lblDiscountPercentTxt">0</span>%):</span><b id="lblCheckoutDiscountVal">-₹0</b>
+      <div style="background:#f8fafc; border-radius:8px; padding:6px 10px; margin-bottom:6px; font-size:11px;">
+        <div class="th-row" style="margin-bottom:2px;"><span>Subtotal:</span><b id="lblCheckoutSubtotal">₹0</b></div>
+        <div class="th-row" id="rowCheckoutDiscount" style="display:none; color:#dc2626; margin-bottom:2px;">
+          <span>Discount:</span><b id="lblCheckoutDiscountVal">-₹0</b>
         </div>
-        <div class="th-row" id="rowCheckoutTax" style="display:none; color:#475569; margin-bottom:3px;">
-          <span>Tax / GST (<span id="lblTaxPercentTxt">0</span>%):</span><b id="lblCheckoutTaxVal">+₹0</b>
+        <div class="th-row" id="rowCheckoutTax" style="display:none; color:#475569; margin-bottom:2px;">
+          <span>Tax / GST:</span><b id="lblCheckoutTaxVal">+₹0</b>
         </div>
-        <div class="th-row" style="font-size:16px; font-weight:800; border-top:1px dashed #cbd5e1; padding-top:4px; margin-top:4px;">
+        <div class="th-row" style="font-size:15px; font-weight:800; border-top:1px dashed #cbd5e1; padding-top:4px; margin-top:3px;">
           <span>Grand Total:</span><span id="lblCheckoutTotal" style="color:var(--danger);">₹0</span>
         </div>
       </div>
 
       <!-- Cash Return Change Calculator -->
       <div class="change-calc-box">
-        <div style="font-size:11px; font-weight:700; color:#065f46; margin-bottom:4px;"><i class="fa-solid fa-calculator"></i> Cash Tendered & Change Return</div>
+        <div style="font-size:11px; font-weight:700; color:#065f46; margin-bottom:3px;"><i class="fa-solid fa-calculator"></i> Cash Tendered & Change Return</div>
         <div class="change-calc-grid">
           <input type="number" id="inpCashTendered" placeholder="Cash Given (₹)" oninput="calculateChangeReturn()" />
           <div class="change-display-val" id="lblChangeReturnDisplay">Change: ₹0.00</div>
@@ -311,9 +378,9 @@
 
       <!-- Dynamic QR Code -->
       <div class="upi-qr-display">
-        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">Scan to Pay via UPI</div>
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:2px;">Scan to Pay via UPI</div>
         <img id="dynamicUpiQrImg" alt="UPI QR" />
-        <div style="font-size:11px; color:#64748b;" id="lblUpiIdentifier">UPI: Not configured</div>
+        <div style="font-size:10px; color:#64748b;" id="lblUpiIdentifier">UPI: Not configured</div>
       </div>
 
       <!-- Actions -->
@@ -327,17 +394,34 @@
     </div>
   </div>
 
+  <!-- Feature 2: Live Kitchen KOT Order Screen Modal -->
+  <div class="modal-backdrop" id="kitchenOrdersModal">
+    <div class="modal-sheet" style="max-width: 500px;">
+      <div class="modal-title-row">
+        <h3 style="font-weight:800; font-size:16px;"><i class="fa-solid fa-kitchen-set" style="color:#f59e0b;"></i> Live Kitchen Orders (KOT)</h3>
+        <button type="button" class="btn-modal-exit" onclick="closeModal('kitchenOrdersModal')">✕</button>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
+        <span style="font-weight:700; color:#475569;">আজকের রানিং অর্ডারসমূহ:</span>
+        <button type="button" onclick="clearCompletedKots()" style="background:#f1f5f9; border:1px solid #cbd5e1; padding:4px 8px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">Clear Finished</button>
+      </div>
+
+      <div id="kitchenKotCardsContainer" style="max-height: 400px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
   <!-- Store Settings Modal -->
   <div class="modal-backdrop" id="storeSettingsModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-store"></i> Store & Backup Settings</h3>
+        <h3 style="font-weight:800; font-size:16px;"><i class="fa-solid fa-store"></i> Store & Backup Settings</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('storeSettingsModal')">✕</button>
       </div>
 
       <!-- ১-ক্লিকে ব্যাকআপ ফাইল সরাসরি ডাউনলোড বাটন -->
-      <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:10px; padding:12px; margin-bottom:14px; text-align:center;">
-        <div style="font-size:12px; font-weight:700; color:#065f46; margin-bottom:8px;">
+      <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:10px; padding:10px; margin-bottom:12px; text-align:center;">
+        <div style="font-size:11px; font-weight:700; color:#065f46; margin-bottom:6px;">
           <i class="fa-solid fa-cloud-arrow-down"></i> Save complete menu, images & sales to a file:
         </div>
         <button type="button" class="btn-download-backup" onclick="downloadBackupFile()">
@@ -371,45 +455,18 @@
         <input type="hidden" id="cfgStoreBannerData" />
       </div>
 
-      <!-- Dynamic Tax & Discount Switch Settings -->
-      <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <div style="font-size:12px; font-weight:800; color:#1e293b; margin-bottom:8px;">Receipt Computation Controls</div>
-        
-        <div class="switch-row">
-          <span>Enable Tax / GST Percentage:</span>
-          <label class="switch-toggle">
-            <input type="checkbox" id="cfgEnableTax" onchange="toggleTaxSettingsUI()" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div id="cfgTaxValGroup" class="input-group" style="display:none;">
-          <input type="number" id="cfgTaxPercentage" class="input-field" placeholder="Tax % (e.g. 5)" />
-        </div>
-
-        <div class="switch-row">
-          <span>Enable Discount Percentage:</span>
-          <label class="switch-toggle">
-            <input type="checkbox" id="cfgEnableDiscount" onchange="toggleDiscountSettingsUI()" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div id="cfgDiscountValGroup" class="input-group" style="display:none;">
-          <input type="number" id="cfgDiscountPercentage" class="input-field" placeholder="Discount % (e.g. 10)" />
-        </div>
-      </div>
-
       <!-- Category Avatars -->
-      <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <label style="font-size:12px; font-weight:800; color:#334155; display:block; margin-bottom:6px;">Upload Category Avatar Images</label>
-        <div id="categoryAvatarSettingsList" style="max-height: 140px; overflow-y: auto;"></div>
+      <div style="border-top:1px solid #cbd5e1; margin-top:12px; padding-top:8px;">
+        <label style="font-size:11px; font-weight:800; color:#334155; display:block; margin-bottom:6px;">Upload Category Avatar Images</label>
+        <div id="categoryAvatarSettingsList" style="max-height: 130px; overflow-y: auto;"></div>
       </div>
 
-      <button type="button" onclick="saveStoreConfiguration()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer; margin-top:12px;">Save Configurations</button>
+      <button type="button" onclick="saveStoreConfiguration()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer; margin-top:10px;">Save Configurations</button>
 
       <!-- অন্য ফোনে রিস্টোর অপশন -->
-      <div style="border-top: 1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">Restore Backup File (on this or another device):</div>
-        <button type="button" onclick="document.getElementById('inpRestoreBackupFile').click()" style="width:100%; padding:9px; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:700; font-size:13px; cursor:pointer;">
+      <div style="border-top: 1px solid #cbd5e1; margin-top:12px; padding-top:8px;">
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:5px;">Restore Backup File (on this or another device):</div>
+        <button type="button" onclick="document.getElementById('inpRestoreBackupFile').click()" style="width:100%; padding:8px; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:700; font-size:12px; cursor:pointer;">
           <i class="fa-solid fa-upload"></i> Select Backup File to Restore
         </button>
         <input type="file" id="inpRestoreBackupFile" accept=".json" onchange="restoreBackupFile(event)" style="display:none;" />
@@ -421,30 +478,29 @@
   <div class="modal-backdrop" id="salesLedgerModal">
     <div class="modal-sheet" style="max-width: 480px;">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-book"></i> Daily Sales Ledger</h3>
+        <h3 style="font-weight:800; font-size:16px;"><i class="fa-solid fa-book"></i> Daily Sales Ledger</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('salesLedgerModal')">✕</button>
       </div>
 
       <div style="display:flex; gap:6px; margin-bottom:10px;">
         <input type="date" id="dtLedgerFilter" style="flex:1; padding:6px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px;" onchange="renderLedgerTransactions()" />
-        <button type="button" onclick="document.getElementById('dtLedgerFilter').value=''; renderLedgerTransactions();" style="padding:6px 12px; background:#0f172a; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;">All</button>
-        <button type="button" onclick="exportLedgerCSV()" style="padding:6px 12px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;" title="Export to Excel / CSV"><i class="fa-solid fa-file-excel"></i> Excel</button>
+        <button type="button" onclick="document.getElementById('dtLedgerFilter').value=''; renderLedgerTransactions();" style="padding:6px 10px; background:#0f172a; color:#fff; border:none; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">All</button>
+        <button type="button" onclick="exportLedgerCSV()" style="padding:6px 10px; background:#059669; color:#fff; border:none; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-file-excel"></i> Excel</button>
       </div>
 
-      <div id="cardLedgerMetrics" style="background:#f1f5f9; padding:10px; border-radius:8px; font-size:12px; font-weight:700; margin-bottom:10px;"></div>
+      <div id="cardLedgerMetrics" style="background:#f1f5f9; padding:8px; border-radius:8px; font-size:12px; font-weight:700; margin-bottom:8px;"></div>
       <div id="ledgerEntriesContainer" style="max-height: 280px; overflow-y: auto;"></div>
     </div>
   </div>
 
-  <!-- Food Menu Manager (Now with Edit, Delete & Cancel) -->
+  <!-- Food Menu Manager -->
   <div class="modal-backdrop" id="foodMenuModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-utensils"></i> Menu Catalog Manager</h3>
+        <h3 style="font-weight:800; font-size:16px;"><i class="fa-solid fa-utensils"></i> Menu Catalog Manager</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('foodMenuModal')">✕</button>
       </div>
 
-      <!-- Hidden ID for tracking item edit -->
       <input type="hidden" id="editItemTargetId" value="" />
 
       <div class="input-group">
@@ -473,17 +529,17 @@
         </div>
       </div>
       <div class="input-group">
-        <label>Item Photo (IndexedDB Powered - High Capacity)</label>
+        <label>Item Photo (High Capacity)</label>
         <input type="file" id="inpItemPhotoFile" accept="image/*" onchange="uploadFoodPhoto(event)" />
         <input type="hidden" id="inpItemPhotoData" />
       </div>
 
-      <div style="display:flex; gap:8px;">
-        <button type="button" id="btnSaveMenuAction" onclick="saveNewCatalogItem()" style="flex:1; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer;">Save Item to Menu</button>
-        <button type="button" id="btnCancelEditMode" onclick="resetFoodInputForm()" style="display:none; padding:10px 14px; background:#475569; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Cancel</button>
+      <div style="display:flex; gap:6px;">
+        <button type="button" id="btnSaveMenuAction" onclick="saveNewCatalogItem()" style="flex:1; padding:9px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer;">Save Item to Menu</button>
+        <button type="button" id="btnCancelEditMode" onclick="resetFoodInputForm()" style="display:none; padding:9px 12px; background:#475569; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Cancel</button>
       </div>
 
-      <div id="catalogListItems" style="max-height: 180px; overflow-y: auto; margin-top: 12px; border-top:1px solid #cbd5e1; padding-top:8px;"></div>
+      <div id="catalogListItems" style="max-height: 180px; overflow-y: auto; margin-top: 10px; border-top:1px solid #cbd5e1; padding-top:6px;"></div>
     </div>
   </div>
 
@@ -492,11 +548,12 @@
     <div class="th-center th-store" id="prnStoreName">GOGIA SWEETS</div>
     <div class="th-center" style="font-size:10px;" id="prnStorePhone">Ph: +91 98765 43210</div>
     <div class="th-center" style="font-size:10px;" id="prnStoreSubtitle">Main Market</div>
-    <div class="th-center" style="font-size:12px; font-weight:800; margin:3px 0;" id="prnOrderTypeBadge">[ DINE-IN ]</div>
+    <div class="th-center" style="font-size:12px; font-weight:800; margin:3px 0;" id="prnOrderTypeBadge">[ DINE-IN - Table 1 ]</div>
+    <div class="th-center" style="font-size:10px; font-weight:700; display:none;" id="prnCustomerBox">Customer: Walk-in</div>
     <div class="th-center th-bill-title" id="prnBillTitle">CASH BILL</div>
     <div class="th-dash"></div>
     <div class="th-row">
-      <span id="prnDateTime">08/12/2017 16:50</span>
+      <span id="prnDateTime">08/12/2026 16:50</span>
       <span id="prnBillNumber">Bill #: 13</span>
     </div>
     <div class="th-dash"></div>
@@ -545,8 +602,8 @@
 
   <!-- KITCHEN ORDER TOKEN CANVAS -->
   <div id="kotBillArea">
-    <div class="th-center" style="font-size:16px; font-weight:800;">*** KITCHEN ORDER TOKEN ***</div>
-    <div class="th-center" style="font-size:13px; font-weight:800; margin:3px 0;" id="kotOrderTypeBadge">[ DINE-IN ]</div>
+    <div class="th-center" style="font-size:15px; font-weight:800;">*** KITCHEN ORDER TOKEN ***</div>
+    <div class="th-center" style="font-size:13px; font-weight:800; margin:3px 0;" id="kotOrderTypeBadge">[ DINE-IN - Table 1 ]</div>
     <div class="th-dash"></div>
     <div class="th-row">
       <span id="kotTokenNum">TOKEN #: 13</span>
@@ -593,7 +650,7 @@
         const store = tx.objectStore("images");
         store.put({ id, base64 });
         tx.oncomplete = () => resolve();
-        tx.onerror = (err) => resolve();
+        tx.onerror = () => resolve();
       });
     }
 
@@ -619,10 +676,6 @@
         upi: "merchant@upi",
         footerNote: "*** THANK YOU, VISIT AGAIN ***",
         banner: "",
-        enableTax: false,
-        taxPercent: 5,
-        enableDiscount: false,
-        discountPercent: 10,
         categoryIcons: { "ALL": "", "Chow": "", "Snacks": "", "Roll": "", "Sweets": "" }
       },
       menu: [
@@ -632,16 +685,17 @@
         { id: 4, name: "CHICKEN CHOWMEIN", subtitle: "Spicy Hakka Noodles", cat: "Chow", diet: "Non-Veg", half: 60, full: 100, img: "" },
         { id: 5, name: "CHICKEN PAKORA", subtitle: "Crispy Fried (6 pcs)", cat: "Snacks", diet: "Non-Veg", half: 50, full: 90, img: "" }
       ],
-      sales: []
+      sales: [],
+      kitchenOrders: []
     };
 
     let appState;
     try {
       appState = JSON.parse(localStorage.getItem(POS_STORAGE_KEY)) || INITIAL_DATA;
       if (!appState.shop) appState.shop = INITIAL_DATA.shop;
-      if (!appState.shop.categoryIcons) appState.shop.categoryIcons = INITIAL_DATA.shop.categoryIcons;
       if (!appState.menu) appState.menu = INITIAL_DATA.menu;
       if (!appState.sales) appState.sales = [];
+      if (!appState.kitchenOrders) appState.kitchenOrders = [];
     } catch (e) {
       appState = INITIAL_DATA;
     }
@@ -650,6 +704,8 @@
     let portionChoices = {};
     let activeFilterCategory = "ALL";
     let selectedOrderType = "DINE-IN";
+    let selectedTableNum = "Table 1";
+    let activeDiscountType = "PERCENT"; // "PERCENT" or "FLAT"
     let lastGeneratedSale = null;
 
     function saveAppState() {
@@ -673,6 +729,7 @@
       renderCategoryAvatars();
       renderMenuCatalog();
       updateSalesMetricsBadge();
+      updateKitchenBadge();
     }
 
     function renderStoreHeader() {
@@ -691,10 +748,31 @@
       document.getElementById("lblUpiIdentifier").textContent = `UPI: ${s.upi || 'Not configured'}`;
     }
 
+    /* Table & Order Type Functions */
     function setOrderType(type) {
       selectedOrderType = type;
       document.getElementById("btnTypeDineIn").classList.toggle("active", type === "DINE-IN");
       document.getElementById("btnTypeParcel").classList.toggle("active", type === "PARCEL");
+      document.getElementById("tableSelectorBox").style.display = type === "DINE-IN" ? "block" : "none";
+    }
+
+    function pickTableNum(tableStr) {
+      selectedTableNum = tableStr;
+      document.querySelectorAll(".table-pill-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.textContent === tableStr);
+      });
+    }
+
+    /* Discount / Tax Toggles */
+    function setDiscountType(type) {
+      activeDiscountType = type;
+      document.getElementById("btnDiscTypePercent").classList.toggle("active", type === "PERCENT");
+      document.getElementById("btnDiscTypeFlat").classList.toggle("active", type === "FLAT");
+      onDiscountOrTaxToggled();
+    }
+
+    function onDiscountOrTaxToggled() {
+      updateCheckoutBreakdown();
     }
 
     /* Top Tier: Today's Most to Lowest Selling */
@@ -713,7 +791,7 @@
       const sortedLeaderboard = Object.entries(salesCountMap).sort((a, b) => b[1] - a[1]);
 
       if (!sortedLeaderboard.length) {
-        track.innerHTML = `<div style="font-size:12px; color:#6b7280; padding:8px;">No orders billed today yet. Top sellers will appear here automatically!</div>`;
+        track.innerHTML = `<div style="font-size:11px; color:#6b7280; padding:6px;">No orders billed today yet</div>`;
         return;
       }
 
@@ -728,7 +806,7 @@
               <span class="top-rank-badge">#${index + 1}</span>
               ${menuItem.img 
                 ? `<img src="${menuItem.img}" alt="${itemName}" />` 
-                : `<i class="fa-solid fa-fire" style="font-size:18px; color:#f59e0b;"></i>`}
+                : `<i class="fa-solid fa-fire" style="font-size:16px; color:#f59e0b;"></i>`}
             </div>
             <div class="cat-avatar-title">${itemName}</div>
             <div class="top-qty-tag">${soldQty} sold</div>
@@ -750,8 +828,8 @@
       document.getElementById("categoryScrollList").innerHTML = categories.map(cat => {
         const iconSrc = icons[cat] || "";
         const fallbackIcon = cat === "ALL" 
-          ? '<i class="fa-solid fa-border-all" style="font-size:19px; color:#f59e0b;"></i>' 
-          : '<i class="fa-solid fa-bowl-food" style="font-size:19px; color:#aaa;"></i>';
+          ? '<i class="fa-solid fa-border-all" style="font-size:18px; color:#f59e0b;"></i>' 
+          : '<i class="fa-solid fa-bowl-food" style="font-size:18px; color:#aaa;"></i>';
 
         return `
           <div class="cat-avatar-pill ${cat === activeFilterCategory ? 'active' : ''}" onclick="selectCategory('${cat}')">
@@ -782,7 +860,7 @@
       });
 
       if (!filtered.length) {
-        container.innerHTML = `<div style="text-align:center; padding:40px; color:#6b7280;">No menu items found</div>`;
+        container.innerHTML = `<div style="text-align:center; padding:30px; color:#6b7280;">No menu items found</div>`;
         return;
       }
 
@@ -796,7 +874,7 @@
             <div class="item-media-top">
               <img src="${item.img || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23202024%22 width=%22100%22 height=%22100%22/><text fill=%22%236b7280%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2222%22>🍽️</text></svg>'}" class="item-photo" alt="${item.name}" />
               <div class="floating-badge diet-badge ${isNonVeg ? 'non-veg' : 'veg'}">
-                <i class="fa-solid fa-circle" style="font-size:8px;"></i> ${item.diet || 'Non-Veg'}
+                <i class="fa-solid fa-circle" style="font-size:7px;"></i> ${item.diet || 'Non-Veg'}
               </div>
               <div class="floating-badge tag-cat-badge">${item.cat || 'General'}</div>
               <div class="cost-overlay">₹${price}</div>
@@ -869,55 +947,47 @@
 
     function computeBillCalculations() {
       const subtotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
-      const s = appState.shop;
-
+      
+      const discChecked = document.getElementById("chkActiveDiscount") ? document.getElementById("chkActiveDiscount").checked : false;
+      const discInput = document.getElementById("inpActiveDiscountVal") ? Number(document.getElementById("inpActiveDiscountVal").value) || 0 : 0;
+      
       let discount = 0;
-      if (s.enableDiscount && s.discountPercent > 0) {
-        discount = Math.round((subtotal * s.discountPercent) / 100);
+      if (discChecked && discInput > 0) {
+        if (activeDiscountType === "PERCENT") {
+          discount = Math.round((subtotal * discInput) / 100);
+        } else {
+          discount = Math.min(subtotal, discInput);
+        }
       }
 
       const taxableBase = Math.max(0, subtotal - discount);
+
+      const taxChecked = document.getElementById("chkActiveTax") ? document.getElementById("chkActiveTax").checked : false;
+      const taxInput = document.getElementById("inpActiveTaxVal") ? Number(document.getElementById("inpActiveTaxVal").value) || 0 : 0;
+
       let tax = 0;
-      if (s.enableTax && s.taxPercent > 0) {
-        tax = Math.round((taxableBase * s.taxPercent) / 100);
+      if (taxChecked && taxInput > 0) {
+        tax = Math.round((taxableBase * taxInput) / 100);
       }
 
       const grandTotal = taxableBase + tax;
-      return { subtotal, discount, tax, grandTotal };
+      return { subtotal, discount, tax, grandTotal, discChecked, taxChecked, discInput, taxInput };
     }
 
-    function openCheckoutModal() {
-      const listContainer = document.getElementById("checkoutItemsList");
-      const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
-      const s = appState.shop;
-
-      listContainer.innerHTML = cartBasket.map((item, idx) => `
-        <div class="line-cart-item">
-          <div>
-            <b>${item.name}</b> (${item.portion === 'half' ? 'H' : 'F'})<br>
-            <span style="color:#64748b; font-size:12px;">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, -1)">-</button>
-            <b>${item.qty}</b>
-            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, 1)">+</button>
-          </div>
-        </div>
-      `).join('');
+    function updateCheckoutBreakdown() {
+      const { subtotal, discount, tax, grandTotal, discChecked, taxChecked } = computeBillCalculations();
 
       document.getElementById("lblCheckoutSubtotal").textContent = `₹${subtotal}`;
 
-      if (s.enableDiscount && s.discountPercent > 0) {
+      if (discChecked && discount > 0) {
         document.getElementById("rowCheckoutDiscount").style.display = "flex";
-        document.getElementById("lblDiscountPercentTxt").textContent = s.discountPercent;
         document.getElementById("lblCheckoutDiscountVal").textContent = `-₹${discount}`;
       } else {
         document.getElementById("rowCheckoutDiscount").style.display = "none";
       }
 
-      if (s.enableTax && s.taxPercent > 0) {
+      if (taxChecked && tax > 0) {
         document.getElementById("rowCheckoutTax").style.display = "flex";
-        document.getElementById("lblTaxPercentTxt").textContent = s.taxPercent;
         document.getElementById("lblCheckoutTaxVal").textContent = `+₹${tax}`;
       } else {
         document.getElementById("rowCheckoutTax").style.display = "none";
@@ -929,7 +999,27 @@
       document.getElementById("inpSplitCash").value = half;
       document.getElementById("inpSplitOnline").value = grandTotal - half;
       onSplitAmountChanged();
+      calculateChangeReturn();
+    }
 
+    function openCheckoutModal() {
+      const listContainer = document.getElementById("checkoutItemsList");
+
+      listContainer.innerHTML = cartBasket.map((item, idx) => `
+        <div class="line-cart-item">
+          <div>
+            <b>${item.name}</b> (${item.portion === 'half' ? 'H' : 'F'})<br>
+            <span style="color:#64748b; font-size:11px;">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, -1)">-</button>
+            <b>${item.qty}</b>
+            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, 1)">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      updateCheckoutBreakdown();
       document.getElementById("inpCashTendered").value = "";
       calculateChangeReturn();
 
@@ -954,7 +1044,7 @@
         displayEl.textContent = "Change: ₹0.00";
         displayEl.style.color = "#047857";
       } else if (change >= 0) {
-        displayEl.textContent = `Return Change: ₹${change.toFixed(2)}`;
+        displayEl.textContent = `Return: ₹${change.toFixed(2)}`;
         displayEl.style.color = "#059669";
       } else {
         displayEl.textContent = `Shortage: ₹${Math.abs(change).toFixed(2)}`;
@@ -970,7 +1060,7 @@
 
       const statusEl = document.getElementById("lblSplitStatus");
       if (balance === 0) {
-        statusEl.textContent = "Balance: Exact Match (₹0)";
+        statusEl.textContent = "Balance: Match (₹0)";
         statusEl.style.color = "#059669";
       } else if (balance > 0) {
         statusEl.textContent = `Remaining: ₹${balance}`;
@@ -1015,11 +1105,18 @@
         }
       }
 
+      const custName = document.getElementById("inpCustomerName").value.trim();
+      const custPhone = document.getElementById("inpCustomerPhone").value.trim();
+      const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
+
       const billNumber = (appState.sales.length + 1);
       const saleEntry = {
         id: Date.now(),
         billNo: billNumber,
         orderType: selectedOrderType,
+        tableNum: tableTag,
+        customerName: custName,
+        customerPhone: custPhone,
         items: JSON.parse(JSON.stringify(cartBasket)),
         subtotal,
         discount,
@@ -1032,15 +1129,29 @@
       };
 
       appState.sales.unshift(saleEntry);
+
+      // Add to Kitchen Orders List for live tracking
+      const kotEntry = {
+        id: Date.now(),
+        tokenNo: billNumber,
+        tableNum: tableTag,
+        items: JSON.parse(JSON.stringify(cartBasket)),
+        time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
+        status: "Pending" // "Pending" -> "Preparing" -> "Ready"
+      };
+      if (!appState.kitchenOrders) appState.kitchenOrders = [];
+      appState.kitchenOrders.unshift(kotEntry);
+
       lastGeneratedSale = saleEntry;
       saveAppState();
 
       buildReceiptDocket(saleEntry);
       buildKotDocket(saleEntry);
 
-      alert(`✅ Bill #${billNumber} [${selectedOrderType}] Confirmed!\nMode: ${paymentType}\nTotal: ₹${grandTotal}`);
+      alert(`✅ Bill #${billNumber} [${tableTag}] Confirmed!\nTotal: ₹${grandTotal}`);
       clearCartBasket();
       updateSalesMetricsBadge();
+      updateKitchenBadge();
       renderTodayTopSellingBar();
     }
 
@@ -1049,7 +1160,17 @@
       document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
       document.getElementById("prnStoreSubtitle").textContent = s.subtitle || "";
       document.getElementById("prnStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
-      document.getElementById("prnOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} ]`;
+      
+      const tableInfo = sale.tableNum ? `[ ${sale.orderType || 'DINE-IN'} - ${sale.tableNum} ]` : `[ ${sale.orderType || 'DINE-IN'} ]`;
+      document.getElementById("prnOrderTypeBadge").textContent = tableInfo;
+
+      const custBox = document.getElementById("prnCustomerBox");
+      if (sale.customerName || sale.customerPhone) {
+        custBox.style.display = "block";
+        custBox.textContent = `Cust: ${sale.customerName || ''} ${sale.customerPhone ? '(' + sale.customerPhone + ')' : ''}`;
+      } else {
+        custBox.style.display = "none";
+      }
 
       let headerTitle = "CASH BILL";
       if (sale.mode === "ONLINE") headerTitle = "ONLINE BILL";
@@ -1106,13 +1227,14 @@
     }
 
     function buildKotDocket(sale) {
-      document.getElementById("kotOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} ]`;
+      const tableInfo = sale.tableNum ? `[ ${sale.orderType || 'DINE-IN'} - ${sale.tableNum} ]` : `[ ${sale.orderType || 'DINE-IN'} ]`;
+      document.getElementById("kotOrderTypeBadge").textContent = tableInfo;
       document.getElementById("kotTokenNum").textContent = `TOKEN #: ${sale.billNo}`;
       const d = new Date(sale.timestamp);
       document.getElementById("kotTime").textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 
       document.getElementById("kotItemsContainer").innerHTML = sale.items.map(item => `
-        <div class="th-row" style="font-size:13px; font-weight:700; margin:3px 0;">
+        <div class="th-row" style="font-size:12px; font-weight:700; margin:2px 0;">
           <span>${item.name} (${item.portion === 'half' ? 'HALF' : 'FULL'})</span>
           <span>x ${item.qty}</span>
         </div>
@@ -1126,10 +1248,14 @@
       }
       if (!lastGeneratedSale && cartBasket.length) {
         const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
+        const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
         const tempSale = {
           id: Date.now(),
           billNo: appState.sales.length + 1,
           orderType: selectedOrderType,
+          tableNum: tableTag,
+          customerName: document.getElementById("inpCustomerName").value.trim(),
+          customerPhone: document.getElementById("inpCustomerPhone").value.trim(),
           items: cartBasket,
           subtotal,
           discount,
@@ -1154,9 +1280,11 @@
         return;
       }
       if (!lastGeneratedSale && cartBasket.length) {
+        const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
         const tempSale = {
           billNo: appState.sales.length + 1,
           orderType: selectedOrderType,
+          tableNum: tableTag,
           items: cartBasket,
           timestamp: new Date().toISOString()
         };
@@ -1166,6 +1294,83 @@
       document.getElementById("thermalBillArea").classList.remove("printable-active");
       document.getElementById("kotBillArea").classList.add("printable-active");
       window.print();
+    }
+
+    /* Live Kitchen KOT Modal Functions */
+    function openKitchenOrdersModal() {
+      renderKitchenOrderCards();
+      openModal('kitchenOrdersModal');
+    }
+
+    function updateKitchenBadge() {
+      const active = (appState.kitchenOrders || []).filter(k => k.status !== "Ready").length;
+      document.getElementById("badgePendingKot").textContent = active;
+    }
+
+    function renderKitchenOrderCards() {
+      const list = appState.kitchenOrders || [];
+      const container = document.getElementById("kitchenKotCardsContainer");
+
+      if (!list.length) {
+        container.innerHTML = `<div style="text-align:center; padding:30px; color:#9ca3af;">রান্নাঘরে কোনো রানিং অর্ডার নেই (All Clear)</div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(kot => {
+        let statusClass = "status-pending";
+        let statusBadgeColor = "#ef4444";
+        if (kot.status === "Preparing") { statusClass = "status-preparing"; statusBadgeColor = "#f59e0b"; }
+        if (kot.status === "Ready") { statusClass = "status-ready"; statusBadgeColor = "#10b981"; }
+
+        return `
+          <div class="kot-token-card ${statusClass}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div>
+                <b style="font-size:14px;">Token #${kot.tokenNo}</b> 
+                <span style="font-weight:700; color:#b45309; margin-left:6px;">[${kot.tableNum || 'DINE-IN'}]</span>
+              </div>
+              <div style="font-size:11px; color:#64748b;"><i class="fa-regular fa-clock"></i> ${kot.time}</div>
+            </div>
+
+            <div style="font-size:12px; margin-bottom:8px; line-height:1.5;">
+              ${kot.items.map(it => `<div>• <b>${it.name}</b> (${it.portion === 'half' ? 'HALF' : 'FULL'}) <span style="color:#ef4444; font-weight:800;">× ${it.qty}</span></div>`).join('')}
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #cbd5e1; padding-top:6px;">
+              <span style="font-size:11px; font-weight:800; color:${statusBadgeColor};">Status: ${kot.status}</span>
+              <div style="display:flex; gap:4px;">
+                ${kot.status === "Pending" ? `<button type="button" onclick="setKotStatus(${kot.id}, 'Preparing')" style="background:#f59e0b; color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:700; cursor:pointer;">Start Cooking</button>` : ''}
+                ${kot.status === "Preparing" ? `<button type="button" onclick="setKotStatus(${kot.id}, 'Ready')" style="background:#10b981; color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:700; cursor:pointer;">Mark Ready</button>` : ''}
+                ${kot.status === "Ready" ? `<button type="button" onclick="removeKotOrder(${kot.id})" style="background:#cbd5e1; color:#111; border:none; padding:4px 8px; border-radius:4px; font-size:10px; font-weight:700; cursor:pointer;">Clear</button>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setKotStatus(id, newStatus) {
+      const kot = (appState.kitchenOrders || []).find(k => k.id === id);
+      if (kot) {
+        kot.status = newStatus;
+        saveAppState();
+        renderKitchenOrderCards();
+        updateKitchenBadge();
+      }
+    }
+
+    function removeKotOrder(id) {
+      appState.kitchenOrders = (appState.kitchenOrders || []).filter(k => k.id !== id);
+      saveAppState();
+      renderKitchenOrderCards();
+      updateKitchenBadge();
+    }
+
+    function clearCompletedKots() {
+      appState.kitchenOrders = (appState.kitchenOrders || []).filter(k => k.status !== "Ready");
+      saveAppState();
+      renderKitchenOrderCards();
+      updateKitchenBadge();
     }
 
     function updateSalesMetricsBadge() {
@@ -1197,7 +1402,8 @@
       document.getElementById("ledgerEntriesContainer").innerHTML = records.map(r => `
         <div style="border-bottom:1px solid #e2e8f0; padding:8px 0; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <div style="font-weight:700;">Bill #${r.billNo} [${r.orderType || 'DINE-IN'}] • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+            <div style="font-weight:700;">Bill #${r.billNo} [${r.tableNum || r.orderType || 'DINE-IN'}] • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+            ${r.customerName || r.customerPhone ? `<div style="font-size:11px; color:#475569;">Cust: ${r.customerName \vert{}\vert{} ''} (${r.customerPhone || 'N/A'})</div>` : ''}
             <div style="color:#059669; font-weight:800;">₹${r.total} [${r.mode}] (Cash: ₹${r.cash || 0} | Online: ₹${r.online || 0})</div>
             <div style="color:#64748b; font-size:11px;">${r.items.map(i => `${i.name}×${i.qty}`).join(', ')}</div>
           </div>
@@ -1232,13 +1438,13 @@
         alert("No sales data available to export");
         return;
       }
-      let csv = "Bill_No,Order_Type,Date,Time,Total,Cash,Online,Payment_Mode,Items\n";
+      let csv = "Bill_No,Table_Or_Type,Customer_Name,Customer_Phone,Date,Time,Total,Cash,Online,Payment_Mode,Items\n";
       appState.sales.forEach(s => {
         const d = new Date(s.timestamp);
         const dt = d.toLocaleDateString();
         const tm = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
         const itms = s.items.map(i => `${i.name} (${i.portion}) x${i.qty}`).join(" | ");
-        csv += `"${s.billNo}","${s.orderType || 'DINE-IN'}","${dt}","${tm}","${s.total}","${s.cash}","${s.online}","${s.mode}","${itms}"\n`;
+        csv += `"${s.billNo}","${s.tableNum || s.orderType || 'DINE-IN'}","${s.customerName || ''}","${s.customerPhone || ''}","${dt}","${tm}","${s.total}","${s.cash}","${s.online}","${s.mode}","${itms}"\n`;
       });
 
       const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -1248,7 +1454,7 @@
       a.click();
     }
 
-    /* 3. Settings & Dedicated Backup / Restore Functions */
+    /* Settings & Dedicated Backup / Restore Functions */
     function openStoreSettings() {
       const s = appState.shop;
       document.getElementById("cfgStoreTitle").value = s.name || "";
@@ -1257,14 +1463,6 @@
       document.getElementById("cfgStoreUpi").value = s.upi || "";
       document.getElementById("cfgStoreFooterNote").value = s.footerNote || "";
       document.getElementById("cfgStoreBannerData").value = s.banner || "";
-
-      document.getElementById("cfgEnableTax").checked = !!s.enableTax;
-      document.getElementById("cfgTaxPercentage").value = s.taxPercent || 5;
-      toggleTaxSettingsUI();
-
-      document.getElementById("cfgEnableDiscount").checked = !!s.enableDiscount;
-      document.getElementById("cfgDiscountPercentage").value = s.discountPercent || 10;
-      toggleDiscountSettingsUI();
 
       const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
       document.getElementById("categoryAvatarSettingsList").innerHTML = categories.map(cat => `
@@ -1277,7 +1475,6 @@
       openModal('storeSettingsModal');
     }
 
-    /* সরাসরি ১-ক্লিকে ব্যাকআপ ফাইল ডাউনলোড */
     function downloadBackupFile() {
       if (!appState) {
         alert("No application state available to backup!");
@@ -1292,7 +1489,6 @@
       a.remove();
     }
 
-    /* ব্যাকআপ ফাইল থেকে সম্পূর্ণ রিস্টোর */
     function restoreBackupFile(e) {
       const file = e.target.files[0];
       if (!file) return;
@@ -1304,7 +1500,6 @@
             appState = parsed;
             saveAppState();
 
-            // Store images to IndexedDB
             for (const item of appState.menu) {
               if (item.img) {
                 await storeImageToDB(`item_${item.id}`, item.img);
@@ -1315,6 +1510,7 @@
             renderCategoryAvatars();
             renderMenuCatalog();
             updateSalesMetricsBadge();
+            updateKitchenBadge();
             renderTodayTopSellingBar();
 
             alert("✅ Complete POS backup restored successfully!");
@@ -1327,16 +1523,6 @@
         }
       };
       reader.readAsText(file);
-    }
-
-    function toggleTaxSettingsUI() {
-      const enabled = document.getElementById("cfgEnableTax").checked;
-      document.getElementById("cfgTaxValGroup").style.display = enabled ? "block" : "none";
-    }
-
-    function toggleDiscountSettingsUI() {
-      const enabled = document.getElementById("cfgEnableDiscount").checked;
-      document.getElementById("cfgDiscountValGroup").style.display = enabled ? "block" : "none";
     }
 
     function uploadCategoryIcon(e, category) {
@@ -1365,12 +1551,6 @@
       s.footerNote = document.getElementById("cfgStoreFooterNote").value.trim() || "*** THANK YOU, VISIT AGAIN ***";
       s.banner = document.getElementById("cfgStoreBannerData").value;
 
-      s.enableTax = document.getElementById("cfgEnableTax").checked;
-      s.taxPercent = Number(document.getElementById("cfgTaxPercentage").value) || 0;
-
-      s.enableDiscount = document.getElementById("cfgEnableDiscount").checked;
-      s.discountPercent = Number(document.getElementById("cfgDiscountPercentage").value) || 0;
-
       saveAppState();
       renderStoreHeader();
       renderCategoryAvatars();
@@ -1378,7 +1558,7 @@
       alert("✅ Store Profile & Receipt Settings Updated!");
     }
 
-    /* 4. Food Menu Manager with Complete EDIT & UPDATE */
+    /* Food Menu Manager */
     function openFoodManager() {
       resetFoodInputForm();
       renderCatalogEditor();
@@ -1463,27 +1643,16 @@
       }
 
       if (editIdStr) {
-        /* Update Existing Food */
         const editId = Number(editIdStr);
         const index = appState.menu.findIndex(m => m.id === editId);
         if (index !== -1) {
           if (!imgData) imgData = appState.menu[index].img || "";
           if (imgData) await storeImageToDB(`item_${editId}`, imgData);
 
-          appState.menu[index] = {
-            id: editId,
-            name,
-            subtitle,
-            cat,
-            diet,
-            half,
-            full,
-            img: imgData
-          };
+          appState.menu[index] = { id: editId, name, subtitle, cat, diet, half, full, img: imgData };
           alert("✅ Menu item updated successfully!");
         }
       } else {
-        /* Add New Food */
         const newItemId = Date.now();
         if (imgData) {
           await storeImageToDB(`item_${newItemId}`, imgData);
