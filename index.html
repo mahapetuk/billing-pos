@@ -705,7 +705,7 @@
     let activeFilterCategory = "ALL";
     let selectedOrderType = "DINE-IN";
     let selectedTableNum = "Table 1";
-    let activeDiscountType = "PERCENT"; // "PERCENT" or "FLAT"
+    let activeDiscountType = "PERCENT";
     let lastGeneratedSale = null;
 
     function saveAppState() {
@@ -717,11 +717,16 @@
     }
 
     async function initApplication() {
-      await openDatabase();
-      
-      for (const item of appState.menu) {
-        const storedImg = await getImageFromDB(`item_${item.id}`);
-        if (storedImg) item.img = storedImg;
+      try {
+        await openDatabase();
+        if (appState && appState.menu) {
+          for (const item of appState.menu) {
+            const storedImg = await getImageFromDB(`item_${item.id}`);
+            if (storedImg) item.img = storedImg;
+          }
+        }
+      } catch (e) {
+        console.error(e);
       }
 
       renderStoreHeader();
@@ -733,7 +738,7 @@
     }
 
     function renderStoreHeader() {
-      const s = appState.shop;
+      const s = appState.shop || {};
       document.getElementById("lblStoreTitle").textContent = s.name || "Store Name";
       document.getElementById("lblStoreSubtitle").textContent = s.subtitle || "";
       document.getElementById("lblStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
@@ -779,11 +784,11 @@
     function renderTodayTopSellingBar() {
       const track = document.getElementById("topSellingAvatarsTrack");
       const todayISO = new Date().toISOString().slice(0, 10);
-      const todaysSales = appState.sales.filter(s => s.timestamp.slice(0, 10) === todayISO);
+      const todaysSales = (appState.sales || []).filter(s => (s.timestamp || "").slice(0, 10) === todayISO);
 
       const salesCountMap = {};
       todaysSales.forEach(order => {
-        order.items.forEach(it => {
+        (order.items || []).forEach(it => {
           salesCountMap[it.name] = (salesCountMap[it.name] || 0) + it.qty;
         });
       });
@@ -798,7 +803,7 @@
       track.innerHTML = sortedLeaderboard.map((entry, index) => {
         const itemName = entry[0];
         const soldQty = entry[1];
-        const menuItem = appState.menu.find(m => m.name.toLowerCase() === itemName.toLowerCase()) || { img: "" };
+        const menuItem = (appState.menu || []).find(m => m.name.toLowerCase() === itemName.toLowerCase()) || { img: "" };
 
         return `
           <div class="cat-avatar-pill" onclick="filterBySingleItem('${itemName}')">
@@ -822,8 +827,8 @@
 
     /* Bottom Tier: Menu Categories */
     function renderCategoryAvatars() {
-      const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
-      const icons = appState.shop.categoryIcons || {};
+      const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
+      const icons = (appState.shop && appState.shop.categoryIcons) ? appState.shop.categoryIcons : {};
 
       document.getElementById("categoryScrollList").innerHTML = categories.map(cat => {
         const iconSrc = icons[cat] || "";
@@ -853,7 +858,7 @@
       const q = document.getElementById("txtMenuSearch").value.toLowerCase().trim();
       const container = document.getElementById("menuCardsContainer");
 
-      const filtered = appState.menu.filter(item => {
+      const filtered = (appState.menu || []).filter(item => {
         const matchCat = activeFilterCategory === "ALL" || item.cat === activeFilterCategory;
         const matchQuery = (item.name || "").toLowerCase().includes(q) || (item.subtitle || "").toLowerCase().includes(q);
         return matchCat && matchQuery;
@@ -912,6 +917,7 @@
 
     function addToCartBasket(id) {
       const item = appState.menu.find(m => m.id === id);
+      if (!item) return;
       const portion = portionChoices[id] || (item.half > 0 ? "half" : "full");
       const price = portion === "half" ? item.half : item.full;
 
@@ -1075,7 +1081,7 @@
 
     function renderUpiQrCode(amount) {
       const qrImg = document.getElementById("dynamicUpiQrImg");
-      const upiId = appState.shop.upi;
+      const upiId = (appState.shop && appState.shop.upi) ? appState.shop.upi : "";
       if (amount > 0 && upiId) {
         const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(appState.shop.name || 'Store')}&am=${amount}&cu=INR`;
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUrl)}`;
@@ -1130,14 +1136,13 @@
 
       appState.sales.unshift(saleEntry);
 
-      // Add to Kitchen Orders List for live tracking
       const kotEntry = {
         id: Date.now(),
         tokenNo: billNumber,
         tableNum: tableTag,
         items: JSON.parse(JSON.stringify(cartBasket)),
         time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
-        status: "Pending" // "Pending" -> "Preparing" -> "Ready"
+        status: "Pending"
       };
       if (!appState.kitchenOrders) appState.kitchenOrders = [];
       appState.kitchenOrders.unshift(kotEntry);
@@ -1156,7 +1161,7 @@
     }
 
     function buildReceiptDocket(sale) {
-      const s = appState.shop;
+      const s = appState.shop || {};
       document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
       document.getElementById("prnStoreSubtitle").textContent = s.subtitle || "";
       document.getElementById("prnStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
@@ -1183,7 +1188,7 @@
       document.getElementById("prnBillNumber").textContent = `Bill #: ${sale.billNo}`;
 
       const itemsContainer = document.getElementById("prnItemListContainer");
-      itemsContainer.innerHTML = sale.items.map(item => `
+      itemsContainer.innerHTML = (sale.items || []).map(item => `
         <div class="th-row" style="margin-bottom:2px;">
           <span class="th-col-name">${item.name}</span>
           <span class="th-col-qty">${Number(item.qty).toFixed(3)}</span>
@@ -1191,8 +1196,8 @@
         </div>
       `).join('');
 
-      const totalQty = sale.items.reduce((sum, i) => sum + i.qty, 0);
-      document.getElementById("prnItemStats").textContent = `NItems:   ${sale.items.length} NQuantity:${Number(totalQty).toFixed(3)}`;
+      const totalQty = (sale.items || []).reduce((sum, i) => sum + i.qty, 0);
+      document.getElementById("prnItemStats").textContent = `NItems:   ${(sale.items || []).length} NQuantity:${Number(totalQty).toFixed(3)}`;
       document.getElementById("prnSubtotal").textContent = Number(sale.subtotal || sale.total).toFixed(2);
 
       const discRow = document.getElementById("prnRowDiscount");
@@ -1233,7 +1238,7 @@
       const d = new Date(sale.timestamp);
       document.getElementById("kotTime").textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 
-      document.getElementById("kotItemsContainer").innerHTML = sale.items.map(item => `
+      document.getElementById("kotItemsContainer").innerHTML = (sale.items || []).map(item => `
         <div class="th-row" style="font-size:12px; font-weight:700; margin:2px 0;">
           <span>${item.name} (${item.portion === 'half' ? 'HALF' : 'FULL'})</span>
           <span>x ${item.qty}</span>
@@ -1333,7 +1338,7 @@
             </div>
 
             <div style="font-size:12px; margin-bottom:8px; line-height:1.5;">
-              ${kot.items.map(it => `<div>• <b>${it.name}</b> (${it.portion === 'half' ? 'HALF' : 'FULL'}) <span style="color:#ef4444; font-weight:800;">× ${it.qty}</span></div>`).join('')}
+              ${(kot.items || []).map(it => `<div>• <b>${it.name}</b> (${it.portion === 'half' ? 'HALF' : 'FULL'}) <span style="color:#ef4444; font-weight:800;">× ${it.qty}</span></div>`).join('')}
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #cbd5e1; padding-top:6px;">
@@ -1375,8 +1380,8 @@
 
     function updateSalesMetricsBadge() {
       const todayISO = new Date().toISOString().slice(0, 10);
-      const todays = appState.sales.filter(s => s.timestamp.slice(0, 10) === todayISO);
-      const sum = todays.reduce((acc, curr) => acc + curr.total, 0);
+      const todays = (appState.sales || []).filter(s => (s.timestamp || "").slice(0, 10) === todayISO);
+      const sum = todays.reduce((acc, curr) => acc + (curr.total || 0), 0);
       document.getElementById("lblDailyMetrics").textContent = `Today: ${todays.length} Bills • Gross: ₹${sum}`;
     }
 
@@ -1388,9 +1393,9 @@
 
     function renderLedgerTransactions() {
       const filterDate = document.getElementById("dtLedgerFilter").value;
-      const records = appState.sales.filter(s => !filterDate || s.timestamp.slice(0, 10) === filterDate);
+      const records = (appState.sales || []).filter(s => !filterDate || (s.timestamp || "").slice(0, 10) === filterDate);
 
-      const gross = records.reduce((s, a) => s + a.total, 0);
+      const gross = records.reduce((s, a) => s + (a.total || 0), 0);
       const totalCash = records.reduce((s, a) => s + (a.cash || 0), 0);
       const totalOnline = records.reduce((s, a) => s + (a.online || 0), 0);
 
@@ -1405,7 +1410,7 @@
             <div style="font-weight:700;">Bill #${r.billNo} [${r.tableNum || r.orderType || 'DINE-IN'}] • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
             ${r.customerName || r.customerPhone ? `<div style="font-size:11px; color:#475569;">Cust: ${r.customerName \vert{}\vert{} ''} (${r.customerPhone || 'N/A'})</div>` : ''}
             <div style="color:#059669; font-weight:800;">₹${r.total} [${r.mode}] (Cash: ₹${r.cash || 0} | Online: ₹${r.online || 0})</div>
-            <div style="color:#64748b; font-size:11px;">${r.items.map(i => `${i.name}×${i.qty}`).join(', ')}</div>
+            <div style="color:#64748b; font-size:11px;">${(r.items || []).map(i => `${i.name}×${i.qty}`).join(', ')}</div>
           </div>
           <div style="display:flex; gap:6px;">
             <button type="button" onclick="reprintFromLedger(${r.id})" style="background:#0f172a; color:#fff; border:none; padding:6px 10px; border-radius:6px; font-size:11px; cursor:pointer;" title="Print / PDF"><i class="fa-solid fa-print"></i></button>
@@ -1417,7 +1422,7 @@
 
     function removeLedgerSale(id) {
       if (!confirm("Are you sure you want to remove this sale from history? Today's total will be updated.")) return;
-      appState.sales = appState.sales.filter(s => s.id !== id);
+      appState.sales = (appState.sales || []).filter(s => s.id !== id);
       saveAppState();
       renderLedgerTransactions();
       updateSalesMetricsBadge();
@@ -1425,7 +1430,7 @@
     }
 
     function reprintFromLedger(id) {
-      const sale = appState.sales.find(s => s.id === id);
+      const sale = (appState.sales || []).find(s => s.id === id);
       if (!sale) return;
       buildReceiptDocket(sale);
       document.getElementById("kotBillArea").classList.remove("printable-active");
@@ -1434,7 +1439,7 @@
     }
 
     function exportLedgerCSV() {
-      if (!appState.sales.length) {
+      if (!appState.sales || !appState.sales.length) {
         alert("No sales data available to export");
         return;
       }
@@ -1443,7 +1448,7 @@
         const d = new Date(s.timestamp);
         const dt = d.toLocaleDateString();
         const tm = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-        const itms = s.items.map(i => `${i.name} (${i.portion}) x${i.qty}`).join(" | ");
+        const itms = (s.items || []).map(i => `${i.name} (${i.portion}) x${i.qty}`).join(" | ");
         csv += `"${s.billNo}","${s.tableNum || s.orderType || 'DINE-IN'}","${s.customerName || ''}","${s.customerPhone || ''}","${dt}","${tm}","${s.total}","${s.cash}","${s.online}","${s.mode}","${itms}"\n`;
       });
 
@@ -1456,7 +1461,7 @@
 
     /* Settings & Dedicated Backup / Restore Functions */
     function openStoreSettings() {
-      const s = appState.shop;
+      const s = appState.shop || {};
       document.getElementById("cfgStoreTitle").value = s.name || "";
       document.getElementById("cfgStoreSubtitle").value = s.subtitle || "";
       document.getElementById("cfgStorePhone").value = s.phone || "";
@@ -1464,7 +1469,7 @@
       document.getElementById("cfgStoreFooterNote").value = s.footerNote || "";
       document.getElementById("cfgStoreBannerData").value = s.banner || "";
 
-      const categories = ["ALL", ...new Set(appState.menu.map(m => m.cat || "General"))];
+      const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
       document.getElementById("categoryAvatarSettingsList").innerHTML = categories.map(cat => `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
           <span><b>${cat}</b> Avatar:</span>
@@ -1500,7 +1505,7 @@
             appState = parsed;
             saveAppState();
 
-            for (const item of appState.menu) {
+            for (const item of (appState.menu || [])) {
               if (item.img) {
                 await storeImageToDB(`item_${item.id}`, item.img);
               }
@@ -1543,7 +1548,7 @@
     }
 
     function saveStoreConfiguration() {
-      const s = appState.shop;
+      const s = appState.shop || {};
       s.name = document.getElementById("cfgStoreTitle").value.trim() || "GOGIA SWEETS";
       s.subtitle = document.getElementById("cfgStoreSubtitle").value.trim();
       s.phone = document.getElementById("cfgStorePhone").value.trim();
@@ -1551,6 +1556,7 @@
       s.footerNote = document.getElementById("cfgStoreFooterNote").value.trim() || "*** THANK YOU, VISIT AGAIN ***";
       s.banner = document.getElementById("cfgStoreBannerData").value;
 
+      appState.shop = s;
       saveAppState();
       renderStoreHeader();
       renderCategoryAvatars();
@@ -1566,7 +1572,7 @@
     }
 
     function renderCatalogEditor() {
-      document.getElementById("catalogListItems").innerHTML = appState.menu.map(m => `
+      document.getElementById("catalogListItems").innerHTML = (appState.menu || []).map(m => `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; background:#f8fafc; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
           <div>
             <b>${m.name}</b> (₹${m.full}) [${m.cat || 'General'}]
@@ -1581,7 +1587,7 @@
     }
 
     function startEditCatalogItem(id) {
-      const item = appState.menu.find(m => m.id === id);
+      const item = (appState.menu || []).find(m => m.id === id);
       if (!item) return;
 
       document.getElementById("editItemTargetId").value = item.id;
@@ -1670,7 +1676,7 @@
 
     function deleteMenuProduct(id) {
       if (!confirm("Delete this menu item?")) return;
-      appState.menu = appState.menu.filter(m => m.id !== id);
+      appState.menu = (appState.menu || []).filter(m => m.id !== id);
       saveAppState();
       renderCategoryAvatars();
       renderMenuCatalog();
@@ -1702,7 +1708,10 @@
       document.getElementById(id).style.display = "none";
     }
 
-    initApplication();
+    // Initialize Safe App
+    window.addEventListener("DOMContentLoaded", () => {
+      initApplication();
+    });
   </script>
 </body>
 </html>
