@@ -31,7 +31,7 @@
     .brand-group { display: flex; align-items: center; gap: 8px; }
     .brand-icon-box { width: 32px; height: 32px; background: var(--primary); color: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
     .brand-title-txt { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
-    .header-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .header-actions { display: flex; gap: 6px; }
     .btn-header { background: var(--surface); color: #e5e7eb; border: 1px solid rgba(255,255,255,0.12); padding: 6px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px; }
     .btn-header.kot-counter { background: #b45309; border-color: #f59e0b; color: #fff; position: relative; }
     .kot-badge-count { position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; border: 1.5px solid #000; }
@@ -109,7 +109,7 @@
     .line-cart-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 6px 10px; border-radius: 6px; margin-bottom: 6px; font-size: 12px; }
     .counter-btn { width: 26px; height: 26px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 700; cursor: pointer; background: #fff; }
 
-    /* Order Type & Table Selection */
+    /* Table Selection */
     .order-type-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
     .order-type-btn { padding: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; text-align: center; }
     .order-type-btn.active { border-color: var(--primary); background: #fef3c7; color: #b45309; }
@@ -206,7 +206,6 @@
       <div class="brand-title-txt">SmartPOS Pro</div>
     </div>
     <div class="header-actions">
-      <!-- Live Kitchen KOT Display Trigger -->
       <button type="button" class="btn-header kot-counter" onclick="openKitchenOrdersModal()">
         <i class="fa-solid fa-kitchen-set"></i> Kitchen
         <span class="kot-badge-count" id="badgePendingKot">0</span>
@@ -232,7 +231,7 @@
   <div class="controls-container">
     <input type="text" id="txtMenuSearch" class="search-input-field" placeholder="Search menu items..." oninput="renderMenuCatalog()" />
 
-    <!-- Tier 1: Today's Most to Lowest Selling Foods -->
+    <!-- Tier 1: Top Selling Foods -->
     <div class="avatar-section-title">
       <i class="fa-solid fa-fire" style="color:#ef4444;"></i> Today's Sales Leaderboard (Top to Lowest)
     </div>
@@ -285,9 +284,8 @@
         <div class="order-type-btn" id="btnTypeParcel" onclick="setOrderType('PARCEL')"><i class="fa-solid fa-box-open"></i> PARCEL</div>
       </div>
 
-      <!-- Dine-in Table Selector Grid -->
       <div id="tableSelectorBox">
-        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;"><i class="fa-solid fa-chair"></i> সিলেক্ট টেবিল নম্বর (Table No):</div>
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;"><i class="fa-solid fa-chair"></i> টেবিল নম্বর সিলেক্ট করুন (Table No):</div>
         <div class="table-selection-grid">
           <div class="table-pill-btn active" onclick="pickTableNum('Table 1')">Table 1</div>
           <div class="table-pill-btn" onclick="pickTableNum('Table 2')">Table 2</div>
@@ -302,19 +300,17 @@
 
       <!-- Feature 4: Customer Details Entry -->
       <div class="cust-info-card">
-        <div style="font-size:11px; font-weight:800; color:#334155; margin-bottom:4px;"><i class="fa-solid fa-user"></i> কাস্টমার তথ্য (Customer Details):</div>
+        <div style="font-size:11px; font-weight:800; color:#334155; margin-bottom:4px;"><i class="fa-solid fa-user"></i> কাস্টমার তথ্য:</div>
         <div class="cust-info-grid">
           <input type="text" id="inpCustomerName" placeholder="কাস্টমারের নাম (Optional)" class="input-field" style="padding:6px; font-size:11px;" />
           <input type="tel" id="inpCustomerPhone" placeholder="মোবাইল নম্বর (Phone No)" class="input-field" style="padding:6px; font-size:11px;" />
         </div>
       </div>
 
-      <!-- Items List -->
       <div id="checkoutItemsList" style="max-height: 120px; overflow-y: auto; margin-bottom: 6px;"></div>
 
-      <!-- Feature 3: Dynamic Discount & GST Toggle Controls directly on checkout -->
+      <!-- Feature 3: Dynamic Discount & GST Toggle Controls -->
       <div class="computation-adjust-card">
-        <!-- Discount Row -->
         <div class="adjust-row">
           <span><i class="fa-solid fa-tag" style="color:#ef4444;"></i> ডিসকাউন্ট (Discount):</span>
           <div class="adjust-controls">
@@ -324,7 +320,6 @@
             <button type="button" id="btnDiscTypeFlat" class="adjust-mode-btn" onclick="setDiscountType('FLAT')">₹</button>
           </div>
         </div>
-        <!-- GST/Tax Row -->
         <div class="adjust-row" style="margin-bottom:0;">
           <span><i class="fa-solid fa-percent" style="color:#3b82f6;"></i> GST / Tax:</span>
           <div class="adjust-controls">
@@ -335,7 +330,6 @@
         </div>
       </div>
 
-      <!-- Computation Breakdown -->
       <div style="background:#f8fafc; border-radius:8px; padding:6px 10px; margin-bottom:6px; font-size:11px;">
         <div class="th-row" style="margin-bottom:2px;"><span>Subtotal:</span><b id="lblCheckoutSubtotal">₹0</b></div>
         <div class="th-row" id="rowCheckoutDiscount" style="display:none; color:#dc2626; margin-bottom:2px;">
@@ -419,7 +413,6 @@
         <button type="button" class="btn-modal-exit" onclick="closeModal('storeSettingsModal')">✕</button>
       </div>
 
-      <!-- ১-ক্লিকে ব্যাকআপ ফাইল সরাসরি ডাউনলোড বাটন -->
       <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:10px; padding:10px; margin-bottom:12px; text-align:center;">
         <div style="font-size:11px; font-weight:700; color:#065f46; margin-bottom:6px;">
           <i class="fa-solid fa-cloud-arrow-down"></i> Save complete menu, images & sales to a file:
@@ -455,7 +448,6 @@
         <input type="hidden" id="cfgStoreBannerData" />
       </div>
 
-      <!-- Category Avatars -->
       <div style="border-top:1px solid #cbd5e1; margin-top:12px; padding-top:8px;">
         <label style="font-size:11px; font-weight:800; color:#334155; display:block; margin-bottom:6px;">Upload Category Avatar Images</label>
         <div id="categoryAvatarSettingsList" style="max-height: 130px; overflow-y: auto;"></div>
@@ -463,9 +455,8 @@
 
       <button type="button" onclick="saveStoreConfiguration()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer; margin-top:10px;">Save Configurations</button>
 
-      <!-- অন্য ফোনে রিস্টোর অপশন -->
       <div style="border-top: 1px solid #cbd5e1; margin-top:12px; padding-top:8px;">
-        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:5px;">Restore Backup File (on this or another device):</div>
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:5px;">Restore Backup File:</div>
         <button type="button" onclick="document.getElementById('inpRestoreBackupFile').click()" style="width:100%; padding:8px; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:700; font-size:12px; cursor:pointer;">
           <i class="fa-solid fa-upload"></i> Select Backup File to Restore
         </button>
@@ -622,51 +613,59 @@
 
   <script>
     /* 1. IndexedDB Engine */
-    const DB_NAME = "SmartPOS_IndexedDB";
+    const DB_NAME = "SmartPOS_IndexedDB_v5";
     const DB_VERSION = 1;
     let db;
 
     function openDatabase() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, DB_VERSION);
-        req.onupgradeneeded = (e) => {
-          const database = e.target.result;
-          if (!database.objectStoreNames.contains("images")) {
-            database.createObjectStore("images", { keyPath: "id" });
-          }
-        };
-        req.onsuccess = (e) => {
-          db = e.target.result;
-          resolve(db);
-        };
-        req.onerror = (e) => reject(e);
+      return new Promise((resolve) => {
+        try {
+          const req = indexedDB.open(DB_NAME, DB_VERSION);
+          req.onupgradeneeded = (e) => {
+            const database = e.target.result;
+            if (!database.objectStoreNames.contains("images")) {
+              database.createObjectStore("images", { keyPath: "id" });
+            }
+          };
+          req.onsuccess = (e) => {
+            db = e.target.result;
+            resolve(db);
+          };
+          req.onerror = () => resolve(null);
+        } catch (e) {
+          resolve(null);
+        }
       });
     }
 
     function storeImageToDB(id, base64) {
       return new Promise((resolve) => {
         if (!db) return resolve();
-        const tx = db.transaction("images", "readwrite");
-        const store = tx.objectStore("images");
-        store.put({ id, base64 });
-        tx.oncomplete = () => resolve();
-        tx.onerror = () => resolve();
+        try {
+          const tx = db.transaction("images", "readwrite");
+          const store = tx.objectStore("images");
+          store.put({ id, base64 });
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => resolve();
+        } catch (e) { resolve(); }
       });
     }
 
     function getImageFromDB(id) {
       return new Promise((resolve) => {
         if (!db) return resolve(null);
-        const tx = db.transaction("images", "readonly");
-        const store = tx.objectStore("images");
-        const req = store.get(id);
-        req.onsuccess = () => resolve(req.result ? req.result.base64 : null);
-        req.onerror = () => resolve(null);
+        try {
+          const tx = db.transaction("images", "readonly");
+          const store = tx.objectStore("images");
+          const req = store.get(id);
+          req.onsuccess = () => resolve(req.result ? req.result.base64 : null);
+          req.onerror = () => resolve(null);
+        } catch (e) { resolve(null); }
       });
     }
 
-    /* 2. Application State */
-    const POS_STORAGE_KEY = "SmartPOS_DualTier_v4";
+    /* 2. Application State & Defensiveness */
+    const POS_STORAGE_KEY = "SmartPOS_v5_Ultimate";
 
     const INITIAL_DATA = {
       shop: {
@@ -689,13 +688,20 @@
       kitchenOrders: []
     };
 
-    let appState;
+    let appState = INITIAL_DATA;
     try {
-      appState = JSON.parse(localStorage.getItem(POS_STORAGE_KEY)) || INITIAL_DATA;
-      if (!appState.shop) appState.shop = INITIAL_DATA.shop;
-      if (!appState.menu) appState.menu = INITIAL_DATA.menu;
-      if (!appState.sales) appState.sales = [];
-      if (!appState.kitchenOrders) appState.kitchenOrders = [];
+      const stored = localStorage.getItem(POS_STORAGE_KEY) || localStorage.getItem("SmartPOS_DualTier_v4");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && typeof parsed === "object") {
+          appState = {
+            shop: parsed.shop || INITIAL_DATA.shop,
+            menu: (Array.isArray(parsed.menu) && parsed.menu.length) ? parsed.menu : INITIAL_DATA.menu,
+            sales: Array.isArray(parsed.sales) ? parsed.sales : [],
+            kitchenOrders: Array.isArray(parsed.kitchenOrders) ? parsed.kitchenOrders : []
+          };
+        }
+      }
     } catch (e) {
       appState = INITIAL_DATA;
     }
@@ -719,15 +725,13 @@
     async function initApplication() {
       try {
         await openDatabase();
-        if (appState && appState.menu) {
+        if (appState && Array.isArray(appState.menu)) {
           for (const item of appState.menu) {
             const storedImg = await getImageFromDB(`item_${item.id}`);
             if (storedImg) item.img = storedImg;
           }
         }
-      } catch (e) {
-        console.error(e);
-      }
+      } catch (e) {}
 
       renderStoreHeader();
       renderTodayTopSellingBar();
@@ -739,40 +743,49 @@
 
     function renderStoreHeader() {
       const s = appState.shop || {};
-      document.getElementById("lblStoreTitle").textContent = s.name || "Store Name";
-      document.getElementById("lblStoreSubtitle").textContent = s.subtitle || "";
-      document.getElementById("lblStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
+      const t = document.getElementById("lblStoreTitle");
+      if (t) t.textContent = s.name || "Store Name";
+      const sub = document.getElementById("lblStoreSubtitle");
+      if (sub) sub.textContent = s.subtitle || "";
+      const ph = document.getElementById("lblStorePhone");
+      if (ph) ph.textContent = s.phone ? `Ph: ${s.phone}` : "";
       
       const bannerEl = document.getElementById("storeBannerImg");
-      if (s.banner && s.banner.length > 50) {
-        bannerEl.src = s.banner;
-        bannerEl.style.display = "inline-block";
-      } else {
-        bannerEl.style.display = "none";
+      if (bannerEl) {
+        if (s.banner && s.banner.length > 50) {
+          bannerEl.src = s.banner;
+          bannerEl.style.display = "inline-block";
+        } else {
+          bannerEl.style.display = "none";
+        }
       }
-      document.getElementById("lblUpiIdentifier").textContent = `UPI: ${s.upi || 'Not configured'}`;
+      const upiEl = document.getElementById("lblUpiIdentifier");
+      if (upiEl) upiEl.textContent = `UPI: ${s.upi || 'Not configured'}`;
     }
 
-    /* Table & Order Type Functions */
     function setOrderType(type) {
       selectedOrderType = type;
-      document.getElementById("btnTypeDineIn").classList.toggle("active", type === "DINE-IN");
-      document.getElementById("btnTypeParcel").classList.toggle("active", type === "PARCEL");
-      document.getElementById("tableSelectorBox").style.display = type === "DINE-IN" ? "block" : "none";
+      const bDine = document.getElementById("btnTypeDineIn");
+      const bParc = document.getElementById("btnTypeParcel");
+      const box = document.getElementById("tableSelectorBox");
+      if (bDine) bDine.classList.toggle("active", type === "DINE-IN");
+      if (bParc) bParc.classList.toggle("active", type === "PARCEL");
+      if (box) box.style.display = type === "DINE-IN" ? "block" : "none";
     }
 
     function pickTableNum(tableStr) {
       selectedTableNum = tableStr;
       document.querySelectorAll(".table-pill-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.textContent === tableStr);
+        btn.classList.toggle("active", btn.textContent.trim() === tableStr.trim());
       });
     }
 
-    /* Discount / Tax Toggles */
     function setDiscountType(type) {
       activeDiscountType = type;
-      document.getElementById("btnDiscTypePercent").classList.toggle("active", type === "PERCENT");
-      document.getElementById("btnDiscTypeFlat").classList.toggle("active", type === "FLAT");
+      const bP = document.getElementById("btnDiscTypePercent");
+      const bF = document.getElementById("btnDiscTypeFlat");
+      if (bP) bP.classList.toggle("active", type === "PERCENT");
+      if (bF) bF.classList.toggle("active", type === "FLAT");
       onDiscountOrTaxToggled();
     }
 
@@ -780,9 +793,9 @@
       updateCheckoutBreakdown();
     }
 
-    /* Top Tier: Today's Most to Lowest Selling */
     function renderTodayTopSellingBar() {
       const track = document.getElementById("topSellingAvatarsTrack");
+      if (!track) return;
       const todayISO = new Date().toISOString().slice(0, 10);
       const todaysSales = (appState.sales || []).filter(s => (s.timestamp || "").slice(0, 10) === todayISO);
 
@@ -821,16 +834,18 @@
     }
 
     function filterBySingleItem(name) {
-      document.getElementById("txtMenuSearch").value = name;
+      const inp = document.getElementById("txtMenuSearch");
+      if (inp) inp.value = name;
       renderMenuCatalog();
     }
 
-    /* Bottom Tier: Menu Categories */
     function renderCategoryAvatars() {
+      const catTrack = document.getElementById("categoryScrollList");
+      if (!catTrack) return;
       const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
       const icons = (appState.shop && appState.shop.categoryIcons) ? appState.shop.categoryIcons : {};
 
-      document.getElementById("categoryScrollList").innerHTML = categories.map(cat => {
+      catTrack.innerHTML = categories.map(cat => {
         const iconSrc = icons[cat] || "";
         const fallbackIcon = cat === "ALL" 
           ? '<i class="fa-solid fa-border-all" style="font-size:18px; color:#f59e0b;"></i>' 
@@ -849,14 +864,17 @@
 
     function selectCategory(cat) {
       activeFilterCategory = cat;
-      document.getElementById("txtMenuSearch").value = "";
+      const inp = document.getElementById("txtMenuSearch");
+      if (inp) inp.value = "";
       renderCategoryAvatars();
       renderMenuCatalog();
     }
 
     function renderMenuCatalog() {
-      const q = document.getElementById("txtMenuSearch").value.toLowerCase().trim();
+      const inp = document.getElementById("txtMenuSearch");
+      const q = inp ? inp.value.toLowerCase().trim() : "";
       const container = document.getElementById("menuCardsContainer");
+      if (!container) return;
 
       const filtered = (appState.menu || []).filter(item => {
         const matchCat = activeFilterCategory === "ALL" || item.cat === activeFilterCategory;
@@ -916,7 +934,7 @@
     }
 
     function addToCartBasket(id) {
-      const item = appState.menu.find(m => m.id === id);
+      const item = (appState.menu || []).find(m => m.id === id);
       if (!item) return;
       const portion = portionChoices[id] || (item.half > 0 ? "half" : "full");
       const price = portion === "half" ? item.half : item.full;
@@ -935,13 +953,18 @@
       const subtotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
       const bar = document.getElementById("floatingCartContainer");
 
-      if (totalUnits > 0) {
-        bar.style.display = "flex";
-        document.getElementById("lblCartBadgeQty").textContent = totalUnits;
-        document.getElementById("lblCartCountText").textContent = `${totalUnits} Items Added`;
-        document.getElementById("lblCartSumTotal").textContent = `Total: ₹${subtotal}`;
-      } else {
-        bar.style.display = "none";
+      if (bar) {
+        if (totalUnits > 0) {
+          bar.style.display = "flex";
+          const bQty = document.getElementById("lblCartBadgeQty");
+          if (bQty) bQty.textContent = totalUnits;
+          const cTxt = document.getElementById("lblCartCountText");
+          if (cTxt) cTxt.textContent = `${totalUnits} Items Added`;
+          const sTot = document.getElementById("lblCartSumTotal");
+          if (sTot) sTot.textContent = `Total: ₹${subtotal}`;
+        } else {
+          bar.style.display = "none";
+        }
       }
     }
 
@@ -954,8 +977,10 @@
     function computeBillCalculations() {
       const subtotal = cartBasket.reduce((sum, i) => sum + (i.price * i.qty), 0);
       
-      const discChecked = document.getElementById("chkActiveDiscount") ? document.getElementById("chkActiveDiscount").checked : false;
-      const discInput = document.getElementById("inpActiveDiscountVal") ? Number(document.getElementById("inpActiveDiscountVal").value) || 0 : 0;
+      const discEl = document.getElementById("chkActiveDiscount");
+      const discChecked = discEl ? discEl.checked : false;
+      const discInpEl = document.getElementById("inpActiveDiscountVal");
+      const discInput = discInpEl ? Number(discInpEl.value) || 0 : 0;
       
       let discount = 0;
       if (discChecked && discInput > 0) {
@@ -968,8 +993,10 @@
 
       const taxableBase = Math.max(0, subtotal - discount);
 
-      const taxChecked = document.getElementById("chkActiveTax") ? document.getElementById("chkActiveTax").checked : false;
-      const taxInput = document.getElementById("inpActiveTaxVal") ? Number(document.getElementById("inpActiveTaxVal").value) || 0 : 0;
+      const taxEl = document.getElementById("chkActiveTax");
+      const taxChecked = taxEl ? taxEl.checked : false;
+      const taxInpEl = document.getElementById("inpActiveTaxVal");
+      const taxInput = taxInpEl ? Number(taxInpEl.value) || 0 : 0;
 
       let tax = 0;
       if (taxChecked && taxInput > 0) {
@@ -977,62 +1004,78 @@
       }
 
       const grandTotal = taxableBase + tax;
-      return { subtotal, discount, tax, grandTotal, discChecked, taxChecked, discInput, taxInput };
+      return { subtotal, discount, tax, grandTotal, discChecked, taxChecked };
     }
 
     function updateCheckoutBreakdown() {
       const { subtotal, discount, tax, grandTotal, discChecked, taxChecked } = computeBillCalculations();
 
-      document.getElementById("lblCheckoutSubtotal").textContent = `₹${subtotal}`;
+      const subEl = document.getElementById("lblCheckoutSubtotal");
+      if (subEl) subEl.textContent = `₹${subtotal}`;
 
-      if (discChecked && discount > 0) {
-        document.getElementById("rowCheckoutDiscount").style.display = "flex";
-        document.getElementById("lblCheckoutDiscountVal").textContent = `-₹${discount}`;
-      } else {
-        document.getElementById("rowCheckoutDiscount").style.display = "none";
+      const rowD = document.getElementById("rowCheckoutDiscount");
+      const valD = document.getElementById("lblCheckoutDiscountVal");
+      if (rowD && valD) {
+        if (discChecked && discount > 0) {
+          rowD.style.display = "flex";
+          valD.textContent = `-₹${discount}`;
+        } else {
+          rowD.style.display = "none";
+        }
       }
 
-      if (taxChecked && tax > 0) {
-        document.getElementById("rowCheckoutTax").style.display = "flex";
-        document.getElementById("lblCheckoutTaxVal").textContent = `+₹${tax}`;
-      } else {
-        document.getElementById("rowCheckoutTax").style.display = "none";
+      const rowT = document.getElementById("rowCheckoutTax");
+      const valT = document.getElementById("lblCheckoutTaxVal");
+      if (rowT && valT) {
+        if (taxChecked && tax > 0) {
+          rowT.style.display = "flex";
+          valT.textContent = `+₹${tax}`;
+        } else {
+          rowT.style.display = "none";
+        }
       }
 
-      document.getElementById("lblCheckoutTotal").textContent = `₹${grandTotal}`;
+      const totEl = document.getElementById("lblCheckoutTotal");
+      if (totEl) totEl.textContent = `₹${grandTotal}`;
 
       const half = Math.round(grandTotal / 2);
-      document.getElementById("inpSplitCash").value = half;
-      document.getElementById("inpSplitOnline").value = grandTotal - half;
+      const inCash = document.getElementById("inpSplitCash");
+      const inOnl = document.getElementById("inpSplitOnline");
+      if (inCash) inCash.value = half;
+      if (inOnl) inOnl.value = grandTotal - half;
+
       onSplitAmountChanged();
       calculateChangeReturn();
     }
 
     function openCheckoutModal() {
       const listContainer = document.getElementById("checkoutItemsList");
-
-      listContainer.innerHTML = cartBasket.map((item, idx) => `
-        <div class="line-cart-item">
-          <div>
-            <b>${item.name}</b> (${item.portion === 'half' ? 'H' : 'F'})<br>
-            <span style="color:#64748b; font-size:11px;">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
+      if (listContainer) {
+        listContainer.innerHTML = cartBasket.map((item, idx) => `
+          <div class="line-cart-item">
+            <div>
+              <b>${item.name}</b> (${item.portion === 'half' ? 'H' : 'F'})<br>
+              <span style="color:#64748b; font-size:11px;">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, -1)">-</button>
+              <b>${item.qty}</b>
+              <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, 1)">+</button>
+            </div>
           </div>
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, -1)">-</button>
-            <b>${item.qty}</b>
-            <button type="button" class="counter-btn" onclick="adjustCartQty(${idx}, 1)">+</button>
-          </div>
-        </div>
-      `).join('');
+        `).join('');
+      }
 
       updateCheckoutBreakdown();
-      document.getElementById("inpCashTendered").value = "";
+      const inGiven = document.getElementById("inpCashTendered");
+      if (inGiven) inGiven.value = "";
       calculateChangeReturn();
 
       openModal('checkoutModal');
     }
 
     function adjustCartQty(index, delta) {
+      if (!cartBasket[index]) return;
       cartBasket[index].qty += delta;
       if (cartBasket[index].qty <= 0) cartBasket.splice(index, 1);
       if (!cartBasket.length) closeModal('checkoutModal');
@@ -1042,9 +1085,11 @@
 
     function calculateChangeReturn() {
       const { grandTotal } = computeBillCalculations();
-      const tendered = Number(document.getElementById("inpCashTendered").value) || 0;
+      const inp = document.getElementById("inpCashTendered");
+      const tendered = inp ? (Number(inp.value) || 0) : 0;
       const change = tendered - grandTotal;
       const displayEl = document.getElementById("lblChangeReturnDisplay");
+      if (!displayEl) return;
 
       if (tendered === 0) {
         displayEl.textContent = "Change: ₹0.00";
@@ -1060,20 +1105,24 @@
 
     function onSplitAmountChanged() {
       const { grandTotal } = computeBillCalculations();
-      const cashPart = Number(document.getElementById("inpSplitCash").value) || 0;
-      const onlinePart = Number(document.getElementById("inpSplitOnline").value) || 0;
+      const inC = document.getElementById("inpSplitCash");
+      const inO = document.getElementById("inpSplitOnline");
+      const cashPart = inC ? (Number(inC.value) || 0) : 0;
+      const onlinePart = inO ? (Number(inO.value) || 0) : 0;
       const balance = grandTotal - (cashPart + onlinePart);
 
       const statusEl = document.getElementById("lblSplitStatus");
-      if (balance === 0) {
-        statusEl.textContent = "Balance: Match (₹0)";
-        statusEl.style.color = "#059669";
-      } else if (balance > 0) {
-        statusEl.textContent = `Remaining: ₹${balance}`;
-        statusEl.style.color = "#dc2626";
-      } else {
-        statusEl.textContent = `Excess: ₹${Math.abs(balance)}`;
-        statusEl.style.color = "#d97706";
+      if (statusEl) {
+        if (balance === 0) {
+          statusEl.textContent = "Balance: Match (₹0)";
+          statusEl.style.color = "#059669";
+        } else if (balance > 0) {
+          statusEl.textContent = `Remaining: ₹${balance}`;
+          statusEl.style.color = "#dc2626";
+        } else {
+          statusEl.textContent = `Excess: ₹${Math.abs(balance)}`;
+          statusEl.style.color = "#d97706";
+        }
       }
 
       renderUpiQrCode(onlinePart > 0 ? onlinePart : grandTotal);
@@ -1081,6 +1130,7 @@
 
     function renderUpiQrCode(amount) {
       const qrImg = document.getElementById("dynamicUpiQrImg");
+      if (!qrImg) return;
       const upiId = (appState.shop && appState.shop.upi) ? appState.shop.upi : "";
       if (amount > 0 && upiId) {
         const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(appState.shop.name || 'Store')}&am=${amount}&cu=INR`;
@@ -1096,6 +1146,9 @@
       const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
       let cashAmt = 0, onlineAmt = 0;
 
+      const inC = document.getElementById("inpSplitCash");
+      const inO = document.getElementById("inpSplitOnline");
+
       if (paymentType === 'CASH') {
         cashAmt = grandTotal;
         onlineAmt = 0;
@@ -1103,19 +1156,21 @@
         cashAmt = 0;
         onlineAmt = grandTotal;
       } else if (paymentType === 'SPLIT') {
-        cashAmt = Number(document.getElementById("inpSplitCash").value) || 0;
-        onlineAmt = Number(document.getElementById("inpSplitOnline").value) || 0;
+        cashAmt = inC ? (Number(inC.value) || 0) : 0;
+        onlineAmt = inO ? (Number(inO.value) || 0) : 0;
         if (cashAmt + onlineAmt !== grandTotal) {
           alert(`Split amounts (₹${cashAmt + onlineAmt}) must equal total bill (₹${grandTotal})`);
           return;
         }
       }
 
-      const custName = document.getElementById("inpCustomerName").value.trim();
-      const custPhone = document.getElementById("inpCustomerPhone").value.trim();
+      const cNameEl = document.getElementById("inpCustomerName");
+      const cPhEl = document.getElementById("inpCustomerPhone");
+      const custName = cNameEl ? cNameEl.value.trim() : "";
+      const custPhone = cPhEl ? cPhEl.value.trim() : "";
       const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
 
-      const billNumber = (appState.sales.length + 1);
+      const billNumber = ((appState.sales || []).length + 1);
       const saleEntry = {
         id: Date.now(),
         billNo: billNumber,
@@ -1134,6 +1189,7 @@
         timestamp: new Date().toISOString()
       };
 
+      if (!Array.isArray(appState.sales)) appState.sales = [];
       appState.sales.unshift(saleEntry);
 
       const kotEntry = {
@@ -1144,7 +1200,7 @@
         time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
         status: "Pending"
       };
-      if (!appState.kitchenOrders) appState.kitchenOrders = [];
+      if (!Array.isArray(appState.kitchenOrders)) appState.kitchenOrders = [];
       appState.kitchenOrders.unshift(kotEntry);
 
       lastGeneratedSale = saleEntry;
@@ -1162,88 +1218,120 @@
 
     function buildReceiptDocket(sale) {
       const s = appState.shop || {};
-      document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
-      document.getElementById("prnStoreSubtitle").textContent = s.subtitle || "";
-      document.getElementById("prnStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
+      const elStore = document.getElementById("prnStoreName");
+      if (elStore) elStore.textContent = s.name || "STORE NAME";
+      const elSub = document.getElementById("prnStoreSubtitle");
+      if (elSub) elSub.textContent = s.subtitle || "";
+      const elPh = document.getElementById("prnStorePhone");
+      if (elPh) elPh.textContent = s.phone ? `Ph: ${s.phone}` : "";
       
       const tableInfo = sale.tableNum ? `[ ${sale.orderType || 'DINE-IN'} - ${sale.tableNum} ]` : `[ ${sale.orderType || 'DINE-IN'} ]`;
-      document.getElementById("prnOrderTypeBadge").textContent = tableInfo;
+      const elBadge = document.getElementById("prnOrderTypeBadge");
+      if (elBadge) elBadge.textContent = tableInfo;
 
       const custBox = document.getElementById("prnCustomerBox");
-      if (sale.customerName || sale.customerPhone) {
-        custBox.style.display = "block";
-        custBox.textContent = `Cust: ${sale.customerName || ''} ${sale.customerPhone ? '(' + sale.customerPhone + ')' : ''}`;
-      } else {
-        custBox.style.display = "none";
+      if (custBox) {
+        if (sale.customerName || sale.customerPhone) {
+          custBox.style.display = "block";
+          custBox.textContent = `Cust: ${sale.customerName || ''} ${sale.customerPhone ? '(' + sale.customerPhone + ')' : ''}`;
+        } else {
+          custBox.style.display = "none";
+        }
       }
 
       let headerTitle = "CASH BILL";
       if (sale.mode === "ONLINE") headerTitle = "ONLINE BILL";
       else if (sale.mode === "SPLIT") headerTitle = "SPLIT BILL";
-      document.getElementById("prnBillTitle").textContent = headerTitle;
+      const elTitle = document.getElementById("prnBillTitle");
+      if (elTitle) elTitle.textContent = headerTitle;
 
       const d = new Date(sale.timestamp);
       const formattedDate = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-      document.getElementById("prnDateTime").textContent = formattedDate;
-      document.getElementById("prnBillNumber").textContent = `Bill #: ${sale.billNo}`;
+      const elDate = document.getElementById("prnDateTime");
+      if (elDate) elDate.textContent = formattedDate;
+      const elNum = document.getElementById("prnBillNumber");
+      if (elNum) elNum.textContent = `Bill #: ${sale.billNo}`;
 
       const itemsContainer = document.getElementById("prnItemListContainer");
-      itemsContainer.innerHTML = (sale.items || []).map(item => `
-        <div class="th-row" style="margin-bottom:2px;">
-          <span class="th-col-name">${item.name}</span>
-          <span class="th-col-qty">${Number(item.qty).toFixed(3)}</span>
-          <span class="th-col-tot">${Number(item.price * item.qty).toFixed(2)}</span>
-        </div>
-      `).join('');
+      if (itemsContainer) {
+        itemsContainer.innerHTML = (sale.items || []).map(item => `
+          <div class="th-row" style="margin-bottom:2px;">
+            <span class="th-col-name">${item.name}</span>
+            <span class="th-col-qty">${Number(item.qty).toFixed(3)}</span>
+            <span class="th-col-tot">${Number(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
 
       const totalQty = (sale.items || []).reduce((sum, i) => sum + i.qty, 0);
-      document.getElementById("prnItemStats").textContent = `NItems:   ${(sale.items || []).length} NQuantity:${Number(totalQty).toFixed(3)}`;
-      document.getElementById("prnSubtotal").textContent = Number(sale.subtotal || sale.total).toFixed(2);
+      const elStats = document.getElementById("prnItemStats");
+      if (elStats) elStats.textContent = `NItems:   ${(sale.items || []).length} NQuantity:${Number(totalQty).toFixed(3)}`;
+      const elSubTot = document.getElementById("prnSubtotal");
+      if (elSubTot) elSubTot.textContent = Number(sale.subtotal || sale.total).toFixed(2);
 
       const discRow = document.getElementById("prnRowDiscount");
-      if (sale.discount && sale.discount > 0) {
-        discRow.style.display = "flex";
-        document.getElementById("prnDiscount").textContent = Number(sale.discount).toFixed(2);
-      } else {
-        discRow.style.display = "none";
+      const discVal = document.getElementById("prnDiscount");
+      if (discRow && discVal) {
+        if (sale.discount && sale.discount > 0) {
+          discRow.style.display = "flex";
+          discVal.textContent = Number(sale.discount).toFixed(2);
+        } else {
+          discRow.style.display = "none";
+        }
       }
 
       const taxRow = document.getElementById("prnRowTax");
-      if (sale.tax && sale.tax > 0) {
-        taxRow.style.display = "flex";
-        document.getElementById("prnTax").textContent = Number(sale.tax).toFixed(2);
-      } else {
-        taxRow.style.display = "none";
+      const taxVal = document.getElementById("prnTax");
+      if (taxRow && taxVal) {
+        if (sale.tax && sale.tax > 0) {
+          taxRow.style.display = "flex";
+          taxVal.textContent = Number(sale.tax).toFixed(2);
+        } else {
+          taxRow.style.display = "none";
+        }
       }
 
-      document.getElementById("prnGrandTotal").textContent = `₹${Number(sale.total).toFixed(2)}`;
-      document.getElementById("prnPaymentModeVal").textContent = sale.mode;
+      const elGrand = document.getElementById("prnGrandTotal");
+      if (elGrand) elGrand.textContent = `₹${Number(sale.total).toFixed(2)}`;
+      const elMode = document.getElementById("prnPaymentModeVal");
+      if (elMode) elMode.textContent = sale.mode;
 
       const splitBox = document.getElementById("prnSplitBreakupRow");
-      if (sale.mode === "SPLIT") {
-        splitBox.style.display = "block";
-        document.getElementById("prnCashPart").textContent = `₹${Number(sale.cash).toFixed(2)}`;
-        document.getElementById("prnOnlinePart").textContent = `₹${Number(sale.online).toFixed(2)}`;
-      } else {
-        splitBox.style.display = "none";
+      if (splitBox) {
+        if (sale.mode === "SPLIT") {
+          splitBox.style.display = "block";
+          const elC = document.getElementById("prnCashPart");
+          const elO = document.getElementById("prnOnlinePart");
+          if (elC) elC.textContent = `₹${Number(sale.cash).toFixed(2)}`;
+          if (elO) elO.textContent = `₹${Number(sale.online).toFixed(2)}`;
+        } else {
+          splitBox.style.display = "none";
+        }
       }
 
-      document.getElementById("prnThankYouNote").textContent = s.footerNote || "*** THANK YOU, VISIT AGAIN ***";
+      const elFooter = document.getElementById("prnThankYouNote");
+      if (elFooter) elFooter.textContent = s.footerNote || "*** THANK YOU, VISIT AGAIN ***";
     }
 
     function buildKotDocket(sale) {
       const tableInfo = sale.tableNum ? `[ ${sale.orderType || 'DINE-IN'} - ${sale.tableNum} ]` : `[ ${sale.orderType || 'DINE-IN'} ]`;
-      document.getElementById("kotOrderTypeBadge").textContent = tableInfo;
-      document.getElementById("kotTokenNum").textContent = `TOKEN #: ${sale.billNo}`;
+      const elBadge = document.getElementById("kotOrderTypeBadge");
+      if (elBadge) elBadge.textContent = tableInfo;
+      const elTok = document.getElementById("kotTokenNum");
+      if (elTok) elTok.textContent = `TOKEN #: ${sale.billNo}`;
       const d = new Date(sale.timestamp);
-      document.getElementById("kotTime").textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      const elTime = document.getElementById("kotTime");
+      if (elTime) elTime.textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 
-      document.getElementById("kotItemsContainer").innerHTML = (sale.items || []).map(item => `
-        <div class="th-row" style="font-size:12px; font-weight:700; margin:2px 0;">
-          <span>${item.name} (${item.portion === 'half' ? 'HALF' : 'FULL'})</span>
-          <span>x ${item.qty}</span>
-        </div>
-      `).join('');
+      const itemsContainer = document.getElementById("kotItemsContainer");
+      if (itemsContainer) {
+        itemsContainer.innerHTML = (sale.items || []).map(item => `
+          <div class="th-row" style="font-size:12px; font-weight:700; margin:2px 0;">
+            <span>${item.name} (${item.portion === 'half' ? 'HALF' : 'FULL'})</span>
+            <span>x ${item.qty}</span>
+          </div>
+        `).join('');
+      }
     }
 
     function printReceiptDocket() {
@@ -1254,13 +1342,15 @@
       if (!lastGeneratedSale && cartBasket.length) {
         const { subtotal, discount, tax, grandTotal } = computeBillCalculations();
         const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
+        const cNameEl = document.getElementById("inpCustomerName");
+        const cPhEl = document.getElementById("inpCustomerPhone");
         const tempSale = {
           id: Date.now(),
-          billNo: appState.sales.length + 1,
+          billNo: (appState.sales || []).length + 1,
           orderType: selectedOrderType,
           tableNum: tableTag,
-          customerName: document.getElementById("inpCustomerName").value.trim(),
-          customerPhone: document.getElementById("inpCustomerPhone").value.trim(),
+          customerName: cNameEl ? cNameEl.value.trim() : "",
+          customerPhone: cPhEl ? cPhEl.value.trim() : "",
           items: cartBasket,
           subtotal,
           discount,
@@ -1274,8 +1364,10 @@
         buildReceiptDocket(tempSale);
       }
       
-      document.getElementById("kotBillArea").classList.remove("printable-active");
-      document.getElementById("thermalBillArea").classList.add("printable-active");
+      const kotEl = document.getElementById("kotBillArea");
+      const thEl = document.getElementById("thermalBillArea");
+      if (kotEl) kotEl.classList.remove("printable-active");
+      if (thEl) thEl.classList.add("printable-active");
       window.print();
     }
 
@@ -1287,7 +1379,7 @@
       if (!lastGeneratedSale && cartBasket.length) {
         const tableTag = selectedOrderType === "DINE-IN" ? selectedTableNum : "Takeaway Parcel";
         const tempSale = {
-          billNo: appState.sales.length + 1,
+          billNo: (appState.sales || []).length + 1,
           orderType: selectedOrderType,
           tableNum: tableTag,
           items: cartBasket,
@@ -1296,12 +1388,13 @@
         buildKotDocket(tempSale);
       }
 
-      document.getElementById("thermalBillArea").classList.remove("printable-active");
-      document.getElementById("kotBillArea").classList.add("printable-active");
+      const kotEl = document.getElementById("kotBillArea");
+      const thEl = document.getElementById("thermalBillArea");
+      if (thEl) thEl.classList.remove("printable-active");
+      if (kotEl) kotEl.classList.add("printable-active");
       window.print();
     }
 
-    /* Live Kitchen KOT Modal Functions */
     function openKitchenOrdersModal() {
       renderKitchenOrderCards();
       openModal('kitchenOrdersModal');
@@ -1309,12 +1402,14 @@
 
     function updateKitchenBadge() {
       const active = (appState.kitchenOrders || []).filter(k => k.status !== "Ready").length;
-      document.getElementById("badgePendingKot").textContent = active;
+      const elBadge = document.getElementById("badgePendingKot");
+      if (elBadge) elBadge.textContent = active;
     }
 
     function renderKitchenOrderCards() {
       const list = appState.kitchenOrders || [];
       const container = document.getElementById("kitchenKotCardsContainer");
+      if (!container) return;
 
       if (!list.length) {
         container.innerHTML = `<div style="text-align:center; padding:30px; color:#9ca3af;">রান্নাঘরে কোনো রানিং অর্ডার নেই (All Clear)</div>`;
@@ -1382,29 +1477,38 @@
       const todayISO = new Date().toISOString().slice(0, 10);
       const todays = (appState.sales || []).filter(s => (s.timestamp || "").slice(0, 10) === todayISO);
       const sum = todays.reduce((acc, curr) => acc + (curr.total || 0), 0);
-      document.getElementById("lblDailyMetrics").textContent = `Today: ${todays.length} Bills • Gross: ₹${sum}`;
+      const el = document.getElementById("lblDailyMetrics");
+      if (el) el.textContent = `Today: ${todays.length} Bills • Gross: ₹${sum}`;
     }
 
     function openLedgerReport() {
-      document.getElementById("dtLedgerFilter").value = new Date().toISOString().slice(0, 10);
+      const dt = document.getElementById("dtLedgerFilter");
+      if (dt) dt.value = new Date().toISOString().slice(0, 10);
       renderLedgerTransactions();
       openModal('salesLedgerModal');
     }
 
     function renderLedgerTransactions() {
-      const filterDate = document.getElementById("dtLedgerFilter").value;
+      const inp = document.getElementById("dtLedgerFilter");
+      const filterDate = inp ? inp.value : "";
       const records = (appState.sales || []).filter(s => !filterDate || (s.timestamp || "").slice(0, 10) === filterDate);
 
       const gross = records.reduce((s, a) => s + (a.total || 0), 0);
       const totalCash = records.reduce((s, a) => s + (a.cash || 0), 0);
       const totalOnline = records.reduce((s, a) => s + (a.online || 0), 0);
 
-      document.getElementById("cardLedgerMetrics").innerHTML = `
-        Total Bills: ${records.length} | Revenue: ₹${gross}<br>
-        <span style="color:#059669;">💵 Cash: ₹${totalCash}</span> | <span style="color:#2563eb;">📱 Online: ₹${totalOnline}</span>
-      `;
+      const m = document.getElementById("cardLedgerMetrics");
+      if (m) {
+        m.innerHTML = `
+          Total Bills: ${records.length} | Revenue: ₹${gross}<br>
+          <span style="color:#059669;">💵 Cash: ₹${totalCash}</span> | <span style="color:#2563eb;">📱 Online: ₹${totalOnline}</span>
+        `;
+      }
 
-      document.getElementById("ledgerEntriesContainer").innerHTML = records.map(r => `
+      const c = document.getElementById("ledgerEntriesContainer");
+      if (!c) return;
+
+      c.innerHTML = records.map(r => `
         <div style="border-bottom:1px solid #e2e8f0; padding:8px 0; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
             <div style="font-weight:700;">Bill #${r.billNo} [${r.tableNum || r.orderType || 'DINE-IN'}] • ${new Date(r.timestamp).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
@@ -1433,8 +1537,10 @@
       const sale = (appState.sales || []).find(s => s.id === id);
       if (!sale) return;
       buildReceiptDocket(sale);
-      document.getElementById("kotBillArea").classList.remove("printable-active");
-      document.getElementById("thermalBillArea").classList.add("printable-active");
+      const kotEl = document.getElementById("kotBillArea");
+      const thEl = document.getElementById("thermalBillArea");
+      if (kotEl) kotEl.classList.remove("printable-active");
+      if (thEl) thEl.classList.add("printable-active");
       window.print();
     }
 
@@ -1459,23 +1565,31 @@
       a.click();
     }
 
-    /* Settings & Dedicated Backup / Restore Functions */
     function openStoreSettings() {
       const s = appState.shop || {};
-      document.getElementById("cfgStoreTitle").value = s.name || "";
-      document.getElementById("cfgStoreSubtitle").value = s.subtitle || "";
-      document.getElementById("cfgStorePhone").value = s.phone || "";
-      document.getElementById("cfgStoreUpi").value = s.upi || "";
-      document.getElementById("cfgStoreFooterNote").value = s.footerNote || "";
-      document.getElementById("cfgStoreBannerData").value = s.banner || "";
+      const elT = document.getElementById("cfgStoreTitle");
+      if (elT) elT.value = s.name || "";
+      const elSub = document.getElementById("cfgStoreSubtitle");
+      if (elSub) elSub.value = s.subtitle || "";
+      const elPh = document.getElementById("cfgStorePhone");
+      if (elPh) elPh.value = s.phone || "";
+      const elUpi = document.getElementById("cfgStoreUpi");
+      if (elUpi) elUpi.value = s.upi || "";
+      const elFoot = document.getElementById("cfgStoreFooterNote");
+      if (elFoot) elFoot.value = s.footerNote || "";
+      const elBan = document.getElementById("cfgStoreBannerData");
+      if (elBan) elBan.value = s.banner || "";
 
       const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
-      document.getElementById("categoryAvatarSettingsList").innerHTML = categories.map(cat => `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
-          <span><b>${cat}</b> Avatar:</span>
-          <input type="file" accept="image/*" onchange="uploadCategoryIcon(event, '${cat}')" style="width:160px; font-size:11px;" />
-        </div>
-      `).join('');
+      const avList = document.getElementById("categoryAvatarSettingsList");
+      if (avList) {
+        avList.innerHTML = categories.map(cat => `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
+            <span><b>${cat}</b> Avatar:</span>
+            <input type="file" accept="image/*" onchange="uploadCategoryIcon(event, '${cat}')" style="width:160px; font-size:11px;" />
+          </div>
+        `).join('');
+      }
 
       openModal('storeSettingsModal');
     }
@@ -1534,6 +1648,7 @@
       const file = e.target.files[0];
       if (!file) return;
       compressImageWorker(file, 200, 0.8, base64 => {
+        if (!appState.shop) appState.shop = {};
         if (!appState.shop.categoryIcons) appState.shop.categoryIcons = {};
         appState.shop.categoryIcons[category] = base64;
       });
@@ -1543,18 +1658,25 @@
       const file = e.target.files[0];
       if (!file) return;
       compressImageWorker(file, 650, 0.75, b64 => {
-        document.getElementById("cfgStoreBannerData").value = b64;
+        const inp = document.getElementById("cfgStoreBannerData");
+        if (inp) inp.value = b64;
       });
     }
 
     function saveStoreConfiguration() {
       const s = appState.shop || {};
-      s.name = document.getElementById("cfgStoreTitle").value.trim() || "GOGIA SWEETS";
-      s.subtitle = document.getElementById("cfgStoreSubtitle").value.trim();
-      s.phone = document.getElementById("cfgStorePhone").value.trim();
-      s.upi = document.getElementById("cfgStoreUpi").value.trim();
-      s.footerNote = document.getElementById("cfgStoreFooterNote").value.trim() || "*** THANK YOU, VISIT AGAIN ***";
-      s.banner = document.getElementById("cfgStoreBannerData").value;
+      const elT = document.getElementById("cfgStoreTitle");
+      s.name = elT ? (elT.value.trim() || "GOGIA SWEETS") : "GOGIA SWEETS";
+      const elSub = document.getElementById("cfgStoreSubtitle");
+      s.subtitle = elSub ? elSub.value.trim() : "";
+      const elPh = document.getElementById("cfgStorePhone");
+      s.phone = elPh ? elPh.value.trim() : "";
+      const elUpi = document.getElementById("cfgStoreUpi");
+      s.upi = elUpi ? elUpi.value.trim() : "";
+      const elFoot = document.getElementById("cfgStoreFooterNote");
+      s.footerNote = elFoot ? (elFoot.value.trim() || "*** THANK YOU, VISIT AGAIN ***") : "*** THANK YOU, VISIT AGAIN ***";
+      const elBan = document.getElementById("cfgStoreBannerData");
+      s.banner = elBan ? elBan.value : "";
 
       appState.shop = s;
       saveAppState();
@@ -1564,7 +1686,6 @@
       alert("✅ Store Profile & Receipt Settings Updated!");
     }
 
-    /* Food Menu Manager */
     function openFoodManager() {
       resetFoodInputForm();
       renderCatalogEditor();
@@ -1572,7 +1693,10 @@
     }
 
     function renderCatalogEditor() {
-      document.getElementById("catalogListItems").innerHTML = (appState.menu || []).map(m => `
+      const c = document.getElementById("catalogListItems");
+      if (!c) return;
+
+      c.innerHTML = (appState.menu || []).map(m => `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; background:#f8fafc; padding:8px 10px; border-radius:6px; border:1px solid #e2e8f0;">
           <div>
             <b>${m.name}</b> (₹${m.full}) [${m.cat || 'General'}]
@@ -1590,58 +1714,92 @@
       const item = (appState.menu || []).find(m => m.id === id);
       if (!item) return;
 
-      document.getElementById("editItemTargetId").value = item.id;
-      document.getElementById("inpItemNameTitle").value = item.name || "";
-      document.getElementById("inpItemSubtitle").value = item.subtitle || "";
-      document.getElementById("inpItemDiet").value = item.diet || "Non-Veg";
-      document.getElementById("inpItemCategory").value = item.cat || "";
-      document.getElementById("inpItemHalfPrice").value = item.half || 0;
-      document.getElementById("inpItemFullPrice").value = item.full || 0;
-      document.getElementById("inpItemPhotoData").value = item.img || "";
+      const eId = document.getElementById("editItemTargetId");
+      if (eId) eId.value = item.id;
+      const eName = document.getElementById("inpItemNameTitle");
+      if (eName) eName.value = item.name || "";
+      const eSub = document.getElementById("inpItemSubtitle");
+      if (eSub) eSub.value = item.subtitle || "";
+      const eDiet = document.getElementById("inpItemDiet");
+      if (eDiet) eDiet.value = item.diet || "Non-Veg";
+      const eCat = document.getElementById("inpItemCategory");
+      if (eCat) eCat.value = item.cat || "";
+      const eHalf = document.getElementById("inpItemHalfPrice");
+      if (eHalf) eHalf.value = item.half || 0;
+      const eFull = document.getElementById("inpItemFullPrice");
+      if (eFull) eFull.value = item.full || 0;
+      const eImg = document.getElementById("inpItemPhotoData");
+      if (eImg) eImg.value = item.img || "";
 
-      document.getElementById("btnSaveMenuAction").textContent = "Update Menu Item";
-      document.getElementById("btnSaveMenuAction").style.background = "#2563eb";
-      document.getElementById("btnSaveMenuAction").style.color = "#ffffff";
-      document.getElementById("btnCancelEditMode").style.display = "inline-block";
+      const bSave = document.getElementById("btnSaveMenuAction");
+      if (bSave) {
+        bSave.textContent = "Update Menu Item";
+        bSave.style.background = "#2563eb";
+        bSave.style.color = "#ffffff";
+      }
+      const bCanc = document.getElementById("btnCancelEditMode");
+      if (bCanc) bCanc.style.display = "inline-block";
 
-      document.querySelector("#foodMenuModal .modal-sheet").scrollTop = 0;
+      const sheet = document.querySelector("#foodMenuModal .modal-sheet");
+      if (sheet) sheet.scrollTop = 0;
     }
 
     function resetFoodInputForm() {
-      document.getElementById("editItemTargetId").value = "";
-      document.getElementById("inpItemNameTitle").value = "";
-      document.getElementById("inpItemSubtitle").value = "";
-      document.getElementById("inpItemDiet").value = "Non-Veg";
-      document.getElementById("inpItemCategory").value = "";
-      document.getElementById("inpItemHalfPrice").value = "";
-      document.getElementById("inpItemFullPrice").value = "";
-      document.getElementById("inpItemPhotoData").value = "";
+      const eId = document.getElementById("editItemTargetId");
+      if (eId) eId.value = "";
+      const eName = document.getElementById("inpItemNameTitle");
+      if (eName) eName.value = "";
+      const eSub = document.getElementById("inpItemSubtitle");
+      if (eSub) eSub.value = "";
+      const eDiet = document.getElementById("inpItemDiet");
+      if (eDiet) eDiet.value = "Non-Veg";
+      const eCat = document.getElementById("inpItemCategory");
+      if (eCat) eCat.value = "";
+      const eHalf = document.getElementById("inpItemHalfPrice");
+      if (eHalf) eHalf.value = "";
+      const eFull = document.getElementById("inpItemFullPrice");
+      if (eFull) eFull.value = "";
+      const eImg = document.getElementById("inpItemPhotoData");
+      if (eImg) eImg.value = "";
       const fileInput = document.getElementById("inpItemPhotoFile");
       if (fileInput) fileInput.value = "";
 
-      document.getElementById("btnSaveMenuAction").textContent = "Save Item to Menu";
-      document.getElementById("btnSaveMenuAction").style.background = "var(--primary)";
-      document.getElementById("btnSaveMenuAction").style.color = "#000000";
-      document.getElementById("btnCancelEditMode").style.display = "none";
+      const bSave = document.getElementById("btnSaveMenuAction");
+      if (bSave) {
+        bSave.textContent = "Save Item to Menu";
+        bSave.style.background = "var(--primary)";
+        bSave.style.color = "#000000";
+      }
+      const bCanc = document.getElementById("btnCancelEditMode");
+      if (bCanc) bCanc.style.display = "none";
     }
 
     function uploadFoodPhoto(e) {
       const file = e.target.files[0];
       if (!file) return;
       compressImageWorker(file, 500, 0.8, b64 => {
-        document.getElementById("inpItemPhotoData").value = b64;
+        const inp = document.getElementById("inpItemPhotoData");
+        if (inp) inp.value = b64;
       });
     }
 
     async function saveNewCatalogItem() {
-      const editIdStr = document.getElementById("editItemTargetId").value;
-      const name = document.getElementById("inpItemNameTitle").value.trim();
-      const subtitle = document.getElementById("inpItemSubtitle").value.trim();
-      const diet = document.getElementById("inpItemDiet").value;
-      const cat = document.getElementById("inpItemCategory").value.trim() || "General";
-      const half = Number(document.getElementById("inpItemHalfPrice").value) || 0;
-      const full = Number(document.getElementById("inpItemFullPrice").value) || 0;
-      let imgData = document.getElementById("inpItemPhotoData").value;
+      const eId = document.getElementById("editItemTargetId");
+      const editIdStr = eId ? eId.value : "";
+      const eName = document.getElementById("inpItemNameTitle");
+      const name = eName ? eName.value.trim() : "";
+      const eSub = document.getElementById("inpItemSubtitle");
+      const subtitle = eSub ? eSub.value.trim() : "";
+      const eDiet = document.getElementById("inpItemDiet");
+      const diet = eDiet ? eDiet.value : "Non-Veg";
+      const eCat = document.getElementById("inpItemCategory");
+      const cat = eCat ? (eCat.value.trim() || "General") : "General";
+      const eHalf = document.getElementById("inpItemHalfPrice");
+      const half = eHalf ? (Number(eHalf.value) || 0) : 0;
+      const eFull = document.getElementById("inpItemFullPrice");
+      const full = eFull ? (Number(eFull.value) || 0) : 0;
+      const eImg = document.getElementById("inpItemPhotoData");
+      let imgData = eImg ? eImg.value : "";
 
       if (!name || full <= 0) {
         alert("Please enter item name and valid full price");
@@ -1650,7 +1808,7 @@
 
       if (editIdStr) {
         const editId = Number(editIdStr);
-        const index = appState.menu.findIndex(m => m.id === editId);
+        const index = (appState.menu || []).findIndex(m => m.id === editId);
         if (index !== -1) {
           if (!imgData) imgData = appState.menu[index].img || "";
           if (imgData) await storeImageToDB(`item_${editId}`, imgData);
@@ -1663,6 +1821,7 @@
         if (imgData) {
           await storeImageToDB(`item_${newItemId}`, imgData);
         }
+        if (!Array.isArray(appState.menu)) appState.menu = [];
         appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full, img: imgData });
         alert("✅ New item added to menu!");
       }
@@ -1701,17 +1860,19 @@
     }
 
     function openModal(id) {
-      document.getElementById(id).style.display = "flex";
+      const m = document.getElementById(id);
+      if (m) m.style.display = "flex";
     }
 
     function closeModal(id) {
-      document.getElementById(id).style.display = "none";
+      const m = document.getElementById(id);
+      if (m) m.style.display = "none";
     }
 
-    // Initialize Safe App
-    window.addEventListener("DOMContentLoaded", () => {
+    // Safe Boot
+    window.onload = function() {
       initApplication();
-    });
+    };
   </script>
 </body>
 </html>
