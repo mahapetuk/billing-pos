@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>SmartPOS Pro - Advanced Terminal</title>
+  <title>Nature's Cafe - SmartPOS Pro</title>
   <meta name="theme-color" content="#121214" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,7 +55,6 @@
     
     .cat-avatar-pill { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; flex-shrink: 0; }
     .cat-avatar-circle { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #333; overflow: hidden; background: #26262e; display: flex; align-items: center; justify-content: center; transition: 0.2s; position: relative; }
-    .cat-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
     .cat-avatar-title { font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; max-width: 65px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .cat-avatar-pill.active .cat-avatar-circle { border-color: var(--primary); box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
     .cat-avatar-pill.active .cat-avatar-title { color: var(--primary); }
@@ -66,8 +65,7 @@
     /* Menu Cards */
     .menu-cards-wrap { display: flex; flex-direction: column; gap: 16px; max-width: 850px; margin: 0 auto; padding: 0 14px; }
     .menu-item-box { background: var(--card-bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
-    .item-media-top { position: relative; width: 100%; height: 180px; background: #202024; }
-    .item-photo { width: 100%; height: 100%; object-fit: cover; }
+    .item-media-top { position: relative; width: 100%; height: 160px; background: #202024; display: flex; align-items: center; justify-content: center; }
     .floating-badge { position: absolute; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
     .diet-badge { top: 10px; left: 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
     .diet-badge.non-veg { color: var(--danger); }
@@ -113,14 +111,14 @@
     .order-type-btn { padding: 8px; border: 1.5px solid #cbd5e1; background: #f8fafc; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; text-align: center; }
     .order-type-btn.active { border-color: var(--primary); background: #fef3c7; color: #b45309; }
 
-    /* ১০টির বেশি টেবিলের জন্য ডাইনামিক স্ক্রোল এবং কাস্টম ইনপুট */
+    /* Dynamic Table Selector (Table 1 to 20+) */
     .table-section-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
     .table-scroll-track { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 6px; scrollbar-width: thin; }
     .table-pill-btn { padding: 6px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
     .table-pill-btn.active { background: #b45309; color: #fff; border-color: #b45309; }
     .custom-table-inp { width: 100%; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; font-weight: 700; outline: none; }
 
-    /* Cash Return Change Calculator */
+    /* Change Calculator */
     .change-calc-box { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 10px; margin: 10px 0; }
     .change-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: center; }
     .change-calc-grid input { padding: 8px; border: 1px solid #6ee7b7; border-radius: 6px; font-size: 14px; font-weight: 700; width: 100%; outline: none; }
@@ -148,16 +146,7 @@
     .input-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; }
     .input-field { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
 
-    /* Switch Component */
-    .switch-row { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; font-size: 13px; font-weight: 700; color: #334155; }
-    .switch-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
-    .switch-toggle input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 24px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-    input:checked + .slider { background-color: var(--primary); }
-    input:checked + .slider:before { transform: translateX(20px); }
-
-    .btn-download-backup { width: 100%; padding: 12px; background: #059669; color: #fff; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3); }
+    .btn-download-backup { width: 100%; padding: 12px; background: #059669; color: #fff; border: none; border-radius: 8px; font-weight: 800; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
     /* Kitchen Pending Cards */
     .kot-card { background: #fff; border-left: 5px solid #ef4444; border-radius: 8px; padding: 10px; margin-bottom: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
@@ -197,11 +186,10 @@
   <!-- Top Navbar -->
   <div class="top-navbar">
     <div class="brand-group">
-      <div class="brand-icon-box"><i class="fa-solid fa-receipt"></i></div>
-      <div class="brand-title-txt">SmartPOS Pro</div>
+      <div class="brand-icon-box"><i class="fa-solid fa-mug-hot"></i></div>
+      <div class="brand-title-txt">Nature's Cafe</div>
     </div>
     <div class="header-actions">
-      <!-- কিচেন পেন্ডিং অর্ডার বাটন -->
       <button type="button" class="btn-header kitchen-btn" onclick="openKitchenModal()">
         <i class="fa-solid fa-kitchen-set"></i> Kitchen (<span id="lblPendingCount">0</span>)
       </button>
@@ -214,8 +202,8 @@
   <!-- Store Header -->
   <div class="hero-store-bar">
     <img id="storeBannerImg" class="store-banner-img" alt="Store Banner" />
-    <div class="store-heading" id="lblStoreTitle">Store Name</div>
-    <div class="store-subheading" id="lblStoreSubtitle">Location & Tagline</div>
+    <div class="store-heading" id="lblStoreTitle">Nature's Cafe</div>
+    <div class="store-subheading" id="lblStoreSubtitle">Coffee, Pizza, Burger & Snacks</div>
     <div class="store-phone-tag" id="lblStorePhone">Ph: Not configured</div>
     <div class="badge-today-sales">
       <i class="fa-solid fa-chart-line"></i> <span id="lblDailyMetrics">Today's Sales: Calculating...</span>
@@ -226,9 +214,9 @@
   <div class="controls-container">
     <input type="text" id="txtMenuSearch" class="search-input-field" placeholder="Search menu items..." oninput="renderMenuCatalog()" />
 
-    <!-- Tier 1: Top Selling Foods -->
+    <!-- Tier 1: Today's Most to Lowest Selling Foods -->
     <div class="avatar-section-title">
-      <i class="fa-solid fa-fire" style="color:#ef4444;"></i> Today's Sales Leaderboard (Top to Lowest)
+      <i class="fa-solid fa-fire" style="color:#ef4444;"></i> Today's Sales Leaderboard
     </div>
     <div class="avatar-scroll-track" id="topSellingAvatarsTrack">
       <div style="font-size:11px; color:#6b7280; padding:10px;">No items sold today yet</div>
@@ -279,13 +267,11 @@
         <div class="order-type-btn" id="btnTypeParcel" onclick="setOrderType('PARCEL')"><i class="fa-solid fa-box-open"></i> PARCEL</div>
       </div>
 
-      <!-- ডাইনামিক টেবিল সিলেকশন (১০টির বেশি টেবিল সাপোর্ট) -->
+      <!-- Dynamic Table Selector -->
       <div id="tableSelectorWrap" class="table-section-box">
-        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">টেবিল সিলেক্ট করুন (Table 1 to 20+):</div>
-        <div class="table-scroll-track" id="tableButtonsTrack">
-          <!-- ১ থেকে ২০ পর্যন্ত টেবিল স্ক্রল বাটন -->
-        </div>
-        <input type="text" id="inpCustomTable" class="custom-table-inp" placeholder="অথবা অন্য যেকোনো টেবিল নম্বর লিখুন (e.g. Table 15, T-22)" oninput="onCustomTableTyped(this.value)" />
+        <div style="font-size:11px; font-weight:700; color:#475569; margin-bottom:4px;">Select Table (Table 1 to 20+):</div>
+        <div class="table-scroll-track" id="tableButtonsTrack"></div>
+        <input type="text" id="inpCustomTable" class="custom-table-inp" placeholder="Or enter custom table (e.g. Table 15, T-22)" oninput="onCustomTableTyped(this.value)" />
       </div>
 
       <div id="checkoutItemsList" style="max-height: 140px; overflow-y: auto; margin-bottom: 8px;"></div>
@@ -353,7 +339,7 @@
   <div class="modal-backdrop" id="kitchenModal">
     <div class="modal-sheet">
       <div class="modal-title-row">
-        <h3 style="font-weight:800;"><i class="fa-solid fa-kitchen-set"></i> রানিং কিচেন অর্ডার (Pending KOT)</h3>
+        <h3 style="font-weight:800;"><i class="fa-solid fa-kitchen-set"></i> Live Kitchen Orders (Pending KOT)</h3>
         <button type="button" class="btn-modal-exit" onclick="closeModal('kitchenModal')">✕</button>
       </div>
       <div id="kitchenOrdersList" style="max-height: 350px; overflow-y: auto;"></div>
@@ -370,7 +356,7 @@
 
       <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:10px; padding:12px; margin-bottom:14px; text-align:center;">
         <div style="font-size:12px; font-weight:700; color:#065f46; margin-bottom:8px;">
-          <i class="fa-solid fa-cloud-arrow-down"></i> Save complete menu, images & sales to a file:
+          <i class="fa-solid fa-cloud-arrow-down"></i> Save full menu, images & sales to a file:
         </div>
         <button type="button" class="btn-download-backup" onclick="downloadBackupFile()">
           <i class="fa-solid fa-download"></i> Download Full Backup File
@@ -379,11 +365,11 @@
 
       <div class="input-group">
         <label>Store Name (Top of Receipt)</label>
-        <input type="text" id="cfgStoreTitle" class="input-field" placeholder="e.g. GOGIA SWEETS" />
+        <input type="text" id="cfgStoreTitle" class="input-field" placeholder="e.g. Nature's Cafe" />
       </div>
       <div class="input-group">
         <label>Store Subtitle / Address</label>
-        <input type="text" id="cfgStoreSubtitle" class="input-field" placeholder="e.g. Main Market, City" />
+        <input type="text" id="cfgStoreSubtitle" class="input-field" placeholder="e.g. Coffee, Pizza & Snacks" />
       </div>
       <div class="input-group">
         <label>Official Store Contact Phone Number</label>
@@ -397,48 +383,11 @@
         <label>Receipt Footer Note</label>
         <input type="text" id="cfgStoreFooterNote" class="input-field" placeholder="e.g. *** THANK YOU, VISIT AGAIN ***" />
       </div>
-      <div class="input-group">
-        <label>Store Header Banner Image</label>
-        <input type="file" accept="image/*" onchange="uploadStoreBanner(event)" />
-        <input type="hidden" id="cfgStoreBannerData" />
-      </div>
-
-      <!-- Dynamic Tax & Discount Switch Settings -->
-      <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <div style="font-size:12px; font-weight:800; color:#1e293b; margin-bottom:8px;">Receipt Computation Controls</div>
-        
-        <div class="switch-row">
-          <span>Enable Tax / GST Percentage:</span>
-          <label class="switch-toggle">
-            <input type="checkbox" id="cfgEnableTax" onchange="toggleTaxSettingsUI()" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div id="cfgTaxValGroup" class="input-group" style="display:none;">
-          <input type="number" id="cfgTaxPercentage" class="input-field" placeholder="Tax % (e.g. 5)" />
-        </div>
-
-        <div class="switch-row">
-          <span>Enable Discount Percentage:</span>
-          <label class="switch-toggle">
-            <input type="checkbox" id="cfgEnableDiscount" onchange="toggleDiscountSettingsUI()" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div id="cfgDiscountValGroup" class="input-group" style="display:none;">
-          <input type="number" id="cfgDiscountPercentage" class="input-field" placeholder="Discount % (e.g. 10)" />
-        </div>
-      </div>
-
-      <div style="border-top:1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <label style="font-size:12px; font-weight:800; color:#334155; display:block; margin-bottom:6px;">Upload Category Avatar Images</label>
-        <div id="categoryAvatarSettingsList" style="max-height: 140px; overflow-y: auto;"></div>
-      </div>
 
       <button type="button" onclick="saveStoreConfiguration()" style="width:100%; padding:10px; background:var(--primary); color:#000; border:none; border-radius:8px; font-weight:800; cursor:pointer; margin-top:12px;">Save Configurations</button>
 
       <div style="border-top: 1px solid #cbd5e1; margin-top:14px; padding-top:10px;">
-        <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">Restore Backup File (on this or another device):</div>
+        <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">Restore Backup File:</div>
         <button type="button" onclick="document.getElementById('inpRestoreBackupFile').click()" style="width:100%; padding:9px; background:#2563eb; color:#fff; border:none; border-radius:6px; font-weight:700; font-size:13px; cursor:pointer;">
           <i class="fa-solid fa-upload"></i> Select Backup File to Restore
         </button>
@@ -478,11 +427,11 @@
 
       <div class="input-group">
         <label>Item Name</label>
-        <input type="text" id="inpItemNameTitle" class="input-field" placeholder="e.g. RASMALAI or Chicken Chowmein" />
+        <input type="text" id="inpItemNameTitle" class="input-field" placeholder="e.g. Swezuan Chicken Burger" />
       </div>
       <div class="input-group">
         <label>Subtitle / Description</label>
-        <input type="text" id="inpItemSubtitle" class="input-field" placeholder="e.g. 2 pcs fresh / Spicy Hakka" />
+        <input type="text" id="inpItemSubtitle" class="input-field" placeholder="e.g. Spicy crispy fried patty" />
       </div>
       <div class="input-group">
         <label>Dietary & Category</label>
@@ -491,7 +440,7 @@
             <option value="Non-Veg">Non-Veg</option>
             <option value="Veg">Veg</option>
           </select>
-          <input type="text" id="inpItemCategory" class="input-field" style="flex:1;" placeholder="Category (e.g. Chow, Snacks)" />
+          <input type="text" id="inpItemCategory" class="input-field" style="flex:1;" placeholder="Category (e.g. Burger, Pizza)" />
         </div>
       </div>
       <div class="input-group">
@@ -500,11 +449,6 @@
           <input type="number" id="inpItemHalfPrice" class="input-field" placeholder="Half Price (0 if none)" />
           <input type="number" id="inpItemFullPrice" class="input-field" placeholder="Full Price" />
         </div>
-      </div>
-      <div class="input-group">
-        <label>Item Photo (IndexedDB Powered)</label>
-        <input type="file" id="inpItemPhotoFile" accept="image/*" onchange="uploadFoodPhoto(event)" />
-        <input type="hidden" id="inpItemPhotoData" />
       </div>
 
       <div style="display:flex; gap:8px;">
@@ -518,15 +462,15 @@
 
   <!-- THERMAL BILL CANVAS -->
   <div id="thermalBillArea">
-    <div class="th-center th-store" id="prnStoreName">GOGIA SWEETS</div>
-    <div class="th-center" style="font-size:10px;" id="prnStorePhone">Ph: +91 98765 43210</div>
-    <div class="th-center" style="font-size:10px;" id="prnStoreSubtitle">Main Market</div>
+    <div class="th-center th-store" id="prnStoreName">NATURE'S CAFE</div>
+    <div class="th-center" style="font-size:10px;" id="prnStorePhone">Ph: Not configured</div>
+    <div class="th-center" style="font-size:10px;" id="prnStoreSubtitle">Coffee, Pizza, Burger & Snacks</div>
     <div class="th-center" style="font-size:12px; font-weight:800; margin:3px 0;" id="prnOrderTypeBadge">[ DINE-IN - Table 1 ]</div>
     <div class="th-bill-title th-center" id="prnBillTitle">CASH BILL</div>
     <div class="th-dash"></div>
     <div class="th-row">
       <span id="prnDateTime">08/12/2026 16:50</span>
-      <span id="prnBillNumber">Bill #: 13</span>
+      <span id="prnBillNumber">Bill #: 1</span>
     </div>
     <div class="th-dash"></div>
     <div class="th-row" style="font-weight:700;">
@@ -578,7 +522,7 @@
     <div class="th-center" style="font-size:13px; font-weight:800; margin:3px 0;" id="kotOrderTypeBadge">[ DINE-IN - Table 1 ]</div>
     <div class="th-dash"></div>
     <div class="th-row">
-      <span id="kotTokenNum">TOKEN #: 13</span>
+      <span id="kotTokenNum">TOKEN #: 1</span>
       <span id="kotTime">16:50</span>
     </div>
     <div class="th-dash"></div>
@@ -593,63 +537,62 @@
   </div>
 
   <script>
-    /* 1. IndexedDB Engine */
-    const DB_NAME = "SmartPOS_IndexedDB";
-    const DB_VERSION = 1;
-    let db;
+    /* 1. Complete Nature's Cafe Menu Data */
+    const NATURES_CAFE_MENU = [
+      // Fried
+      { id: 101, name: "Chicken Leg", subtitle: "Crispy fried leg", cat: "Fried", diet: "Non-Veg", half: 0, full: 75 },
+      { id: 102, name: "Chicken Chest", subtitle: "Fried breast fillet", cat: "Fried", diet: "Non-Veg", half: 0, full: 75 },
+      { id: 103, name: "Chicken Wings", subtitle: "Crispy crunchy wings", cat: "Fried", diet: "Non-Veg", half: 0, full: 45 },
+      { id: 104, name: "Chicken Pakora", subtitle: "Spicy cafe pakora", cat: "Fried", diet: "Non-Veg", half: 0, full: 30 },
+      { id: 105, name: "Chicken Popcorn", subtitle: "Bite sized chicken", cat: "Fried", diet: "Non-Veg", half: 70, full: 110 },
+      { id: 106, name: "Mayo Dips", subtitle: "Creamy dipping sauce", cat: "Fried", diet: "Veg", half: 10, full: 15 },
 
-    function openDatabase() {
-      return new Promise((resolve) => {
-        try {
-          const req = indexedDB.open(DB_NAME, DB_VERSION);
-          req.onupgradeneeded = (e) => {
-            const database = e.target.result;
-            if (!database.objectStoreNames.contains("images")) {
-              database.createObjectStore("images", { keyPath: "id" });
-            }
-          };
-          req.onsuccess = (e) => {
-            db = e.target.result;
-            resolve(db);
-          };
-          req.onerror = () => resolve(null);
-        } catch (e) { resolve(null); }
-      });
-    }
+      // Burger
+      { id: 201, name: "Swezuan Chicken Burger", subtitle: "Fiery Schezwan kick", cat: "Burger", diet: "Non-Veg", half: 0, full: 89 },
+      { id: 202, name: "Tikha Tikha Chicken Burger", subtitle: "Extra spicy desi blend", cat: "Burger", diet: "Non-Veg", half: 0, full: 89 },
+      { id: 203, name: "Crunchy Chicken Burger", subtitle: "Classic crisp patty", cat: "Burger", diet: "Non-Veg", half: 0, full: 79 },
+      { id: 204, name: "Add Extra Cheese", subtitle: "Cheese slice addon", cat: "Burger", diet: "Veg", half: 0, full: 15 },
 
-    function storeImageToDB(id, base64) {
-      return new Promise((resolve) => {
-        if (!db) return resolve();
-        try {
-          const tx = db.transaction("images", "readwrite");
-          const store = tx.objectStore("images");
-          store.put({ id, base64 });
-          tx.oncomplete = () => resolve();
-          tx.onerror = () => resolve();
-        } catch (e) { resolve(); }
-      });
-    }
+      // Non-Veg Pizza
+      { id: 301, name: "Swezuan Chicken Pizza", subtitle: "Spicy schezwan topping", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 159 },
+      { id: 302, name: "Butter Chicken Pizza", subtitle: "Rich makhani gravy topping", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 149 },
+      { id: 303, name: "Spicy Chicken Pizza", subtitle: "Hot chili & herbs", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 139 },
+      { id: 304, name: "Tikka Tikha Chicken Pizza", subtitle: "Smoky chicken tikka", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 139 },
+      { id: 305, name: "BBQ Chicken Pizza", subtitle: "Smoky barbeque flavor", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 139 },
+      { id: 306, name: "Fried Chicken Pizza", subtitle: "Crisp popcorn loaded", cat: "Non-Veg Pizza", diet: "Non-Veg", half: 0, full: 129 },
 
-    function getImageFromDB(id) {
-      return new Promise((resolve) => {
-        if (!db) return resolve(null);
-        try {
-          const tx = db.transaction("images", "readonly");
-          const store = tx.objectStore("images");
-          const req = store.get(id);
-          req.onsuccess = () => resolve(req.result ? req.result.base64 : null);
-          req.onerror = () => resolve(null);
-        } catch (e) { resolve(null); }
-      });
-    }
+      // Veg Pizza
+      { id: 401, name: "Paneer Pizza", subtitle: "Marinated cottage cheese", cat: "Veg Pizza", diet: "Veg", half: 0, full: 129 },
+      { id: 402, name: "Mushroom Pizza", subtitle: "Fresh buttons & herbs", cat: "Veg Pizza", diet: "Veg", half: 0, full: 129 },
+      { id: 403, name: "Veg Pizza", subtitle: "Capsicum, onion & tomato", cat: "Veg Pizza", diet: "Veg", half: 0, full: 109 },
+      { id: 404, name: "Corn Cheese Pizza", subtitle: "Sweet corn loaded", cat: "Veg Pizza", diet: "Veg", half: 0, full: 99 },
+      { id: 405, name: "Add Extra Mozzarella Cheese", subtitle: "Double cheese layer", cat: "Veg Pizza", diet: "Veg", half: 0, full: 50 },
 
-    /* 2. Application State */
-    const POS_STORAGE_KEY = "SmartPOS_DualTier_v4";
+      // Coffee
+      { id: 501, name: "Cold Coffee Extra Large", subtitle: "Extra chocolate & ice cream", cat: "Coffee", diet: "Veg", half: 0, full: 79 },
+      { id: 502, name: "Cold Coffee Regular", subtitle: "Classic thick brew", cat: "Coffee", diet: "Veg", half: 0, full: 59 },
+      { id: 503, name: "Hot Coffee", subtitle: "Fresh brewed espresso", cat: "Coffee", diet: "Veg", half: 25, full: 35 },
+
+      // French Fries
+      { id: 601, name: "Peri Peri French Fries", subtitle: "Tossed in peri peri", cat: "French Fries", diet: "Veg", half: 0, full: 59 },
+      { id: 602, name: "Salted French Fries", subtitle: "Crispy golden salted", cat: "French Fries", diet: "Veg", half: 0, full: 59 },
+
+      // Momo
+      { id: 701, name: "Steamed Momo", subtitle: "Classic soft dumplings", cat: "Momo", diet: "Non-Veg", half: 0, full: 50 },
+      { id: 702, name: "Fried Momo", subtitle: "Crispy pan-fried", cat: "Momo", diet: "Non-Veg", half: 0, full: 60 },
+      { id: 703, name: "Swezuan Chicken Momo", subtitle: "Tossed in schezwan sauce", cat: "Momo", diet: "Non-Veg", half: 0, full: 80 },
+
+      // Corn
+      { id: 801, name: "Chicken Cheesy Butter Corn", subtitle: "Warm buttered sweet corn", cat: "Corn", diet: "Non-Veg", half: 0, full: 99 },
+      { id: 802, name: "Butter Corn", subtitle: "Classic salted butter corn", cat: "Corn", diet: "Veg", half: 0, full: 59 }
+    ];
+
+    const POS_STORAGE_KEY = "NaturesCafe_POS_v1";
 
     const INITIAL_DATA = {
       shop: {
-        name: "GOGIA SWEETS",
-        subtitle: "Fast Food & Sweets Counter",
+        name: "Nature's Cafe",
+        subtitle: "Coffee, Pizza, Burger & Snacks",
         phone: "+91 98765 43210",
         upi: "merchant@upi",
         footerNote: "*** THANK YOU, VISIT AGAIN ***",
@@ -657,16 +600,9 @@
         enableTax: false,
         taxPercent: 5,
         enableDiscount: false,
-        discountPercent: 10,
-        categoryIcons: { "ALL": "", "Chow": "", "Snacks": "", "Roll": "", "Sweets": "" }
+        discountPercent: 10
       },
-      menu: [
-        { id: 1, name: "RASMALAI", subtitle: "Special Sweet (2 pcs)", cat: "Sweets", diet: "Veg", half: 0, full: 35, img: "" },
-        { id: 2, name: "LADOO", subtitle: "Motichoor Premium", cat: "Sweets", diet: "Veg", half: 100, full: 200, img: "" },
-        { id: 3, name: "JALEBI", subtitle: "Desi Ghee Crisp", cat: "Sweets", diet: "Veg", half: 100, full: 200, img: "" },
-        { id: 4, name: "CHICKEN CHOWMEIN", subtitle: "Spicy Hakka Noodles", cat: "Chow", diet: "Non-Veg", half: 60, full: 100, img: "" },
-        { id: 5, name: "CHICKEN PAKORA", subtitle: "Crispy Fried (6 pcs)", cat: "Snacks", diet: "Non-Veg", half: 50, full: 90, img: "" }
-      ],
+      menu: NATURES_CAFE_MENU,
       sales: [],
       pendingKots: []
     };
@@ -675,7 +611,7 @@
     try {
       appState = JSON.parse(localStorage.getItem(POS_STORAGE_KEY)) || INITIAL_DATA;
       if (!appState.shop) appState.shop = INITIAL_DATA.shop;
-      if (!appState.menu) appState.menu = INITIAL_DATA.menu;
+      if (!appState.menu || !appState.menu.length) appState.menu = INITIAL_DATA.menu;
       if (!appState.sales) appState.sales = [];
       if (!appState.pendingKots) appState.pendingKots = [];
     } catch (e) {
@@ -695,41 +631,24 @@
       } catch (err) {}
     }
 
-    async function initApplication() {
-      await openDatabase();
-      if (appState && appState.menu) {
-        for (const item of appState.menu) {
-          const storedImg = await getImageFromDB(`item_${item.id}`);
-          if (storedImg) item.img = storedImg;
-        }
-      }
-
+    function initApplication() {
       renderStoreHeader();
       renderTodayTopSellingBar();
       renderCategoryAvatars();
       renderMenuCatalog();
       updateSalesMetricsBadge();
       updateKitchenBadge();
-      buildTableButtons(); // ১ থেকে ২০ টেবিল তৈরি
+      buildTableButtons();
     }
 
     function renderStoreHeader() {
       const s = appState.shop || {};
-      document.getElementById("lblStoreTitle").textContent = s.name || "Store Name";
+      document.getElementById("lblStoreTitle").textContent = s.name || "Nature's Cafe";
       document.getElementById("lblStoreSubtitle").textContent = s.subtitle || "";
       document.getElementById("lblStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
-      
-      const bannerEl = document.getElementById("storeBannerImg");
-      if (s.banner && s.banner.length > 50) {
-        bannerEl.src = s.banner;
-        bannerEl.style.display = "inline-block";
-      } else {
-        bannerEl.style.display = "none";
-      }
       document.getElementById("lblUpiIdentifier").textContent = `UPI: ${s.upi || 'Not configured'}`;
     }
 
-    /* ডাইনামিক টেবিল তৈরি (Table 1 to 20+) */
     function buildTableButtons() {
       const track = document.getElementById("tableButtonsTrack");
       let btns = "";
@@ -760,7 +679,6 @@
       }
     }
 
-    /* Top Tier: Today's Most to Lowest Selling */
     function renderTodayTopSellingBar() {
       const track = document.getElementById("topSellingAvatarsTrack");
       const todayISO = new Date().toISOString().slice(0, 10);
@@ -776,28 +694,20 @@
       const sortedLeaderboard = Object.entries(salesCountMap).sort((a, b) => b[1] - a[1]);
 
       if (!sortedLeaderboard.length) {
-        track.innerHTML = `<div style="font-size:12px; color:#6b7280; padding:8px;">No orders billed today yet. Top sellers will appear here automatically!</div>`;
+        track.innerHTML = `<div style="font-size:12px; color:#6b7280; padding:8px;">No orders billed today yet. Best sellers will show here!</div>`;
         return;
       }
 
-      track.innerHTML = sortedLeaderboard.map((entry, index) => {
-        const itemName = entry[0];
-        const soldQty = entry[1];
-        const menuItem = (appState.menu || []).find(m => m.name.toLowerCase() === itemName.toLowerCase()) || { img: "" };
-
-        return `
-          <div class="cat-avatar-pill" onclick="filterBySingleItem('${itemName}')">
-            <div class="cat-avatar-circle">
-              <span class="top-rank-badge">#${index + 1}</span>
-              ${menuItem.img 
-                ? `<img src="${menuItem.img}" alt="${itemName}" />` 
-                : `<i class="fa-solid fa-fire" style="font-size:18px; color:#f59e0b;"></i>`}
-            </div>
-            <div class="cat-avatar-title">${itemName}</div>
-            <div class="top-qty-tag">${soldQty} sold</div>
+      track.innerHTML = sortedLeaderboard.map((entry, index) => `
+        <div class="cat-avatar-pill" onclick="filterBySingleItem('${entry[0]}')">
+          <div class="cat-avatar-circle">
+            <span class="top-rank-badge">#${index + 1}</span>
+            <i class="fa-solid fa-fire" style="font-size:18px; color:#f59e0b;"></i>
           </div>
-        `;
-      }).join('');
+          <div class="cat-avatar-title">${entry[0]}</div>
+          <div class="top-qty-tag">${entry[1]} sold</div>
+        </div>
+      `).join('');
     }
 
     function filterBySingleItem(name) {
@@ -805,26 +715,16 @@
       renderMenuCatalog();
     }
 
-    /* Bottom Tier: Menu Categories */
     function renderCategoryAvatars() {
       const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
-      const icons = (appState.shop && appState.shop.categoryIcons) ? appState.shop.categoryIcons : {};
-
-      document.getElementById("categoryScrollList").innerHTML = categories.map(cat => {
-        const iconSrc = icons[cat] || "";
-        const fallbackIcon = cat === "ALL" 
-          ? '<i class="fa-solid fa-border-all" style="font-size:19px; color:#f59e0b;"></i>' 
-          : '<i class="fa-solid fa-bowl-food" style="font-size:19px; color:#aaa;"></i>';
-
-        return `
-          <div class="cat-avatar-pill ${cat === activeFilterCategory ? 'active' : ''}" onclick="selectCategory('${cat}')">
-            <div class="cat-avatar-circle">
-              ${iconSrc ? `<img src="${iconSrc}" alt="${cat}" />` : fallbackIcon}
-            </div>
-            <div class="cat-avatar-title">${cat}</div>
+      document.getElementById("categoryScrollList").innerHTML = categories.map(cat => `
+        <div class="cat-avatar-pill ${cat === activeFilterCategory ? 'active' : ''}" onclick="selectCategory('${cat}')">
+          <div class="cat-avatar-circle">
+            <i class="fa-solid fa-utensils" style="font-size:16px; color:#aaa;"></i>
           </div>
-        `;
-      }).join('');
+          <div class="cat-avatar-title">${cat}</div>
+        </div>
+      `).join('');
     }
 
     function selectCategory(cat) {
@@ -857,13 +757,13 @@
         return `
           <div class="menu-item-box">
             <div class="item-media-top">
-              <img src="${item.img || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23202024%22 width=%22100%22 height=%22100%22/><text fill=%22%236b7280%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2222%22>🍽️</text></svg>'}" class="item-photo" alt="${item.name}" />
+              <i class="fa-solid fa-bowl-food" style="font-size:42px; color:#374151;"></i>
               <div class="floating-badge diet-badge ${isNonVeg ? 'non-veg' : 'veg'}">
                 <i class="fa-solid fa-circle" style="font-size:8px;"></i> ${item.diet || 'Non-Veg'}
               </div>
               <div class="floating-badge tag-cat-badge">${item.cat || 'General'}</div>
               <div class="cost-overlay">₹${price}</div>
-              <div class="portion-overlay">${portion === 'half' ? 'Half Plate' : 'Full Plate'}</div>
+              <div class="portion-overlay">${portion === 'half' ? 'Half / Regular' : 'Full / Large'}</div>
             </div>
 
             <div class="item-info-bottom">
@@ -873,10 +773,10 @@
               ${item.half > 0 ? `
                 <div class="size-selector-pills">
                   <button type="button" class="btn-size-choice ${portion === 'half' ? 'active' : ''}" onclick="pickPortion(${item.id}, 'half')">
-                    Half: ₹${item.half}
+                    Half/Small: ₹${item.half}
                   </button>
                   <button type="button" class="btn-size-choice ${portion === 'full' ? 'active' : ''}" onclick="pickPortion(${item.id}, 'full')">
-                    Full: ₹${item.full}
+                    Full/Large: ₹${item.full}
                   </button>
                 </div>
               ` : ''}
@@ -970,23 +870,6 @@
       `).join('');
 
       document.getElementById("lblCheckoutSubtotal").textContent = `₹${subtotal}`;
-
-      if (s.enableDiscount && s.discountPercent > 0) {
-        document.getElementById("rowCheckoutDiscount").style.display = "flex";
-        document.getElementById("lblDiscountPercentTxt").textContent = s.discountPercent;
-        document.getElementById("lblCheckoutDiscountVal").textContent = `-₹${discount}`;
-      } else {
-        document.getElementById("rowCheckoutDiscount").style.display = "none";
-      }
-
-      if (s.enableTax && s.taxPercent > 0) {
-        document.getElementById("rowCheckoutTax").style.display = "flex";
-        document.getElementById("lblTaxPercentTxt").textContent = s.taxPercent;
-        document.getElementById("lblCheckoutTaxVal").textContent = `+₹${tax}`;
-      } else {
-        document.getElementById("rowCheckoutTax").style.display = "none";
-      }
-
       document.getElementById("lblCheckoutTotal").textContent = `₹${grandTotal}`;
 
       const half = Math.round(grandTotal / 2);
@@ -1100,7 +983,6 @@
       if (!appState.sales) appState.sales = [];
       appState.sales.unshift(saleEntry);
 
-      // পেন্ডিং কিচেন তালিকায় যোগ
       if (!appState.pendingKots) appState.pendingKots = [];
       appState.pendingKots.unshift({
         id: Date.now(),
@@ -1123,12 +1005,11 @@
       renderTodayTopSellingBar();
     }
 
-    /* Kitchen Modal Functions */
     function openKitchenModal() {
       const list = appState.pendingKots || [];
       const cont = document.getElementById("kitchenOrdersList");
       if (!list.length) {
-        cont.innerHTML = `<div style="text-align:center; padding:20px; color:#64748b;">কোনো খাবার পেন্ডিং নেই (All Done)</div>`;
+        cont.innerHTML = `<div style="text-align:center; padding:20px; color:#64748b;">No pending orders in kitchen (All Done)</div>`;
       } else {
         cont.innerHTML = list.map(k => `
           <div class="kot-card">
@@ -1139,7 +1020,7 @@
             <div style="font-size:12px; margin-bottom:6px;">
               ${k.items.map(i => `<div>• <b>${i.name}</b> (${i.portion === 'half'?'H':'F'}) x${i.qty}</div>`).join('')}
             </div>
-            <button type="button" onclick="markKotDone(${k.id})" style="background:#059669; color:#fff; border:none; padding:4px 8px; border-radius:5px; font-size:11px; font-weight:700; cursor:pointer;">✓ Mark as Done</button>
+            <button type="button" onclick="markKotDone(${k.id})" style="background:#059669; color:#fff; border:none; padding:4px 8px; border-radius:5px; font-size:11px; font-weight:700; cursor:pointer;">✓ Mark Done</button>
           </div>
         `).join('');
       }
@@ -1160,7 +1041,7 @@
 
     function buildReceiptDocket(sale) {
       const s = appState.shop || {};
-      document.getElementById("prnStoreName").textContent = s.name || "STORE NAME";
+      document.getElementById("prnStoreName").textContent = s.name || "NATURE'S CAFE";
       document.getElementById("prnStoreSubtitle").textContent = s.subtitle || "";
       document.getElementById("prnStorePhone").textContent = s.phone ? `Ph: ${s.phone}` : "";
       document.getElementById("prnOrderTypeBadge").textContent = `[ ${sale.orderType || 'DINE-IN'} - ${sale.tableNum || 'Table 1'} ]`;
@@ -1185,25 +1066,8 @@
       `).join('');
 
       const totalQty = sale.items.reduce((sum, i) => sum + i.qty, 0);
-      document.getElementById("prnItemStats").textContent = `NItems:   ${sale.items.length} NQuantity:${Number(totalQty).toFixed(3)}`;
+      document.getElementById("prnItemStats").textContent = `NItems: ${sale.items.length} NQty:${Number(totalQty).toFixed(3)}`;
       document.getElementById("prnSubtotal").textContent = Number(sale.subtotal || sale.total).toFixed(2);
-
-      const discRow = document.getElementById("prnRowDiscount");
-      if (sale.discount && sale.discount > 0) {
-        discRow.style.display = "flex";
-        document.getElementById("prnDiscount").textContent = Number(sale.discount).toFixed(2);
-      } else {
-        discRow.style.display = "none";
-      }
-
-      const taxRow = document.getElementById("prnRowTax");
-      if (sale.tax && sale.tax > 0) {
-        taxRow.style.display = "flex";
-        document.getElementById("prnTax").textContent = Number(sale.tax).toFixed(2);
-      } else {
-        taxRow.style.display = "none";
-      }
-
       document.getElementById("prnGrandTotal").textContent = `₹${Number(sale.total).toFixed(2)}`;
       document.getElementById("prnPaymentModeVal").textContent = sale.mode;
 
@@ -1318,16 +1182,16 @@
             <div style="color:#64748b; font-size:11px;">${r.items.map(i => `${i.name}×${i.qty}`).join(', ')}</div>
           </div>
           <div style="display:flex; gap:6px;">
-            <button type="button" onclick="reprintFromLedger(${r.id})" style="background:#0f172a; color:#fff; border:none; padding:6px 10px; border-radius:6px; font-size:11px; cursor:pointer;" title="Print / PDF"><i class="fa-solid fa-print"></i></button>
-            <button type="button" onclick="removeLedgerSale(${r.id})" style="background:#fee2e2; color:#dc2626; border:1px solid #f87171; padding:6px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;" title="Delete Sale"><i class="fa-solid fa-trash"></i></button>
+            <button type="button" onclick="reprintFromLedger(${r.id})" style="background:#0f172a; color:#fff; border:none; padding:6px 10px; border-radius:6px; font-size:11px; cursor:pointer;"><i class="fa-solid fa-print"></i></button>
+            <button type="button" onclick="removeLedgerSale(${r.id})" style="background:#fee2e2; color:#dc2626; border:1px solid #f87171; padding:6px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `).join('') || `<div style="text-align:center; padding:16px; color:#9ca3af;">No transaction records found</div>`;
     }
 
     function removeLedgerSale(id) {
-      if (!confirm("Are you sure you want to remove this sale from history? Today's total will be updated.")) return;
-      appState.sales = (appState.sales || []).filter(s => s.id !== id);
+      if (!confirm("Are you sure you want to remove this sale from history?")) return;
+      appState.sales = appState.sales.filter(s => s.id !== id);
       saveAppState();
       renderLedgerTransactions();
       updateSalesMetricsBadge();
@@ -1335,7 +1199,7 @@
     }
 
     function reprintFromLedger(id) {
-      const sale = (appState.sales || []).find(s => s.id === id);
+      const sale = appState.sales.find(s => s.id === id);
       if (!sale) return;
       buildReceiptDocket(sale);
       document.getElementById("kotBillArea").classList.remove("printable-active");
@@ -1360,7 +1224,7 @@
       const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = `SmartPOS_Sales_${new Date().toISOString().slice(0,10)}.csv`;
+      a.download = `NaturesCafe_Sales_${new Date().toISOString().slice(0,10)}.csv`;
       a.click();
     }
 
@@ -1371,36 +1235,14 @@
       document.getElementById("cfgStorePhone").value = s.phone || "";
       document.getElementById("cfgStoreUpi").value = s.upi || "";
       document.getElementById("cfgStoreFooterNote").value = s.footerNote || "";
-      document.getElementById("cfgStoreBannerData").value = s.banner || "";
-
-      document.getElementById("cfgEnableTax").checked = !!s.enableTax;
-      document.getElementById("cfgTaxPercentage").value = s.taxPercent || 5;
-      toggleTaxSettingsUI();
-
-      document.getElementById("cfgEnableDiscount").checked = !!s.enableDiscount;
-      document.getElementById("cfgDiscountPercentage").value = s.discountPercent || 10;
-      toggleDiscountSettingsUI();
-
-      const categories = ["ALL", ...new Set((appState.menu || []).map(m => m.cat || "General"))];
-      document.getElementById("categoryAvatarSettingsList").innerHTML = categories.map(cat => `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px;">
-          <span><b>${cat}</b> Avatar:</span>
-          <input type="file" accept="image/*" onchange="uploadCategoryIcon(event, '${cat}')" style="width:160px; font-size:11px;" />
-        </div>
-      `).join('');
-
       openModal('storeSettingsModal');
     }
 
     function downloadBackupFile() {
-      if (!appState) {
-        alert("No application state available to backup!");
-        return;
-      }
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState));
       const a = document.createElement('a');
       a.setAttribute("href", dataStr);
-      a.setAttribute("download", `SmartPOS_Complete_Backup_${new Date().toISOString().slice(0, 10)}.json`);
+      a.setAttribute("download", `NaturesCafe_Backup_${new Date().toISOString().slice(0, 10)}.json`);
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -1410,85 +1252,34 @@
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = async function(evt) {
+      reader.onload = function(evt) {
         try {
           const parsed = JSON.parse(evt.target.result);
           if (parsed && parsed.menu) {
             appState = parsed;
             saveAppState();
-
-            for (const item of appState.menu) {
-              if (item.img) {
-                await storeImageToDB(`item_${item.id}`, item.img);
-              }
-            }
-
-            renderStoreHeader();
-            renderCategoryAvatars();
-            renderMenuCatalog();
-            updateSalesMetricsBadge();
-            updateKitchenBadge();
-            renderTodayTopSellingBar();
-
-            alert("✅ Complete POS backup restored successfully!");
+            initApplication();
+            alert("✅ Backup restored successfully!");
             closeModal('storeSettingsModal');
-          } else {
-            alert("Invalid backup file structure!");
           }
         } catch (err) {
-          alert("Corrupted or invalid JSON backup file!");
+          alert("Invalid backup file!");
         }
       };
       reader.readAsText(file);
     }
 
-    function toggleTaxSettingsUI() {
-      const enabled = document.getElementById("cfgEnableTax").checked;
-      document.getElementById("cfgTaxValGroup").style.display = enabled ? "block" : "none";
-    }
-
-    function toggleDiscountSettingsUI() {
-      const enabled = document.getElementById("cfgEnableDiscount").checked;
-      document.getElementById("cfgDiscountValGroup").style.display = enabled ? "block" : "none";
-    }
-
-    function uploadCategoryIcon(e, category) {
-      const file = e.target.files[0];
-      if (!file) return;
-      compressImageWorker(file, 200, 0.8, base64 => {
-        if (!appState.shop.categoryIcons) appState.shop.categoryIcons = {};
-        appState.shop.categoryIcons[category] = base64;
-      });
-    }
-
-    function uploadStoreBanner(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      compressImageWorker(file, 650, 0.75, b64 => {
-        document.getElementById("cfgStoreBannerData").value = b64;
-      });
-    }
-
     function saveStoreConfiguration() {
       const s = appState.shop;
-      s.name = document.getElementById("cfgStoreTitle").value.trim() || "GOGIA SWEETS";
+      s.name = document.getElementById("cfgStoreTitle").value.trim() || "Nature's Cafe";
       s.subtitle = document.getElementById("cfgStoreSubtitle").value.trim();
       s.phone = document.getElementById("cfgStorePhone").value.trim();
       s.upi = document.getElementById("cfgStoreUpi").value.trim();
       s.footerNote = document.getElementById("cfgStoreFooterNote").value.trim() || "*** THANK YOU, VISIT AGAIN ***";
-      s.banner = document.getElementById("cfgStoreBannerData").value;
-
-      s.enableTax = document.getElementById("cfgEnableTax").checked;
-      s.taxPercent = Number(document.getElementById("cfgTaxPercentage").value) || 0;
-
-      s.enableDiscount = document.getElementById("cfgEnableDiscount").checked;
-      s.discountPercent = Number(document.getElementById("cfgDiscountPercentage").value) || 0;
-
       saveAppState();
       renderStoreHeader();
-      renderCategoryAvatars();
       closeModal('storeSettingsModal');
-      alert("✅ Store Profile & Receipt Settings Updated!");
+      alert("✅ Settings saved!");
     }
 
     function openFoodManager() {
@@ -1509,7 +1300,7 @@
             <button type="button" onclick="deleteMenuProduct(${m.id})" style="background:#fee2e2; color:#dc2626; border:1px solid #f87171; padding:5px 9px; border-radius:5px; font-weight:700; cursor:pointer;">✕ Delete</button>
           </div>
         </div>
-      `).join('') || `<div style="text-align:center; padding:15px; color:#9ca3af;">No menu items available</div>`;
+      `).join('') || `<div style="text-align:center; padding:15px; color:#9ca3af;">No items found</div>`;
     }
 
     function startEditCatalogItem(id) {
@@ -1523,14 +1314,9 @@
       document.getElementById("inpItemCategory").value = item.cat || "";
       document.getElementById("inpItemHalfPrice").value = item.half || 0;
       document.getElementById("inpItemFullPrice").value = item.full || 0;
-      document.getElementById("inpItemPhotoData").value = item.img || "";
 
       document.getElementById("btnSaveMenuAction").textContent = "Update Menu Item";
-      document.getElementById("btnSaveMenuAction").style.background = "#2563eb";
-      document.getElementById("btnSaveMenuAction").style.color = "#ffffff";
       document.getElementById("btnCancelEditMode").style.display = "inline-block";
-
-      document.querySelector("#foodMenuModal .modal-sheet").scrollTop = 0;
     }
 
     function resetFoodInputForm() {
@@ -1541,25 +1327,12 @@
       document.getElementById("inpItemCategory").value = "";
       document.getElementById("inpItemHalfPrice").value = "";
       document.getElementById("inpItemFullPrice").value = "";
-      document.getElementById("inpItemPhotoData").value = "";
-      const fileInput = document.getElementById("inpItemPhotoFile");
-      if (fileInput) fileInput.value = "";
 
       document.getElementById("btnSaveMenuAction").textContent = "Save Item to Menu";
-      document.getElementById("btnSaveMenuAction").style.background = "var(--primary)";
-      document.getElementById("btnSaveMenuAction").style.color = "#000000";
       document.getElementById("btnCancelEditMode").style.display = "none";
     }
 
-    function uploadFoodPhoto(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      compressImageWorker(file, 500, 0.8, b64 => {
-        document.getElementById("inpItemPhotoData").value = b64;
-      });
-    }
-
-    async function saveNewCatalogItem() {
+    function saveNewCatalogItem() {
       const editIdStr = document.getElementById("editItemTargetId").value;
       const name = document.getElementById("inpItemNameTitle").value.trim();
       const subtitle = document.getElementById("inpItemSubtitle").value.trim();
@@ -1567,7 +1340,6 @@
       const cat = document.getElementById("inpItemCategory").value.trim() || "General";
       const half = Number(document.getElementById("inpItemHalfPrice").value) || 0;
       const full = Number(document.getElementById("inpItemFullPrice").value) || 0;
-      let imgData = document.getElementById("inpItemPhotoData").value;
 
       if (!name || full <= 0) {
         alert("Please enter item name and valid full price");
@@ -1578,28 +1350,13 @@
         const editId = Number(editIdStr);
         const index = appState.menu.findIndex(m => m.id === editId);
         if (index !== -1) {
-          if (!imgData) imgData = appState.menu[index].img || "";
-          if (imgData) await storeImageToDB(`item_${editId}`, imgData);
-
-          appState.menu[index] = {
-            id: editId,
-            name,
-            subtitle,
-            cat,
-            diet,
-            half,
-            full,
-            img: imgData
-          };
-          alert("✅ Menu item updated successfully!");
+          appState.menu[index] = { id: editId, name, subtitle, cat, diet, half, full };
+          alert("✅ Item updated!");
         }
       } else {
         const newItemId = Date.now();
-        if (imgData) {
-          await storeImageToDB(`item_${newItemId}`, imgData);
-        }
-        appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full, img: imgData });
-        alert("✅ New item added to menu!");
+        appState.menu.push({ id: newItemId, name, subtitle, cat, diet, half, full });
+        alert("✅ Item added!");
       }
 
       saveAppState();
@@ -1616,23 +1373,6 @@
       renderCategoryAvatars();
       renderMenuCatalog();
       renderCatalogEditor();
-    }
-
-    function compressImageWorker(file, maxDimension, quality, callback) {
-      const reader = new FileReader();
-      reader.onload = evt => {
-        const img = new Image();
-        img.onload = () => {
-          const cvs = document.createElement("canvas");
-          let w = img.width, h = img.height;
-          if (w > maxDimension) { h = Math.round((h * maxDimension) / w); w = maxDimension; }
-          cvs.width = w; cvs.height = h;
-          cvs.getContext("2d").drawImage(img, 0, 0, w, h);
-          callback(cvs.toDataURL("image/jpeg", quality));
-        };
-        img.src = evt.target.result;
-      };
-      reader.readAsDataURL(file);
     }
 
     function openModal(id) {
